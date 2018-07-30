@@ -28,6 +28,7 @@
   },
   "homepage": "https://github.com/FireStack-Lab/webz.js#readme",
   "dependencies": {
+    "assert": "^1.4.1",
     "bcrypto": "^1.0.0",
     "bn.js": "^4.11.8",
     "browserify": "^16.2.2",
