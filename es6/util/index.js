@@ -17,12 +17,15 @@ const generatePrivateKey = () => {
  * @param  {Buffer[string|hex]} privateKey [description]
  * @return {Boolean}            [description]
  */
-const verifyPrivateKey = privateKey => {
+const verifyPrivateKey = (privateKey) => {
+  let pKey
   if (typeof privateKey === 'string') {
-    privateKey = new Buffer(privateKey, 'hex')
-  }
+    // new Buffer has been deprecated
+    // privateKey = new Buffer(privateKey, 'hex')
+    pKey = Buffer.from(privateKey, 'hex')
+  } else pKey = privateKey
 
-  return secp256k1.privateKeyVerify(privateKey)
+  return secp256k1.privateKeyVerify(pKey)
 }
 
 /**
@@ -30,12 +33,14 @@ const verifyPrivateKey = privateKey => {
  * @param  {[Buffer[string|hex]} privateKey [description]
  * @return {[string]}            [description]
  */
-const getAddressFromPrivateKey = privateKey => {
+const getAddressFromPrivateKey = (privateKey) => {
+  let pKey
   if (typeof privateKey === 'string') {
-    privateKey = new Buffer(privateKey, 'hex')
-  }
+    // new Buffer has been deprecated
+    pKey = Buffer.from(privateKey, 'hex')
+  } else pKey = privateKey
 
-  const pubKey = secp256k1.publicKeyCreate(privateKey, true)
+  const pubKey = secp256k1.publicKeyCreate(pKey, true)
   const pubKeyHash = sha256.digest(pubKey) // sha256 hash of the public key
   const address = pubKeyHash.toString('hex', 12) // rightmost 160 bits/20 bytes of the hash
 
@@ -47,12 +52,14 @@ const getAddressFromPrivateKey = privateKey => {
  * @param  {Buffer[string|hex]} privateKey [description]
  * @return {[string]}            [description]
  */
-const getPubKeyFromPrivateKey = privateKey => {
+const getPubKeyFromPrivateKey = (privateKey) => {
+  let pKey
   if (typeof privateKey === 'string') {
-    privateKey = new Buffer(privateKey, 'hex')
-  }
+    // new Buffer has been deprecated
+    pKey = Buffer.from(privateKey, 'hex')
+  } else pKey = privateKey
 
-  return secp256k1.publicKeyCreate(privateKey, true)
+  return secp256k1.publicKeyCreate(pKey, true)
 }
 
 /**
@@ -60,12 +67,14 @@ const getPubKeyFromPrivateKey = privateKey => {
  * @param  {[hex|string]} pubKey [description]
  * @return {[string]}        [description]
  */
-const getAddressFromPublicKey = pubKey => {
-  if (typeof pubKey == 'string') {
-    pubKey = new Buffer(pubKey, 'hex')
-  }
-  let pubKeyHash = sha256.digest(pubKey) // sha256 hash of the public key
-  let address = pubKeyHash.toString('hex', 12) // rightmost 160 bits/20 bytes of the hash
+const getAddressFromPublicKey = (pubKey) => {
+  let pKey
+  if (typeof pubKey === 'string') {
+    // new Buffer has been deprecated
+    pKey = Buffer.from(pubKey, 'hex')
+  } else pKey = pubKey
+  const pubKeyHash = sha256.digest(pKey) // sha256 hash of the public key
+  const address = pubKeyHash.toString('hex', 12) // rightmost 160 bits/20 bytes of the hash
   return address
 }
 
@@ -77,10 +86,13 @@ const getAddressFromPublicKey = pubKey => {
  * @return {[string]}            [description]
  */
 const createTransactionJson = (privateKey, txnDetails) => {
+  let pKey
   if (typeof privateKey === 'string') {
-    privateKey = new Buffer(privateKey, 'hex')
-  }
-  const pubKey = secp256k1.publicKeyCreate(privateKey, true)
+    // new Buffer has been deprecated
+    pKey = Buffer.from(privateKey, 'hex')
+  } else pKey = privateKey
+
+  const pubKey = secp256k1.publicKeyCreate(pKey, true)
 
   const txn = {
     version: txnDetails.version,
@@ -94,28 +106,32 @@ const createTransactionJson = (privateKey, txnDetails) => {
     data: txnDetails.data || ''
   }
 
-  const codeHex = new Buffer(txn.code).toString('hex')
-  const dataHex = new Buffer(txn.data).toString('hex')
+  // new Buffer has been deprecated
+  // const codeHex = new Buffer(txn.code).toString('hex')
+  // const dataHex = new Buffer(txn.data).toString('hex')
 
-  const msg =
-    intToByteArray(txn.version, 64).join('') +
-    intToByteArray(txn.nonce, 64).join('') +
-    txn.to +
-    txn.pubKey +
-    intToByteArray(txn.amount, 64).join('') +
-    intToByteArray(txn.gasPrice, 64).join('') +
-    intToByteArray(txn.gasLimit, 64).join('') +
-    intToByteArray(txn.code.length, 8).join('') + // size of code
-    codeHex +
-    intToByteArray(txn.data.length, 8).join('') + // size of data
-    dataHex
+  const codeHex = Buffer.alloc(txn.code).toString('hex')
+  const dataHex = Buffer.alloc(txn.data).toString('hex')
+
+  const msg = intToByteArray(txn.version, 64).join('')
+    + intToByteArray(txn.nonce, 64).join('')
+    + txn.to
+    + txn.pubKey
+    + intToByteArray(txn.amount, 64).join('')
+    + intToByteArray(txn.gasPrice, 64).join('')
+    + intToByteArray(txn.gasLimit, 64).join('')
+    + intToByteArray(txn.code.length, 8).join('') // size of code
+    + codeHex
+    + intToByteArray(txn.data.length, 8).join('') // size of data
+    + dataHex
 
   // sign using schnorr lib
   const schnorr = new Schnorr()
 
-  const messageHex = new Buffer(msg, 'hex')
-
-  const sig = schnorr.sign(messageHex, privateKey, pubKey)
+  // new Buffer has been deprecated
+  // const messageHex = new Buffer(msg, 'hex')
+  const messageHex = Buffer.from(msg, 'hex')
+  const sig = schnorr.sign(messageHex, pKey, pubKey)
 
   let r = sig.r.toString('hex')
   let s = sig.s.toString('hex')
@@ -138,26 +154,22 @@ const createTransactionJson = (privateKey, txnDetails) => {
  * @return {[type]}              [description]
  */
 const validateArgs = (args, requiredArgs, optionalArgs) => {
-  for (var key in requiredArgs) {
-    if (args[key] === undefined) throw new Error(`Key not found: ${key}`)
+  for (const key in requiredArgs) {
+    if (args[key] !== undefined) {
+      for (let i = 0; i < requiredArgs[key].length; i += 1) {
+        if (typeof requiredArgs[key][i] !== 'function') throw new Error('Validator is not a function')
 
-    for (var i = 0; i < requiredArgs[key].length; i++) {
-      if (typeof requiredArgs[key][i] !== 'function')
-        throw new Error('Validator is not a function')
-
-      if (!requiredArgs[key][i](args[key]))
-        throw new Error(`Validation failed for ${key}`)
-    }
+        if (!requiredArgs[key][i](args[key])) throw new Error(`Validation failed for ${key}`)
+      }
+    } else throw new Error(`Key not found: ${key}`)
   }
 
-  for (var key in optionalArgs) {
+  for (const key in optionalArgs) {
     if (args[key]) {
-      for (var i = 0; i < optionalArgs[key].length; i++) {
-        if (typeof optionalArgs[key][i] !== 'function')
-          throw new Error('Validator is not a function')
+      for (let i = 0; i < optionalArgs[key].length; i += 1) {
+        if (typeof optionalArgs[key][i] !== 'function') throw new Error('Validator is not a function')
 
-        if (!optionalArgs[key][i](args[key]))
-          throw new Error(`Validation failed for ${key}`)
+        if (!optionalArgs[key][i](args[key])) throw new Error(`Validation failed for ${key}`)
       }
     }
   }
@@ -169,7 +181,7 @@ const validateArgs = (args, requiredArgs, optionalArgs) => {
  * @param  {[hex|string]}  address [description]
  * @return {Boolean}         [description]
  */
-const isAddress = address => {
+const isAddress = (address) => {
   return !!address.match(/^[0-9a-fA-F]{40}$/)
 }
 
@@ -178,7 +190,7 @@ const isAddress = address => {
  * @param  {[hex|string]}  privateKey [description]
  * @return {Boolean}            [description]
  */
-const isPrivateKey = privateKey => {
+const isPrivateKey = (privateKey) => {
   return !!privateKey.match(/^[0-9a-fA-F]{64}$/)
 }
 
@@ -187,7 +199,7 @@ const isPrivateKey = privateKey => {
  * @param  {[hex|string]}  pubkey [description]
  * @return {Boolean}        [description]
  */
-const isPubkey = pubkey => {
+const isPubkey = (pubkey) => {
   return !!pubkey.match(/^[0-9a-fA-F]{66}$/)
 }
 
@@ -196,7 +208,7 @@ const isPubkey = pubkey => {
  * @param  {[string]}  url [description]
  * @return {Boolean}     [description]
  */
-const isUrl = url => {
+const isUrl = (url) => {
   return isWebUri(url)
 }
 
@@ -205,7 +217,7 @@ const isUrl = url => {
  * @param  {[string]}  txHash [description]
  * @return {Boolean}        [description]
  */
-const isHash = txHash => {
+const isHash = (txHash) => {
   return !!txHash.match(/^[0-9a-fA-F]{64}$/)
 }
 
@@ -214,7 +226,7 @@ const isHash = txHash => {
  * @param  {[number]}  number [description]
  * @return {Boolean}        [description]
  */
-const isNumber = number => {
+const isNumber = (number) => {
   return typeof number === 'number'
 }
 
@@ -223,7 +235,7 @@ const isNumber = number => {
  * @param  {[string]}  string [description]
  * @return {Boolean}        [description]
  */
-const isString = string => {
+const isString = (string) => {
   return typeof string === 'string'
 }
 
@@ -240,15 +252,15 @@ const intToByteArray = (val, paddedSize) => {
   const hexRep = []
 
   let i
-  for (i = 0; i < hexVal.length; i++) {
+  for (i = 0; i < hexVal.length; i += 1) {
     hexRep[i] = hexVal[i].toString()
   }
 
-  for (i = 0; i < paddedSize - hexVal.length; i++) {
+  for (i = 0; i < paddedSize - hexVal.length; i += 1) {
     arr.push('0')
   }
 
-  for (i = 0; i < hexVal.length; i++) {
+  for (i = 0; i < hexVal.length; i += 1) {
     arr.push(hexRep[i])
   }
 

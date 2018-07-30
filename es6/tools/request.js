@@ -78,4 +78,6 @@ const asyncServerAjax = (url, body) => {
     .catch(error => error)
 }
 
-export { rpcAjax, serverAjax, asyncRpcAjax, asyncServerAjax }
+export {
+  rpcAjax, serverAjax, asyncRpcAjax, asyncServerAjax
+}
