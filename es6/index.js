@@ -5,11 +5,13 @@
 //
 //
 
-import util, { validateArgs } from './util'
+import util from './util'
 import { syncNode, asyncNode } from './node'
-import config from './config.json'
+import Schnorr from './schnorr'
+import config from '../config.json'
 
 const Node = config.mode === 'sync' ? syncNode : asyncNode
+const { validateArgs } = util
 
 class Webz {
   constructor(args) {
@@ -27,7 +29,7 @@ class Webz {
 
   getNode = () => this.node
 
-  setNode = args => {
+  setNode = (args) => {
     validateArgs(args, {
       nodeUrl: [util.isUrl]
     })

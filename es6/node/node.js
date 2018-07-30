@@ -1,12 +1,10 @@
 import * as util from '../util'
-import { rpcAjax, serverAjax } from './tools/request'
+import { rpcAjax, serverAjax } from '../tools/request'
 
 const { validateArgs } = util
 
 // Node Class By Neeboo
 class Node {
-  args: any
-
   constructor(args) {
     validateArgs(args, {
       url: [util.isUrl]
@@ -18,19 +16,19 @@ class Node {
   apiUrl = 'https://api.zilliqa.com'
 
   // helper methods
-  getNetworkId = cb => {
+  getNetworkId = (cb) => {
     rpcAjax(this.url, 'GetNetworkId', [], cb)
   }
 
-  isConnected = cb => {
+  isConnected = (cb) => {
     rpcAjax(this.url, 'GetNetworkId', [], cb)
   }
 
-  getClientVersion = cb => {
+  getClientVersion = (cb) => {
     rpcAjax(this.url, 'GetClientVersion', [], cb)
   }
 
-  getProtocolVersion = cb => {
+  getProtocolVersion = (cb) => {
     rpcAjax(this.url, 'GetProtocolVersion', [], cb)
   }
 
@@ -71,11 +69,11 @@ class Node {
     rpcAjax(this.url, 'GetTxBlock', args.blockNumber, cb)
   }
 
-  getLatestDsBlock = cb => {
+  getLatestDsBlock = (cb) => {
     rpcAjax(this.url, 'GetLatestDsBlock', '', cb)
   }
 
-  getLatestTxBlock = cb => {
+  getLatestTxBlock = (cb) => {
     rpcAjax(this.url, 'GetLatestTxBlock', '', cb)
   }
 
@@ -92,7 +90,7 @@ class Node {
     rpcAjax(this.url, 'GetBalance', args.address, cb)
   }
 
-  getGasPrice = cb => {
+  getGasPrice = (cb) => {
     rpcAjax(this.url, 'GetGasPrice', '', cb)
   }
 
@@ -239,7 +237,7 @@ class Node {
     rpcAjax(this.url, 'GetTransactionReceipt', args.txHash, cb)
   }
 
-  getHashrate = cb => {
+  getHashrate = (cb) => {
     rpcAjax(this.url, 'GetHashrate', '', cb)
   }
 

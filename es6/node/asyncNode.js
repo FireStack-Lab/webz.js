@@ -3,15 +3,13 @@
 // 2.remove the callback function which used in asyncRpcAjax and asyncServerAjax,simply return data and error
 // 3.change all the sync functions to async/await ones, which return promises
 
-import util from './util'
+import util from '../util'
 import { asyncRpcAjax, asyncServerAjax } from '../tools/request'
 
 const { validateArgs } = util
 
 // Node Class By Neeboo
 class AsyncNode {
-  args: any
-
   constructor(args) {
     validateArgs(args, {
       url: [util.isUrl]
@@ -43,7 +41,7 @@ class AsyncNode {
     return result
   }
 
-  createTransaction = async args => {
+  createTransaction = async (args) => {
     try {
       validateArgs(args, {
         to: [util.isAddress],
@@ -59,7 +57,7 @@ class AsyncNode {
     return result
   }
 
-  getTransaction = async args => {
+  getTransaction = async (args) => {
     try {
       validateArgs(args, {
         txHash: [util.isHash]
@@ -72,12 +70,12 @@ class AsyncNode {
     return result
   }
 
-  getDsBlock = async args => {
+  getDsBlock = async (args) => {
     const result = await asyncRpcAjax(this.url, 'GetDsBlock', args.blockNumber)
     return result
   }
 
-  getTxBlock = async args => {
+  getTxBlock = async (args) => {
     const result = await asyncRpcAjax(this.url, 'GetTxBlock', args.blockNumber)
     return result
   }
@@ -92,7 +90,7 @@ class AsyncNode {
     return result
   }
 
-  getBalance = async args => {
+  getBalance = async (args) => {
     try {
       validateArgs(args, {
         address: [util.isAddress]
@@ -110,7 +108,7 @@ class AsyncNode {
     return result
   }
 
-  getSmartContractState = async args => {
+  getSmartContractState = async (args) => {
     try {
       validateArgs(args, {
         address: [util.isAddress]
@@ -119,15 +117,11 @@ class AsyncNode {
       return e
     }
 
-    const result = await asyncRpcAjax(
-      this.url,
-      'GetSmartContractState',
-      args.address
-    )
+    const result = await asyncRpcAjax(this.url, 'GetSmartContractState', args.address)
     return result
   }
 
-  getSmartContractCode = async args => {
+  getSmartContractCode = async (args) => {
     try {
       validateArgs(args, {
         address: [util.isAddress]
@@ -136,15 +130,11 @@ class AsyncNode {
       return e
     }
 
-    const result = await asyncRpcAjax(
-      this.url,
-      'GetSmartContractCode',
-      args.address
-    )
+    const result = await asyncRpcAjax(this.url, 'GetSmartContractCode', args.address)
     return result
   }
 
-  getSmartContractInit = async args => {
+  getSmartContractInit = async (args) => {
     try {
       validateArgs(args, {
         address: [util.isAddress]
@@ -153,15 +143,11 @@ class AsyncNode {
       return e
     }
 
-    const result = await asyncRpcAjax(
-      this.url,
-      'GetSmartContractInit',
-      args.address
-    )
+    const result = await asyncRpcAjax(this.url, 'GetSmartContractInit', args.address)
     return result
   }
 
-  getSmartContracts = async args => {
+  getSmartContracts = async (args) => {
     try {
       validateArgs(args, {
         address: [util.isAddress]
@@ -170,15 +156,11 @@ class AsyncNode {
       return e
     }
 
-    const result = await asyncRpcAjax(
-      this.url,
-      'GetSmartContracts',
-      args.address
-    )
+    const result = await asyncRpcAjax(this.url, 'GetSmartContracts', args.address)
     return result
   }
 
-  getTransactionHistory = async args => {
+  getTransactionHistory = async (args) => {
     try {
       validateArgs(args, {
         address: [util.isAddress]
@@ -187,15 +169,11 @@ class AsyncNode {
       return e
     }
 
-    const result = await asyncRpcAjax(
-      this.url,
-      'GetTransactionHistory',
-      args.address
-    )
+    const result = await asyncRpcAjax(this.url, 'GetTransactionHistory', args.address)
     return result
   }
 
-  getBlockTransactionCount = async args => {
+  getBlockTransactionCount = async (args) => {
     try {
       validateArgs(args, {
         blockNumber: [util.isNumber]
@@ -203,15 +181,11 @@ class AsyncNode {
     } catch (e) {
       return e
     }
-    const result = asyncRpcAjax(
-      this.url,
-      'GetBlockTransactionCount',
-      args.blockNumber
-    )
+    const result = asyncRpcAjax(this.url, 'GetBlockTransactionCount', args.blockNumber)
     return result
   }
 
-  getCode = async args => {
+  getCode = async (args) => {
     try {
       validateArgs(args, {
         address: [util.isAddress]
@@ -224,7 +198,7 @@ class AsyncNode {
     return result
   }
 
-  createMessage = async args => {
+  createMessage = async (args) => {
     try {
       validateArgs(
         {
@@ -244,7 +218,7 @@ class AsyncNode {
     return result
   }
 
-  getGasEstimate = async args => {
+  getGasEstimate = async (args) => {
     try {
       validateArgs(
         {},
@@ -264,7 +238,7 @@ class AsyncNode {
     return result
   }
 
-  getTransactionReceipt = async args => {
+  getTransactionReceipt = async (args) => {
     try {
       validateArgs(args, {
         txHash: [util.isHash]
@@ -273,11 +247,7 @@ class AsyncNode {
       return e
     }
 
-    const result = await asyncRpcAjax(
-      this.url,
-      'GetTransactionReceipt',
-      args.txHash
-    )
+    const result = await asyncRpcAjax(this.url, 'GetTransactionReceipt', args.txHash)
     return result
   }
 
@@ -286,12 +256,12 @@ class AsyncNode {
     return result
   }
 
-  isNodeMining = async args => {
+  isNodeMining = async (args) => {
     const result = await asyncRpcAjax(this.url, 'isNodeMining', '')
     return result
   }
 
-  compileCode = async args => {
+  compileCode = async (args) => {
     try {
       validateArgs({
         code: [util.isString]
@@ -304,7 +274,7 @@ class AsyncNode {
     return result
   }
 
-  checkCode = async args => {
+  checkCode = async (args) => {
     try {
       validateArgs({
         code: [util.isString]
@@ -317,7 +287,7 @@ class AsyncNode {
     return result
   }
 
-  checkCodeTest = async args => {
+  checkCodeTest = async (args) => {
     try {
       validateArgs({
         code: [util.isString]
@@ -331,12 +301,12 @@ class AsyncNode {
   }
 
   // // Explorer APIs
-  getBlockchainInfo = async args => {
+  getBlockchainInfo = async (args) => {
     const result = await asyncRpcAjax(this.url, 'GetBlockchainInfo', '')
     return result
   }
 
-  getDSBlockListing = async args => {
+  getDSBlockListing = async (args) => {
     try {
       validateArgs(args, {
         page: [util.isNumber]
@@ -349,7 +319,7 @@ class AsyncNode {
     return result
   }
 
-  getTxBlockListing = async args => {
+  getTxBlockListing = async (args) => {
     try {
       validateArgs(args, {
         page: [util.isNumber]
@@ -362,17 +332,17 @@ class AsyncNode {
     return result
   }
 
-  getNumTxnsTxEpoch = async args => {
+  getNumTxnsTxEpoch = async (args) => {
     const result = await asyncRpcAjax(this.url, 'GetNumTxnsTxEpoch', '')
     return result
   }
 
-  getNumTxnsDSEpoch = async args => {
+  getNumTxnsDSEpoch = async (args) => {
     const result = await asyncRpcAjax(this.url, 'GetNumTxnsDSEpoch', '')
     return result
   }
 
-  getTransactionListing = async args => {
+  getTransactionListing = async (args) => {
     const result = asyncRpcAjax(this.url, 'GetRecentTransactions', '')
     return result
   }
