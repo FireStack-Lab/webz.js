@@ -1,0 +1,39 @@
+{
+  "name": "webz.js",
+  "version": "0.0.1",
+  "description": "Zilliqa Javascript Libraries",
+  "main": "index.js",
+  "directories": {
+    "example": "example",
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FireStack-Lab/webz.js.git"
+  },
+  "keywords": [
+    "webz",
+    "web3",
+    "zilliqa",
+    "ethereum",
+    "javascript"
+  ],
+  "author": "neeboo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/FireStack-Lab/webz.js/issues"
+  },
+  "homepage": "https://github.com/FireStack-Lab/webz.js#readme",
+  "dependencies": {
+    "bcrypto": "^1.0.0",
+    "bn.js": "^4.11.8",
+    "browserify": "^16.2.2",
+    "bsert": "0.0.3",
+    "elliptic": "^6.4.0",
+    "node-fetch": "^2.2.0",
+    "valid-url": "^1.0.9"
+  }
+}
