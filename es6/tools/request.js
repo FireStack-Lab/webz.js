@@ -18,33 +18,11 @@ const rpcAjax = (url, method, params, cb) => {
     referrer: 'no-referrer'
   })
     .then(response => response.json())
-    .then(data => cb(null, data))
-    .catch(error => cb(error))
+    .then(data => (cb && typeof cb === 'function' ? cb(null, data) : data))
+    .catch(error => (cb && typeof cb === 'function' ? cb(error) : error))
 }
 
-const asyncRpcAjax = (url, method, params) => {
-  return fetch(url, {
-    body: JSON.stringify({
-      jsonrpc: '2.0',
-      method,
-      params: [params],
-      id: 1
-    }),
-    cache: 'no-cache',
-    headers: {
-      'content-type': 'application/json'
-    },
-    method: 'POST',
-    mode: 'cors',
-    redirect: 'follow',
-    referrer: 'no-referrer'
-  })
-    .then(response => response.json())
-    .then(data => (data ? data.result : null))
-    .catch(error => error)
-}
-
-const serverAjax = (url, body) => {
+const serverAjax = (url, body, cb) => {
   return fetch(url, {
     body: JSON.stringify(body),
     cache: 'no-cache',
@@ -57,27 +35,8 @@ const serverAjax = (url, body) => {
     referrer: 'no-referrer'
   })
     .then(response => response.json())
-    .then(data => cb(null, data))
-    .catch(error => cb(error))
+    .then(data => (cb && typeof cb === 'function' ? cb(null, data) : data))
+    .catch(error => (cb && typeof cb === 'function' ? cb(error) : error))
 }
 
-const asyncServerAjax = (url, body) => {
-  return fetch(url, {
-    body: JSON.stringify(body),
-    cache: 'no-cache',
-    headers: {
-      'content-type': 'application/json'
-    },
-    method: 'POST',
-    mode: 'cors',
-    redirect: 'follow',
-    referrer: 'no-referrer'
-  })
-    .then(response => response.json())
-    .then(data => data)
-    .catch(error => error)
-}
-
-export {
-  rpcAjax, serverAjax, asyncRpcAjax, asyncServerAjax
-}
+export { rpcAjax, serverAjax }

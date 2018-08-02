@@ -6,11 +6,11 @@
 //
 
 import util from './util'
-import { syncNode, asyncNode } from './node'
+import { syncNode } from './node'
 import Schnorr from './schnorr'
 import config from '../config.json'
 
-const Node = config.mode === 'sync' ? syncNode : asyncNode
+const Node = syncNode
 const { validateArgs } = util
 
 class Webz {
