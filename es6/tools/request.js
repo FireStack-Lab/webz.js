@@ -18,9 +18,14 @@ const rpcAjax = (url, method, params, cb) => {
     referrer: 'no-referrer'
   })
     .then(response => response.json())
-    .then(
-      data => (cb !== undefined && typeof cb === 'function' ? cb(null, data) : data ? data.result : null)
-    )
+    .then((data) => {
+      console.log({ cb })
+      return cb !== undefined && typeof cb === 'function'
+        ? cb(null, data)
+        : data
+          ? data.result
+          : null
+    })
     .catch(error => (cb !== undefined && typeof cb === 'function' ? cb(error) : error))
 }
 
