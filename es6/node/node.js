@@ -17,19 +17,31 @@ class Node {
 
   // helper methods
   getNetworkId = (cb) => {
-    rpcAjax(this.url, 'GetNetworkId', [], cb)
+    if (cb !== undefined && typeof cb === 'function') {
+      rpcAjax(this.url, 'GetNetworkId', [], cb)
+    }
+    return rpcAjax(this.url, 'GetNetworkId', [])
   }
 
   isConnected = (cb) => {
-    rpcAjax(this.url, 'GetNetworkId', [], cb)
+    if (cb !== undefined && typeof cb === 'function') {
+      rpcAjax(this.url, 'GetNetworkId', [], cb)
+    }
+    return rpcAjax(this.url, 'GetNetworkId', [])
   }
 
   getClientVersion = (cb) => {
-    rpcAjax(this.url, 'GetClientVersion', [], cb)
+    if (cb !== undefined && typeof cb === 'function') {
+      rpcAjax(this.url, 'GetClientVersion', [], cb)
+    }
+    return rpcAjax(this.url, 'GetClientVersion', [])
   }
 
   getProtocolVersion = (cb) => {
-    rpcAjax(this.url, 'GetProtocolVersion', [], cb)
+    if (cb !== undefined && typeof cb === 'function') {
+      rpcAjax(this.url, 'GetProtocolVersion', [], cb)
+    }
+    return rpcAjax(this.url, 'GetProtocolVersion', [])
   }
 
   createTransaction = (args, cb) => {
@@ -42,10 +54,15 @@ class Node {
         gasLimit: [util.isNumber]
       })
     } catch (e) {
-      cb(e)
-      return
+      if (cb !== undefined && typeof cb === 'function') {
+        cb(e)
+      }
+      return e
     }
-    rpcAjax(this.url, 'CreateTransaction', args, cb)
+    if (cb !== undefined && typeof cb === 'function') {
+      rpcAjax(this.url, 'CreateTransaction', args, cb)
+    }
+    return rpcAjax(this.url, 'CreateTransaction', args)
   }
 
   getTransaction = (args, cb) => {
@@ -54,27 +71,43 @@ class Node {
         txHash: [util.isHash]
       })
     } catch (e) {
-      cb(e)
-      return
+      if (cb !== undefined && typeof cb === 'function') {
+        cb(e)
+      }
+      return e
     }
-
-    rpcAjax(this.url, 'GetTransaction', args.txHash, cb)
+    if (cb !== undefined && typeof cb === 'function') {
+      rpcAjax(this.url, 'GetTransaction', args.txHash, cb)
+    }
+    return rpcAjax(this.url, 'GetTransaction', args.txHash)
   }
 
   getDsBlock = (args, cb) => {
-    rpcAjax(this.url, 'GetDsBlock', args.blockNumber, cb)
+    if (cb !== undefined && typeof cb === 'function') {
+      rpcAjax(this.url, 'GetDsBlock', args.blockNumber, cb)
+    }
+    return rpcAjax(this.url, 'GetDsBlock', args.blockNumber)
   }
 
   getTxBlock = (args, cb) => {
-    rpcAjax(this.url, 'GetTxBlock', args.blockNumber, cb)
+    if (cb !== undefined && typeof cb === 'function') {
+      rpcAjax(this.url, 'GetTxBlock', args.blockNumber, cb)
+    }
+    return rpcAjax(this.url, 'GetTxBlock', args.blockNumber)
   }
 
   getLatestDsBlock = (cb) => {
-    rpcAjax(this.url, 'GetLatestDsBlock', '', cb)
+    if (cb !== undefined && typeof cb === 'function') {
+      rpcAjax(this.url, 'GetLatestDsBlock', '', cb)
+    }
+    return rpcAjax(this.url, 'GetLatestDsBlock', '')
   }
 
   getLatestTxBlock = (cb) => {
-    rpcAjax(this.url, 'GetLatestTxBlock', '', cb)
+    if (cb !== undefined && typeof cb === 'function') {
+      rpcAjax(this.url, 'GetLatestTxBlock', '', cb)
+    }
+    return rpcAjax(this.url, 'GetLatestTxBlock', '')
   }
 
   getBalance = (args, cb) => {
@@ -83,15 +116,22 @@ class Node {
         address: [util.isAddress]
       })
     } catch (e) {
-      cb(e)
-      return
+      if (cb !== undefined && typeof cb === 'function') {
+        cb(e)
+      }
+      return e
     }
-
-    rpcAjax(this.url, 'GetBalance', args.address, cb)
+    if (cb !== undefined && typeof cb === 'function') {
+      rpcAjax(this.url, 'GetBalance', args.address, cb)
+    }
+    return rpcAjax(this.url, 'GetBalance', args.address)
   }
 
   getGasPrice = (cb) => {
-    rpcAjax(this.url, 'GetGasPrice', '', cb)
+    if (cb !== undefined && typeof cb === 'function') {
+      rpcAjax(this.url, 'GetGasPrice', '', cb)
+    }
+    return rpcAjax(this.url, 'GetGasPrice', '')
   }
 
   getSmartContractState = (args, cb) => {
@@ -100,11 +140,15 @@ class Node {
         address: [util.isAddress]
       })
     } catch (e) {
-      cb(e)
-      return
+      if (cb !== undefined && typeof cb === 'function') {
+        cb(e)
+      }
+      return e
     }
-
-    rpcAjax(this.url, 'GetSmartContractState', args.address, cb)
+    if (cb !== undefined && typeof cb === 'function') {
+      rpcAjax(this.url, 'GetSmartContractState', args.address, cb)
+    }
+    return rpcAjax(this.url, 'GetSmartContractState', args.address)
   }
 
   getSmartContractCode = (args, cb) => {
@@ -113,11 +157,15 @@ class Node {
         address: [util.isAddress]
       })
     } catch (e) {
-      cb(e)
-      return
+      if (cb !== undefined && typeof cb === 'function') {
+        cb(e)
+      }
+      return e
     }
-
-    rpcAjax(this.url, 'GetSmartContractCode', args.address, cb)
+    if (cb !== undefined && typeof cb === 'function') {
+      rpcAjax(this.url, 'GetSmartContractCode', args.address, cb)
+    }
+    return rpcAjax(this.url, 'GetSmartContractCode', args.address)
   }
 
   getSmartContractInit = (args, cb) => {
@@ -126,11 +174,15 @@ class Node {
         address: [util.isAddress]
       })
     } catch (e) {
-      cb(e)
-      return
+      if (cb !== undefined && typeof cb === 'function') {
+        cb(e)
+      }
+      return e
     }
-
-    rpcAjax(this.url, 'GetSmartContractInit', args.address, cb)
+    if (cb !== undefined && typeof cb === 'function') {
+      rpcAjax(this.url, 'GetSmartContractInit', args.address, cb)
+    }
+    return rpcAjax(this.url, 'GetSmartContractInit', args.address)
   }
 
   getSmartContracts = (args, cb) => {
@@ -139,11 +191,15 @@ class Node {
         address: [util.isAddress]
       })
     } catch (e) {
-      cb(e)
-      return
+      if (cb !== undefined && typeof cb === 'function') {
+        cb(e)
+      }
+      return e
     }
-
-    rpcAjax(this.url, 'GetSmartContracts', args.address, cb)
+    if (cb !== undefined && typeof cb === 'function') {
+      rpcAjax(this.url, 'GetSmartContracts', args.address, cb)
+    }
+    return rpcAjax(this.url, 'GetSmartContracts', args.address)
   }
 
   getTransactionHistory = (args, cb) => {
@@ -152,11 +208,15 @@ class Node {
         address: [util.isAddress]
       })
     } catch (e) {
-      cb(e)
-      return
+      if (cb !== undefined && typeof cb === 'function') {
+        cb(e)
+      }
+      return e
     }
-
-    rpcAjax(this.url, 'GetTransactionHistory', args.address, cb)
+    if (cb !== undefined && typeof cb === 'function') {
+      rpcAjax(this.url, 'GetTransactionHistory', args.address, cb)
+    }
+    return rpcAjax(this.url, 'GetTransactionHistory', args.address)
   }
 
   getBlockTransactionCount = (args, cb) => {
@@ -165,10 +225,15 @@ class Node {
         blockNumber: [util.isNumber]
       })
     } catch (e) {
-      cb(e)
-      return
+      if (cb !== undefined && typeof cb === 'function') {
+        cb(e)
+      }
+      return e
     }
-    rpcAjax(this.url, 'GetBlockTransactionCount', args.blockNumber, cb)
+    if (cb !== undefined && typeof cb === 'function') {
+      rpcAjax(this.url, 'GetBlockTransactionCount', args.blockNumber, cb)
+    }
+    return rpcAjax(this.url, 'GetBlockTransactionCount', args.blockNumber)
   }
 
   getCode = (args, cb) => {
@@ -177,11 +242,15 @@ class Node {
         address: [util.isAddress]
       })
     } catch (e) {
-      cb(e)
-      return
+      if (cb !== undefined && typeof cb === 'function') {
+        cb(e)
+      }
+      return e
     }
-
-    rpcAjax(this.url, 'GetCode', args.address, cb)
+    if (cb !== undefined && typeof cb === 'function') {
+      rpcAjax(this.url, 'GetCode', args.address, cb)
+    }
+    return rpcAjax(this.url, 'GetCode', args.address)
   }
 
   createMessage = (args, cb) => {
@@ -197,11 +266,15 @@ class Node {
         }
       )
     } catch (e) {
-      cb(e)
-      return
+      if (cb !== undefined && typeof cb === 'function') {
+        cb(e)
+      }
+      return e
     }
-
-    rpcAjax(this.url, 'CreateMessage', args, cb)
+    if (cb !== undefined && typeof cb === 'function') {
+      rpcAjax(this.url, 'CreateMessage', args, cb)
+    }
+    return rpcAjax(this.url, 'CreateMessage', args)
   }
 
   getGasEstimate = (args, cb) => {
@@ -217,11 +290,15 @@ class Node {
         }
       )
     } catch (e) {
-      cb(e)
-      return
+      if (cb !== undefined && typeof cb === 'function') {
+        cb(e)
+      }
+      return e
     }
-
-    rpcAjax(this.url, 'GetGasEstimate', args, cb)
+    if (cb !== undefined && typeof cb === 'function') {
+      rpcAjax(this.url, 'GetGasEstimate', args, cb)
+    }
+    return rpcAjax(this.url, 'GetGasEstimate', args)
   }
 
   getTransactionReceipt = (args, cb) => {
@@ -230,19 +307,29 @@ class Node {
         txHash: [util.isHash]
       })
     } catch (e) {
-      cb(e)
-      return
+      if (cb !== undefined && typeof cb === 'function') {
+        cb(e)
+      }
+      return e
     }
-
-    rpcAjax(this.url, 'GetTransactionReceipt', args.txHash, cb)
+    if (cb !== undefined && typeof cb === 'function') {
+      rpcAjax(this.url, 'GetTransactionReceipt', args.txHash, cb)
+    }
+    return rpcAjax(this.url, 'GetTransactionReceipt', args.txHash)
   }
 
   getHashrate = (cb) => {
-    rpcAjax(this.url, 'GetHashrate', '', cb)
+    if (cb !== undefined && typeof cb === 'function') {
+      rpcAjax(this.url, 'GetHashrate', '', cb)
+    }
+    return rpcAjax(this.url, 'GetHashrate', '')
   }
 
   isNodeMining = (args, cb) => {
-    rpcAjax(this.url, 'isNodeMining', '', cb)
+    if (cb !== undefined && typeof cb === 'function') {
+      rpcAjax(this.url, 'isNodeMining', '', cb)
+    }
+    return rpcAjax(this.url, 'isNodeMining', '')
   }
 
   compileCode = (args, cb) => {
@@ -251,11 +338,15 @@ class Node {
         code: [util.isString]
       })
     } catch (e) {
-      cb(e)
-      return
+      if (cb !== undefined && typeof cb === 'function') {
+        cb(e)
+      }
+      return e
     }
-
-    rpcAjax(this.url, 'CompileCode', args, cb)
+    if (cb !== undefined && typeof cb === 'function') {
+      rpcAjax(this.url, 'CompileCode', args, cb)
+    }
+    return rpcAjax(this.url, 'CompileCode', args)
   }
 
   checkCode = (args, cb) => {
@@ -264,11 +355,15 @@ class Node {
         code: [util.isString]
       })
     } catch (e) {
-      cb(e)
-      return
+      if (cb !== undefined && typeof cb === 'function') {
+        cb(e)
+      }
+      return e
     }
-
-    serverAjax(`${this.apiUrl}/v1/checker`, args, cb)
+    if (cb !== undefined && typeof cb === 'function') {
+      serverAjax(`${this.apiUrl}/v1/checker`, args, cb)
+    }
+    return serverAjax(`${this.apiUrl}/v1/checker`, args)
   }
 
   checkCodeTest = (args, cb) => {
@@ -277,16 +372,23 @@ class Node {
         code: [util.isString]
       })
     } catch (e) {
-      cb(e)
-      return
+      if (cb !== undefined && typeof cb === 'function') {
+        cb(e)
+      }
+      return e
     }
-
-    serverAjax(`${this.apiUrl}/v1/runner`, args, cb)
+    if (cb !== undefined && typeof cb === 'function') {
+      serverAjax(`${this.apiUrl}/v1/runner`, args, cb)
+    }
+    return serverAjax(`${this.apiUrl}/v1/runner`, args)
   }
 
   // // Explorer APIs
   getBlockchainInfo = (args, cb) => {
-    rpcAjax(this.url, 'GetBlockchainInfo', '', cb)
+    if (cb !== undefined && typeof cb === 'function') {
+      rpcAjax(this.url, 'GetBlockchainInfo', '', cb)
+    }
+    return rpcAjax(this.url, 'GetBlockchainInfo', '')
   }
 
   getDSBlockListing = (args, cb) => {
@@ -295,11 +397,15 @@ class Node {
         page: [util.isNumber]
       })
     } catch (e) {
-      cb(e)
-      return
+      if (cb !== undefined && typeof cb === 'function') {
+        cb(e)
+      }
+      return e
     }
-
-    rpcAjax(this.url, 'DSBlockListing', args.page, cb)
+    if (cb !== undefined && typeof cb === 'function') {
+      rpcAjax(this.url, 'DSBlockListing', args.page, cb)
+    }
+    return rpcAjax(this.url, 'DSBlockListing', args.page)
   }
 
   getTxBlockListing = (args, cb) => {
@@ -308,23 +414,36 @@ class Node {
         page: [util.isNumber]
       })
     } catch (e) {
-      cb(e)
-      return
+      if (cb !== undefined && typeof cb === 'function') {
+        cb(e)
+      }
+      return e
     }
-
-    rpcAjax(this.url, 'TxBlockListing', args.page, cb)
+    if (cb !== undefined && typeof cb === 'function') {
+      rpcAjax(this.url, 'TxBlockListing', args.page, cb)
+    }
+    return rpcAjax(this.url, 'TxBlockListing', args.page)
   }
 
   getNumTxnsTxEpoch = (args, cb) => {
-    rpcAjax(this.url, 'GetNumTxnsTxEpoch', '', cb)
+    if (cb !== undefined && typeof cb === 'function') {
+      rpcAjax(this.url, 'GetNumTxnsTxEpoch', '', cb)
+    }
+    return rpcAjax(this.url, 'GetNumTxnsTxEpoch', '')
   }
 
   getNumTxnsDSEpoch = (args, cb) => {
-    rpcAjax(this.url, 'GetNumTxnsDSEpoch', '', cb)
+    if (cb !== undefined && typeof cb === 'function') {
+      rpcAjax(this.url, 'GetNumTxnsDSEpoch', '', cb)
+    }
+    return rpcAjax(this.url, 'GetNumTxnsDSEpoch', '')
   }
 
   getTransactionListing = (args, cb) => {
-    rpcAjax(this.url, 'GetRecentTransactions', '', cb)
+    if (cb !== undefined && typeof cb === 'function') {
+      rpcAjax(this.url, 'GetRecentTransactions', '', cb)
+    }
+    return rpcAjax(this.url, 'GetRecentTransactions', '')
   }
 }
 export default Node
