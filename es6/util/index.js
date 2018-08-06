@@ -1,5 +1,5 @@
 import { isWebUri } from 'valid-url'
-import { sha256, secp256k1 } from 'bcrypto'
+import { sha256, secp256k1, aes } from 'bcrypto'
 import Schnorr from '../schnorr'
 
 /**
@@ -268,6 +268,7 @@ const intToByteArray = (val, paddedSize) => {
 }
 
 export default {
+  aes,
   generatePrivateKey,
   verifyPrivateKey,
   getAddressFromPrivateKey,
