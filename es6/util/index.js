@@ -110,8 +110,8 @@ const createTransactionJson = (privateKey, txnDetails) => {
   // const codeHex = new Buffer(txn.code).toString('hex')
   // const dataHex = new Buffer(txn.data).toString('hex')
 
-  const codeHex = Buffer.alloc(txn.code).toString('hex')
-  const dataHex = Buffer.alloc(txn.data).toString('hex')
+  const codeHex = Buffer.from(txn.code).toString('hex')
+  const dataHex = Buffer.from(txn.data).toString('hex')
 
   const msg = intToByteArray(txn.version, 64).join('')
     + intToByteArray(txn.nonce, 64).join('')
