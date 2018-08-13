@@ -1,7 +1,24 @@
-import { isWebUri } from 'valid-url'
 import { sha256, secp256k1, aes } from 'bcrypto'
 import Schnorr from '../schnorr'
+import {
+  isNumber,
+  isString,
+  isBoolean,
+  isArray,
+  isJson,
+  isObject,
+  isFunction,
+  isHash,
+  isUrl,
+  isPubkey,
+  isPrivateKey,
+  isAddress,
+  validateArgs
+} from './validator'
 
+import {
+  intToByteArray, toHex, toUtf8, toAscii, fromUtf8, fromAscii
+} from './transformer'
 /**
  * generate a new private key using the secp256k1 curve
  * returns a Buffer object,
@@ -146,142 +163,37 @@ const createTransactionJson = (privateKey, txnDetails) => {
   return txn
 }
 
-/**
- * make sure each of the keys in requiredArgs is present in args
- * @param  {[type]} args         [description]
- * @param  {[type]} requiredArgs [description]
- * @param  {[type]} optionalArgs [description]
- * @return {[type]}              [description]
- */
-const validateArgs = (args, requiredArgs, optionalArgs) => {
-  for (const key in requiredArgs) {
-    if (args[key] !== undefined) {
-      for (let i = 0; i < requiredArgs[key].length; i += 1) {
-        if (typeof requiredArgs[key][i] !== 'function') throw new Error('Validator is not a function')
-
-        if (!requiredArgs[key][i](args[key])) throw new Error(`Validation failed for ${key}`)
-      }
-    } else throw new Error(`Key not found: ${key}`)
-  }
-
-  for (const key in optionalArgs) {
-    if (args[key]) {
-      for (let i = 0; i < optionalArgs[key].length; i += 1) {
-        if (typeof optionalArgs[key][i] !== 'function') throw new Error('Validator is not a function')
-
-        if (!optionalArgs[key][i](args[key])) throw new Error(`Validation failed for ${key}`)
-      }
-    }
-  }
-  return true
-}
-
-/**
- * verify if address is correct
- * @param  {[hex|string]}  address [description]
- * @return {Boolean}         [description]
- */
-const isAddress = (address) => {
-  return !!address.match(/^[0-9a-fA-F]{40}$/)
-}
-
-/**
- * verify if privateKey is correct
- * @param  {[hex|string]}  privateKey [description]
- * @return {Boolean}            [description]
- */
-const isPrivateKey = (privateKey) => {
-  return !!privateKey.match(/^[0-9a-fA-F]{64}$/)
-}
-
-/**
- * verify if public key is correct
- * @param  {[hex|string]}  pubkey [description]
- * @return {Boolean}        [description]
- */
-const isPubkey = (pubkey) => {
-  return !!pubkey.match(/^[0-9a-fA-F]{66}$/)
-}
-
-/**
- * verify if url is correct
- * @param  {[string]}  url [description]
- * @return {Boolean}     [description]
- */
-const isUrl = (url) => {
-  return isWebUri(url)
-}
-
-/**
- * verify if hash is correct
- * @param  {[string]}  txHash [description]
- * @return {Boolean}        [description]
- */
-const isHash = (txHash) => {
-  return !!txHash.match(/^[0-9a-fA-F]{64}$/)
-}
-
-/**
- * verify if it is number type
- * @param  {[number]}  number [description]
- * @return {Boolean}        [description]
- */
-const isNumber = (number) => {
-  return typeof number === 'number'
-}
-
-/**
- * verify if it is string
- * @param  {[string]}  string [description]
- * @return {Boolean}        [description]
- */
-const isString = (string) => {
-  return typeof string === 'string'
-}
-
-/**
- * convert number to array representing the padded hex form
- * @param  {[string]} val        [description]
- * @param  {[number]} paddedSize [description]
- * @return {[string]}            [description]
- */
-const intToByteArray = (val, paddedSize) => {
-  const arr = []
-
-  const hexVal = val.toString(16)
-  const hexRep = []
-
-  let i
-  for (i = 0; i < hexVal.length; i += 1) {
-    hexRep[i] = hexVal[i].toString()
-  }
-
-  for (i = 0; i < paddedSize - hexVal.length; i += 1) {
-    arr.push('0')
-  }
-
-  for (i = 0; i < hexVal.length; i += 1) {
-    arr.push(hexRep[i])
-  }
-
-  return arr
-}
-
 export default {
+  // algos
   aes,
+  // key gen and verify
   generatePrivateKey,
   verifyPrivateKey,
+  // get pub/address from key pairs
   getAddressFromPrivateKey,
   getPubKeyFromPrivateKey,
   getAddressFromPublicKey,
+  // create transaction
   createTransactionJson,
-  validateArgs,
-  isAddress,
-  isPrivateKey,
-  isPubkey,
-  isUrl,
-  isHash,
+  // transformer
+  intToByteArray,
+  toHex,
+  toUtf8,
+  toAscii,
+  fromUtf8,
+  fromAscii,
+  // validator
   isNumber,
   isString,
-  intToByteArray
+  isBoolean,
+  isArray,
+  isJson,
+  isObject,
+  isFunction,
+  isHash,
+  isUrl,
+  isPubkey,
+  isPrivateKey,
+  isAddress,
+  validateArgs
 }
