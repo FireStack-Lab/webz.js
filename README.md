@@ -10,9 +10,9 @@ Zilliqa Javascript Library extended version
 
 <CAUTION>: Not tested yet, do NOT use it in real project
 
-## import web3.js from node
+## Porting From web3.js CheckList
 
-to be done
+[CheckList](./docs/CheckList.md)
 
 ## Installation
 
