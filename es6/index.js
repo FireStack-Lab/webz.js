@@ -21,7 +21,7 @@ class Webz {
     this.node = new Node({ url: args.nodeUrl || config.defaultNodeUrl })
     this.schnorr = new Schnorr()
     this.util = util
-    this.HttpProvider = new HttpProvider(args)
+    this.HttpProvider = new HttpProvider(args.nodeUrl)
     this.data = {}
   }
 
