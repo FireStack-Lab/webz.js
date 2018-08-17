@@ -9,7 +9,7 @@ class HttpProvider {
     this.user = user
     this.password = password
     this.headers = headers
-    this.request = axios.create()
+    this.request = axios.create({ url: `${this.url}` })
     this.instance()
   }
 
@@ -24,6 +24,9 @@ class HttpProvider {
       this.headers.forEach((header) => {
         this.request.defaults.headers.post[header.name] = header.value
       })
+    }
+    if (this.timeout) {
+      this.request.defaults.timeout = this.timeout
     }
   }
 
@@ -56,7 +59,7 @@ class HttpProvider {
         return error.message
       }
       // console.log(error.config)
-      return error.config
+      // return error.config
     }
   }
 
