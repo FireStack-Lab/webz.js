@@ -33,7 +33,7 @@ class HttpProvider {
 
   send = async (payload) => {
     try {
-      const response = await this.axios.post(this.url, { data: JSON.stringify(payload) })
+      const response = await this.axios.post(this.url, JSON.stringify(payload))
       // console.log(response.data)
       // console.log(response.status)
       // console.log(response.statusText)
@@ -67,7 +67,7 @@ class HttpProvider {
   sendAsync = (payload, callback) => {
     // const request = this.instance()
     this.axios
-      .post(this.url, { data: JSON.stringify(payload) })
+      .post(this.url, JSON.stringify(payload))
       .then((response) => {
         callback(response)
       })
