@@ -39,7 +39,6 @@
     "bsert": "0.0.3",
     "elliptic": "^6.4.0",
     "node-fetch": "^2.2.0",
-    "qs": "^6.5.2",
     "valid-url": "^1.0.9"
   },
   "devDependencies": {
