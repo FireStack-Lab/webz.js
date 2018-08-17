@@ -13,7 +13,7 @@ class HttpProvider {
   }
 
   instance = () => {
-    const request = axios.create({ url: `${this.url}` })
+    const request = axios.create()
     if (this.user && this.password) {
       const AUTH_TOKEN = `Basic ${Buffer.from(`${this.user}:${this.password}`).toString('base64')}`
       request.defaults.headers.common.Authorization = AUTH_TOKEN
@@ -33,7 +33,7 @@ class HttpProvider {
 
   send = async (payload) => {
     try {
-      const response = await this.axios.post({ data: qs.stringify(payload) })
+      const response = await this.axios.post(this.url, { data: qs.stringify(payload) })
       // console.log(response.data)
       // console.log(response.status)
       // console.log(response.statusText)
@@ -67,7 +67,7 @@ class HttpProvider {
   sendAsync = (payload, callback) => {
     // const request = this.instance()
     this.axios
-      .post({ data: qs.stringify(payload) })
+      .post(this.url, { data: qs.stringify(payload) })
       .then((response) => {
         callback(response)
       })
