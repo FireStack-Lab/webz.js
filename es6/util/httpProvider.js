@@ -9,30 +9,31 @@ class HttpProvider {
     this.user = user
     this.password = password
     this.headers = headers
-    this.request = axios.create({ url: `${this.url}` })
-    this.instance()
+    this.axios = this.instance()
   }
 
   instance = () => {
+    const request = axios.create({ url: `${this.url}` })
     if (this.user && this.password) {
       const AUTH_TOKEN = `Basic ${Buffer.from(`${this.user}:${this.password}`).toString('base64')}`
-      this.request.defaults.headers.common.Authorization = AUTH_TOKEN
+      request.defaults.headers.common.Authorization = AUTH_TOKEN
     }
-    this.request.defaults.headers.post['Content-Type'] = 'application/json'
+    request.defaults.headers.post['Content-Type'] = 'application/json'
 
     if (this.headers) {
       this.headers.forEach((header) => {
-        this.request.defaults.headers.post[header.name] = header.value
+        request.defaults.headers.post[header.name] = header.value
       })
     }
     if (this.timeout) {
-      this.request.defaults.timeout = this.timeout
+      request.defaults.timeout = this.timeout
     }
+    return request
   }
 
   send = async (payload) => {
     try {
-      const response = await this.request(qs.stringify(payload))
+      const response = await this.axios(qs.stringify(payload))
       // console.log(response.data)
       // console.log(response.status)
       // console.log(response.statusText)
@@ -65,7 +66,7 @@ class HttpProvider {
 
   sendAsync = (payload, callback) => {
     // const request = this.instance()
-    this.request(qs.stringify(payload))
+    this.axios(qs.stringify(payload))
       .then((response) => {
         callback(response)
       })
