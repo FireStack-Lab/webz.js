@@ -28,9 +28,8 @@ class HttpProvider {
   }
 
   send = async (payload) => {
-    const request = this.instance()
     try {
-      const response = await request(qs.stringify(payload))
+      const response = await this.request(qs.stringify(payload))
       console.log(response.data)
       console.log(response.status)
       console.log(response.statusText)
@@ -58,8 +57,8 @@ class HttpProvider {
   }
 
   sendAsync = (payload, callback) => {
-    const request = this.instance()
-    request(qs.stringify(payload))
+    // const request = this.instance()
+    this.request(qs.stringify(payload))
       .then((response) => {
         callback(response)
       })
