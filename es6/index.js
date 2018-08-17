@@ -8,6 +8,7 @@
 import util from './util'
 import { syncNode } from './node'
 import Schnorr from './schnorr'
+import HttpProvider from './util/httpProvider'
 import config from '../config.json'
 
 const Node = syncNode
@@ -20,6 +21,7 @@ class Webz {
     this.node = new Node({ url: args.nodeUrl || config.defaultNodeUrl })
     this.schnorr = new Schnorr()
     this.util = util
+    this.HttpProvider = new HttpProvider(args)
     this.data = {}
   }
 
