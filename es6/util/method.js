@@ -59,9 +59,8 @@ class Method {
   }
 
   extractParams = (args) => {
-    const paramsObject = args
+    const paramsObject = isObject(args) ? args : {}
     let result
-
     const keyArrayLength = Object.keys(paramsObject).length
 
     if (keyArrayLength === 0) result = []
