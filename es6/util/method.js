@@ -1,4 +1,4 @@
-import { InvalidNumberOfRPCParams } from 'errors'
+import { InvalidNumberOfRPCParams } from './errors'
 import { validateArgs } from './validator'
 
 class Method {
