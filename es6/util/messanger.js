@@ -1,10 +1,11 @@
-import jsonRpc from './jsonRpc'
+import JsonRpc from './jsonRpc'
 import { InvalidProvider, InvalidResponse } from './errors'
 import { isArray } from './validator'
 
 class Messanger {
   constructor(provider) {
     this.provider = provider
+    this.JsonRpc = new JsonRpc()
   }
 
   send = (data) => {
@@ -12,10 +13,10 @@ class Messanger {
       console.error(InvalidProvider())
       return null
     }
-    const payload = jsonRpc.toPayload(data.method, data.params)
+    const payload = this.jsonRpc.toPayload(data.method, data.params)
     const result = this.provider.send(payload)
 
-    if (!jsonRpc.isValidResponse(result)) {
+    if (!this.jsonRpc.isValidResponse(result)) {
       throw InvalidResponse(result)
     }
 
@@ -27,13 +28,13 @@ class Messanger {
       console.error(InvalidProvider())
       return null
     }
-    const payload = jsonRpc.toPayload(data.method, data.params)
+    const payload = this.jsonRpc.toPayload(data.method, data.params)
     this.provider.sendAsync(payload, (err, result) => {
       if (err) {
         return callback(err)
       }
 
-      if (!jsonRpc.isValidResponse(result)) {
+      if (!this.jsonRpc.isValidResponse(result)) {
         return callback(InvalidResponse(result))
       }
 
@@ -46,7 +47,7 @@ class Messanger {
       return callback(InvalidProvider())
     }
 
-    const payload = jsonRpc.toBatchPayload(data)
+    const payload = this.jsonRpc.toBatchPayload(data)
 
     this.provider.sendAsync(payload, (err, results) => {
       if (err) {
