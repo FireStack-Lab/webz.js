@@ -33,7 +33,6 @@ class HttpProvider {
   send = async (payload) => {
     try {
       const response = await this.axios.post(this.url, JSON.stringify(payload))
-      console.log({ response, payload })
       const { data, status } = response
       if (data.result && status === 200) {
         return data.result
