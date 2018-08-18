@@ -26,9 +26,9 @@ class Method {
       return (args, callback) => {
         this.validateArgs(args)
         if (callback) {
-          this.messanger.sendAsync(this.call, args, callback)
+          this.messanger.sendAsync({ method: this.call, params: args }, callback)
         }
-        this.messanger.send(this.call, args)
+        this.messanger.send({ method: this.call, params: args })
       }
     }
   }
