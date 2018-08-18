@@ -58,14 +58,31 @@ class Method {
     // validateArgs(args)
   }
 
+  extractParams = (args) => {
+    const paramsObject = args
+    let result
+
+    const keyArrayLength = Object.keys(paramsObject).length
+
+    if (keyArrayLength === 0) result = []
+    else if (keyArrayLength === 1) {
+      const resultKey = Object.keys(paramsObject)[0]
+      result = paramsObject[resultKey]
+    } else if (keyArrayLength > 1) {
+      result = paramsObject
+    }
+    return result
+  }
+
   methodBuilder = () => {
     if (this.messanger !== null) {
       return (args, callback) => {
         this.validateArgs(args)
+        const params = this.extractParams(args)
         if (callback) {
-          return this.messanger.sendAsync({ method: this.call, params: args }, callback)
+          return this.messanger.sendAsync({ method: this.call, params }, callback)
         }
-        return this.messanger.send({ method: this.call, params: args })
+        return this.messanger.send({ method: this.call, params })
       }
     }
   }
