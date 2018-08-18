@@ -15,7 +15,7 @@ class Method {
   }
 
   validateArgs = (args) => {
-    if (args.length !== this.params) {
+    if (args && this.params !== 0 && args.length !== this.params) {
       throw InvalidNumberOfRPCParams()
     }
     // validateArgs(args)
