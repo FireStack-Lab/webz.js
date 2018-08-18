@@ -15,6 +15,23 @@ import {
   validateArgs
 } from './validator'
 
+const validatorArray = [
+  {
+    isNumber,
+    isString,
+    isBoolean,
+    isArray,
+    isJson,
+    isObject,
+    isFunction,
+    isHash,
+    isUrl,
+    isPubkey,
+    isPrivateKey,
+    isAddress
+  }
+]
+
 class Method {
   constructor(options) {
     const {
@@ -33,10 +50,15 @@ class Method {
 
   validateArgs = (args) => {
     const validatorObject = this.validator
+    const newValidatorObject = {}
     for (const index in validatorObject) {
-      console.log(validatorObject[index])
-      console.log(index)
+      if (index !== undefined) {
+        const validatorText = validatorObject[index]
+        const validatorMethod = validatorArray[validatorText]
+        newValidatorObject[index] = validatorMethod
+      }
     }
+    validateArgs(args, newValidatorObject)
     // if (args && this.params !== 0 && args.length !== this.params) {
     //   throw InvalidNumberOfRPCParams()
     // }
