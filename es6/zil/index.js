@@ -15,7 +15,9 @@ class Zil {
       const zilKey = data.name
       const zilObject = {}
       zilObject[zilKey] = zilMethod
-      return Object.assign(self, zilObject)
+      console.log(self)
+      return zilObject
+      // return Object.assign(self, zilObject)
     })
   }
 }
