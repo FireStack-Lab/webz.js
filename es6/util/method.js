@@ -1,4 +1,3 @@
-import { InvalidNumberOfRPCParams } from './errors'
 import {
   isNumber,
   isString,
