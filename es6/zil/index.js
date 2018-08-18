@@ -13,7 +13,7 @@ class Zil {
       zilMethod.setMessanger(this.messanger)
       const zilKey = data.name
       const zilObject = {}
-      zilObject[zilKey] = zilMethod
+      zilObject[zilKey] = zilMethod.methodBuilder()
       return Object.assign(this, zilObject)
       // return Object.assign(self, zilObject)
     })

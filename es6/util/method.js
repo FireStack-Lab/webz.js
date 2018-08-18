@@ -20,6 +20,15 @@ class Method {
     }
     // validateArgs(args)
   }
+
+  methodBuilder = () => {
+    if (this.messanger !== null) {
+      const builder = () => {
+        this.messanger.send(this.call)
+      }
+      return builder
+    }
+  }
 }
 
 export default Method
