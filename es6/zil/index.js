@@ -8,11 +8,13 @@ class Zil {
   }
 
   mapObjectToMethods = () => {
-    return ZilObjects.map((data) => {
+    const MethodList = ZilObjects.map((data) => {
       const zilMethod = new Method(data)
       zilMethod.setMessanger(this.messanger)
       return zilMethod
     })
+    console.log({ MethodList })
+    return MethodList
   }
 }
 
