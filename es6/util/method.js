@@ -23,10 +23,13 @@ class Method {
 
   methodBuilder = () => {
     if (this.messanger !== null) {
-      const builder = () => {
-        this.messanger.send(this.call)
+      return (args, callback) => {
+        this.validateArgs(args)
+        if (callback) {
+          this.messanger.sendAsync(this.call, args, callback)
+        }
+        this.messanger.send(this.call, args)
       }
-      return builder
     }
   }
 }
