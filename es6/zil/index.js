@@ -4,7 +4,11 @@ import ZilObjects from './Objects'
 class Zil {
   constructor(Webz) {
     this.messanger = Webz.messanger
-    this.mapObjectToMethods = this.mapObjectToMethods()
+    const MethodList = this.mapObjectToMethods()
+    for (let i = 0; i < MethodList; i += 1) {
+      const methodObj = MethodList[i]
+      Object.assign({}, this, methodObj)
+    }
   }
 
   mapObjectToMethods = () => {
