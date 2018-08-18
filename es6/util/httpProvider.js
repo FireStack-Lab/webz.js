@@ -38,7 +38,10 @@ class HttpProvider {
       // console.log(response.statusText)
       // console.log(response.headers)
       // console.log(response.config)
-      return response
+      const { data, status } = response
+      if (data.result && status === 200) {
+        return data.result
+      }
     } catch (error) {
       if (error.response) {
         // The request was made and the server responded with a status code
