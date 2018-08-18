@@ -8,18 +8,17 @@ class Messanger {
     this.JsonRpc = new JsonRpc()
   }
 
-  send = (data) => {
+  send = async (data) => {
     if (!this.provider) {
       console.error(InvalidProvider())
       return null
     }
     const payload = this.JsonRpc.toPayload(data.method, data.params)
-    const result = this.provider.send(payload)
+    const result = await this.provider.send(payload)
 
-    console.log(result)
-    // if (!this.JsonRpc.isValidResponse(result)) {
-    //   throw InvalidResponse(result)
-    // }
+    if (!this.JsonRpc.isValidResponse(result)) {
+      throw InvalidResponse(result)
+    }
 
     return result.result
   }
