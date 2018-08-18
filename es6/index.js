@@ -12,6 +12,9 @@ import HttpProvider from './util/httpProvider'
 import Messanger from './util/messanger'
 import config from '../config.json'
 
+// test function
+import Zil from '../zil'
+
 const Node = syncNode
 const { validateArgs } = util
 
@@ -30,6 +33,7 @@ class Webz {
     this.messanger = new Messanger(this.currentProvider)
 
     //
+    this.zil = new Zil(this)
     this.data = {}
   }
 
