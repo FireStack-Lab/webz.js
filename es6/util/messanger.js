@@ -15,7 +15,7 @@ class Messanger {
     const payload = this.JsonRpc.toPayload(data.method, data.params)
     const result = await this.provider.send(payload)
 
-    return result.result
+    return result
   }
 
   sendAsync = (data, callback) => {
@@ -28,7 +28,7 @@ class Messanger {
       if (err) {
         return callback(err)
       }
-      callback(null, result.result)
+      callback(null, result)
     })
   }
 
