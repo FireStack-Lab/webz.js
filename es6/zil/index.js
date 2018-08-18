@@ -4,7 +4,7 @@ import ZilObjects from './Objects'
 class Zil {
   constructor(Webz) {
     this.messanger = Webz.messanger
-    this.mapObjectToMethods.bind(this)
+    this.mapObjectToMethods = this.mapObjectToMethods()
   }
 
   mapObjectToMethods = () => {
