@@ -26,8 +26,8 @@ class Webz {
     this.schnorr = new Schnorr()
     this.util = util
     //
-    this.messanger = new Messanger(this.url)
-    this.currentProvider = args.nodeUrl
+    this.currentProvider = new HttpProvider(this.url)
+    this.messanger = new Messanger(this.currentProvider)
 
     //
     this.data = {}
@@ -57,8 +57,8 @@ class Webz {
     validateArgs(provider, {
       nodeUrl: [util.isUrl]
     })
-    this.messanger.setProvider(provider)
-    this.currentProvider = provider
+    this.currentProvider = new HttpProvider(provider)
+    this.messanger.setProvider(this.currentProvider)
   }
   // setProvider=(provider)=>{
   //   validateArgs(provider, {
