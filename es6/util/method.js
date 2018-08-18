@@ -56,11 +56,12 @@ class Method {
         newValidatorObject[index] = validatorMethod
       }
     }
-    console.log(newValidatorObject)
-    // validateArgs(args, newValidatorObject)
-    // if (args && this.params !== 0 && args.length !== this.params) {
-    //   throw InvalidNumberOfRPCParams()
-    // }
+
+    if (args && this.params !== 0 && args.length !== this.params) {
+      throw InvalidNumberOfRPCParams()
+    } else if (args && this.params !== 0 && args.length === this.params) {
+      validateArgs(args, newValidatorObject)
+    }
     // validateArgs(args)
   }
 
