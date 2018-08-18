@@ -2,20 +2,17 @@ export default [
   {
     name: 'getNetworkId',
     call: 'GetNetworkId',
-    params: 0,
-    validator: {}
+    params: {}
   },
   {
     name: 'isConnected',
     call: 'GetNetworkId',
-    params: 0,
-    validator: {}
+    params: {}
   },
   {
     name: 'getBalance',
     call: 'GetBalance',
-    params: 1,
-    validator: {
+    params: {
       address: 'isAddress'
     }
   }

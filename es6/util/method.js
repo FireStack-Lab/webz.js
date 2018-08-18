@@ -32,14 +32,11 @@ const validatorArray = {
 
 class Method {
   constructor(options) {
-    const {
-      name, call, params, validator
-    } = options
+    const { name, call, params } = options
     this.name = name
     this.call = call
-    this.params = params || 0
     this.messanger = null
-    this.validator = validator
+    this.params = params
   }
 
   setMessanger = (msg) => {
@@ -47,7 +44,7 @@ class Method {
   }
 
   validateArgs = (args) => {
-    const validatorObject = this.validator
+    const validatorObject = this.params
     const newValidatorObject = {}
     for (const index in validatorObject) {
       if (index !== undefined) {
@@ -56,10 +53,7 @@ class Method {
         newValidatorObject[index] = validatorMethod
       }
     }
-
-    if (args && this.params !== 0 && args.length !== this.params) {
-      throw InvalidNumberOfRPCParams()
-    } else if (args && this.params !== 0 && args.length === this.params) {
+    if (args && this.params !== 0) {
       validateArgs(args, newValidatorObject)
     }
     // validateArgs(args)
