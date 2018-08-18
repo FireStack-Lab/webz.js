@@ -1,4 +1,4 @@
-import jsonRpc from './jsonPpc'
+import jsonRpc from './jsonRpc'
 import { InvalidProvider, InvalidResponse } from './errors'
 import { isArray } from './validator'
 
