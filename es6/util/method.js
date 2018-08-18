@@ -1,13 +1,30 @@
 import { InvalidNumberOfRPCParams } from './errors'
-import { validateArgs } from './validator'
+import {
+  isNumber,
+  isString,
+  isBoolean,
+  isArray,
+  isJson,
+  isObject,
+  isFunction,
+  isHash,
+  isUrl,
+  isPubkey,
+  isPrivateKey,
+  isAddress,
+  validateArgs
+} from './validator'
 
 class Method {
   constructor(options) {
-    const { name, call, params } = options
+    const {
+      name, call, params, validator
+    } = options
     this.name = name
     this.call = call
     this.params = params || 0
     this.messanger = null
+    this.validator = validator
   }
 
   setMessanger = (msg) => {
@@ -15,9 +32,14 @@ class Method {
   }
 
   validateArgs = (args) => {
-    if (args && this.params !== 0 && args.length !== this.params) {
-      throw InvalidNumberOfRPCParams()
+    const validatorObject = this.validator
+    for (const index in validatorObject) {
+      console.log(validatorObject[index])
+      console.log(index)
     }
+    // if (args && this.params !== 0 && args.length !== this.params) {
+    //   throw InvalidNumberOfRPCParams()
+    // }
     // validateArgs(args)
   }
 
