@@ -1,13 +1,3 @@
-function validateSingleMessage(message) {
-  return (
-    !!message
-    && !message.error
-    && message.jsonrpc === '2.0'
-    && typeof message.id === 'number'
-    && message.result !== undefined
-  ) // only undefined is not valid json object
-}
-
 class JsonRpc {
   constructor() {
     this.messageId = 0
@@ -25,12 +15,6 @@ class JsonRpc {
       method,
       params: params || []
     }
-  }
-
-  isValidResponse = (response) => {
-    return Array.isArray(response)
-      ? response.every(validateSingleMessage)
-      : validateSingleMessage(response)
   }
 
   toBatchPayload = (messages) => {
