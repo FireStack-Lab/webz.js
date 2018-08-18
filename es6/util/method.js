@@ -53,7 +53,7 @@ class Method {
         newValidatorObject[index] = validatorMethod
       }
     }
-    if (args && this.params !== 0) {
+    if (args && this.params !== {}) {
       validateArgs(args, newValidatorObject)
     }
     // validateArgs(args)
