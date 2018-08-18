@@ -48,9 +48,13 @@ class Webz {
   getNode = () => this.node
 
   setNode = (args) => {
-    validateArgs(args, {
-      nodeUrl: [util.isUrl]
-    })
+    validateArgs(
+      args,
+      {},
+      {
+        nodeUrl: [util.isUrl]
+      }
+    )
     this.node = new Node({ url: args })
     return null
   }
@@ -58,9 +62,13 @@ class Webz {
   getProvider = () => this.currentProvider
 
   setProvider = (provider) => {
-    validateArgs(provider, {
-      nodeUrl: [util.isUrl]
-    })
+    validateArgs(
+      provider,
+      {},
+      {
+        nodeUrl: [util.isUrl]
+      }
+    )
     this.currentProvider = new HttpProvider(provider)
     this.messanger.setProvider(this.currentProvider)
   }
