@@ -14,7 +14,6 @@ class Messanger {
     }
     const payload = this.JsonRpc.toPayload(data.method, data.params)
     const result = await this.provider.send(payload)
-    console.log(result)
     return result
   }
 
