@@ -13,10 +13,10 @@ class Messanger {
       console.error(InvalidProvider())
       return null
     }
-    const payload = this.jsonRpc.toPayload(data.method, data.params)
+    const payload = this.JsonRpc.toPayload(data.method, data.params)
     const result = this.provider.send(payload)
 
-    if (!this.jsonRpc.isValidResponse(result)) {
+    if (!this.JsonRpc.isValidResponse(result)) {
       throw InvalidResponse(result)
     }
 
@@ -28,13 +28,13 @@ class Messanger {
       console.error(InvalidProvider())
       return null
     }
-    const payload = this.jsonRpc.toPayload(data.method, data.params)
+    const payload = this.JsonRpc.toPayload(data.method, data.params)
     this.provider.sendAsync(payload, (err, result) => {
       if (err) {
         return callback(err)
       }
 
-      if (!this.jsonRpc.isValidResponse(result)) {
+      if (!this.JsonRpc.isValidResponse(result)) {
         return callback(InvalidResponse(result))
       }
 
@@ -47,7 +47,7 @@ class Messanger {
       return callback(InvalidProvider())
     }
 
-    const payload = this.jsonRpc.toBatchPayload(data)
+    const payload = this.JsonRpc.toBatchPayload(data)
 
     this.provider.sendAsync(payload, (err, results) => {
       if (err) {
