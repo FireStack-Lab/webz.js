@@ -15,22 +15,20 @@ import {
   validateArgs
 } from './validator'
 
-const validatorArray = [
-  {
-    isNumber,
-    isString,
-    isBoolean,
-    isArray,
-    isJson,
-    isObject,
-    isFunction,
-    isHash,
-    isUrl,
-    isPubkey,
-    isPrivateKey,
-    isAddress
-  }
-]
+const validatorArray = {
+  isNumber: [isNumber],
+  isString: [isString],
+  isBoolean: [isBoolean],
+  isArray: [isArray],
+  isJson: [isJson],
+  isObject: [isObject],
+  isFunction: [isFunction],
+  isHash: [isHash],
+  isUrl: [isUrl],
+  isPubkey: [isPubkey],
+  isPrivateKey: [isPrivateKey],
+  isAddress: [isAddress]
+}
 
 class Method {
   constructor(options) {
