@@ -13,7 +13,7 @@ import Messanger from './util/messanger'
 import config from '../config.json'
 
 // test function
-import Zil from '../zil'
+import Zil from './zil'
 
 const Node = syncNode
 const { validateArgs } = util
