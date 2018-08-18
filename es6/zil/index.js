@@ -4,18 +4,17 @@ import ZilObjects from './Objects'
 class Zil {
   constructor(Webz) {
     this.messanger = Webz.messanger
-    const self = this
-    this.mapObjectToMethods(self)
+    this.mapObjectToMethods()
   }
 
-  mapObjectToMethods = (obj) => {
+  mapObjectToMethods = () => {
     ZilObjects.map((data) => {
       const zilMethod = new Method(data)
       zilMethod.setMessanger(this.messanger)
       const zilKey = data.name
       const zilObject = {}
       zilObject[zilKey] = zilMethod
-      console.log(obj)
+      console.log(this)
       return zilObject
       // return Object.assign(self, zilObject)
     })
