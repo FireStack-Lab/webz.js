@@ -16,9 +16,10 @@ class Messanger {
     const payload = this.JsonRpc.toPayload(data.method, data.params)
     const result = this.provider.send(payload)
 
-    if (!this.JsonRpc.isValidResponse(result)) {
-      throw InvalidResponse(result)
-    }
+    console.log(result)
+    // if (!this.JsonRpc.isValidResponse(result)) {
+    //   throw InvalidResponse(result)
+    // }
 
     return result.result
   }
