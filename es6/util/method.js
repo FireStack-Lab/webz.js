@@ -108,11 +108,10 @@ class Method {
       return (args, callback) => {
         const { requiredArgs, optionalArgs } = this.generateValidateObjects()
         this.validateArgs(args, requiredArgs, optionalArgs)
-        const params = this.extractParams(args)
         if (callback) {
-          return this.messanger.sendAsyncServer(this.endpoint, params, callback)
+          return this.messanger.sendAsyncServer(this.endpoint, args, callback)
         }
-        return this.messanger.sendServer(this.endpoint, params)
+        return this.messanger.sendServer(this.endpoint, args)
       }
     }
   }
