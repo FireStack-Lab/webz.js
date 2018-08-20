@@ -80,9 +80,9 @@ class Method {
     if (keyArrayLength === 0) result = []
     else if (keyArrayLength === 1) {
       const resultKey = Object.keys(paramsObject)[0]
-      result = paramsObject[resultKey]
+      result = [paramsObject[resultKey]]
     } else if (keyArrayLength > 1) {
-      result = paramsObject
+      result = [paramsObject]
     }
     return result
   }
