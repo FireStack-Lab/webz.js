@@ -32,7 +32,7 @@ class HttpProvider {
 
   send = async (payload) => {
     try {
-      console.log(JSON.stringify(payload))
+      // console.log(JSON.stringify(payload))
       const response = await this.axios.post(this.url, JSON.stringify(payload))
       const { data, status } = response
       // console.log({ data, status })
@@ -52,7 +52,7 @@ class HttpProvider {
 
   sendAsync = (payload, callback) => {
     // const request = this.instance()
-    console.log(JSON.stringify(payload))
+    // console.log(JSON.stringify(payload))
     this.axios
       .post(this.url, JSON.stringify(payload))
       .then((response) => {
