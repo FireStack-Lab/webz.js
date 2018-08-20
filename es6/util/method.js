@@ -93,7 +93,7 @@ class Method {
   }
 
   methodBuilder = () => {
-    if (this.messanger !== null && this.endPoint === 'client') {
+    if (this.messanger !== null && this.endpoint === 'client') {
       return (args, callback) => {
         const { requiredArgs, optionalArgs } = this.generateValidateObjects()
         this.validateArgs(args, requiredArgs, optionalArgs)
@@ -104,16 +104,16 @@ class Method {
         return this.messanger.send({ method: this.call, params })
       }
     }
-    // if (this.messanger !== null && this.endPoint !== 'client') {
-    //   return (args, callback) => {
-    //     const { requiredArgs, optionalArgs } = this.generateValidateObjects()
-    //     this.validateArgs(args, requiredArgs, optionalArgs)
-    //     if (callback) {
-    //       return this.messanger.sendAsyncServer(this.endpoint, args, callback)
-    //     }
-    //     return this.messanger.sendServer(this.endpoint, args)
-    //   }
-    // }
+    if (this.messanger !== null && this.endpoint !== 'client') {
+      return (args, callback) => {
+        const { requiredArgs, optionalArgs } = this.generateValidateObjects()
+        this.validateArgs(args, requiredArgs, optionalArgs)
+        if (callback) {
+          return this.messanger.sendAsyncServer(this.endpoint, args, callback)
+        }
+        return this.messanger.sendServer(this.endpoint, args)
+      }
+    }
   }
 }
 
