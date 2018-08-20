@@ -49,7 +49,6 @@ class Method {
     for (const index in validatorObject) {
       if (index !== undefined) {
         const validatorText = validatorObject[index]
-        console.log(validatorObject)
         const validatorMethod = validatorArray[validatorText[0]]
         if (validatorText[1] === 'required') {
           requiredArgs[validatorText] = validatorMethod

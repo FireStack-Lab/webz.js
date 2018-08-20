@@ -25,7 +25,7 @@ export default [
     name: 'getBalance',
     call: 'GetBalance',
     params: {
-      address: 'isAddress'
+      address: ['isAddress', 'required']
     }
   },
   /**
