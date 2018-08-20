@@ -48,10 +48,8 @@ class Method {
     const optionalArgs = {}
     const keyArray = Object.keys(validatorObject)
     const valueArray = Object.values(validatorObject)
-    console.log(valueArray[0], ' ', valueArray[1])
-    console.log(valueArray[0], ' ', valueArray[1])
-    const validatorMethod = validatorArray[valueArray[0]]
-    if (valueArray[1] === 'required') {
+    const validatorMethod = validatorArray[valueArray[0][0]]
+    if (valueArray[0][1] === 'required') {
       requiredArgs[keyArray[0]] = validatorMethod
     } else {
       optionalArgs[keyArray[0]] = validatorMethod
