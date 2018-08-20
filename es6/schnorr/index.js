@@ -2,10 +2,17 @@ import assert from 'assert'
 import elliptic from 'elliptic'
 import BN from 'bn.js'
 import Signature from 'elliptic/lib/elliptic/ec/signature'
-import sha256 from 'bcrypto/lib/sha256'
-import DRBG from 'bcrypto/lib/drbg'
+import hashjs from 'hash.js'
+import DRBG from 'hmac-drbg'
 
 const { curve } = elliptic.ec('secp256k1')
+
+// Public key is a point (x, y) on the curve.
+// Each coordinate requires 32 bytes.
+// In its compressed form it suffices to store the x co-ordinate
+// and the sign for y.
+// Hence a total of 33 bytes.
+const PUBKEY_COMPRESSED_SIZE_BYTES = 33
 
 class Schnorr {
   /**
@@ -16,7 +23,9 @@ class Schnorr {
    */
 
   hash = (q, pubkey, msg) => {
-    const totalLength = 66 + msg.byteLength // 33 q + 33 pubkey + variable msgLen
+    const sha256 = hashjs.sha256()
+    const totalLength = PUBKEY_COMPRESSED_SIZE_BYTES * 2 + msg.byteLength
+    // 33 q + 33 pubkey + variable msgLen
     const Q = q.toArrayLike(Buffer, 'be', 33)
     const B = Buffer.allocUnsafe(totalLength)
 
@@ -24,7 +33,7 @@ class Schnorr {
     pubkey.copy(B, 33)
     msg.copy(B, 66)
 
-    return new BN(sha256.digest(B))
+    return new BN(sha256.update(B).digest('hex'), 16)
   }
   /**
    * Sign message.
@@ -41,21 +50,28 @@ class Schnorr {
 
     if (prv.gte(curve.n)) throw new Error('Bad private key.')
 
+    // 1a. check that k is not 0
     if (k.isZero()) return null
-
+    // 1b. check that k is < the order of the group
     if (k.gte(curve.n)) return null
 
+    // 2. Compute commitment Q = kG, where g is the base point
     const Q = curve.g.mul(k)
+    // convert the commitment to octets first
     const compressedQ = new BN(Q.encodeCompressed())
 
+    // 3. Compute the challenge r = H(Q || pubKey || msg)
     const r = this.hash(compressedQ, pubKey, msg)
     const h = r.clone()
 
     if (h.isZero()) return null
 
-    if (h.gte(curve.n)) return null
+    if (h.eq(curve.n)) return null
 
+    // 4. Compute s = k - r * prv
+    // 4a. Compute r * prv
     let s = h.imul(prv)
+    // 4b. Compute s = k - r * prv mod n
     s = k.isub(s)
     s = s.umod(curve.n)
 
@@ -74,8 +90,7 @@ class Schnorr {
 
   sign = (msg, key, pubkey, pubNonce) => {
     const prv = new BN(key)
-
-    const drbg = this.drbg(msg, key, pubNonce)
+    const drbg = this.getDRBG(msg, key, pubNonce)
     const len = curve.n.byteLength()
 
     let pn
@@ -135,8 +150,9 @@ class Schnorr {
    * @returns {DRBG}
    */
 
-  drbg = (msg, priv, data) => {
+  getDRBG = (msg, priv, data) => {
     const pers = Buffer.allocUnsafe(48)
+
     pers.fill(0)
 
     if (data) {
@@ -145,11 +161,13 @@ class Schnorr {
     }
 
     this.alg.copy(pers, 32)
-    // CAUTION! DRBG Class is different in latest bcrypto library
-    // if using latest DRBG libs, we have to make it like this:
-    // const drbgResult = new DRBG(sha256, 32, priv, msg, pers)
-    const drbgResult = new DRBG(sha256, priv, msg, pers)
-    return drbgResult
+
+    return new DRBG({
+      hash: hashjs.sha256,
+      entropy: priv,
+      nonce: msg,
+      pers
+    })
   }
 
   /**
@@ -161,19 +179,13 @@ class Schnorr {
    */
 
   generateNoncePair = (msg, priv, data) => {
-    const drbg = this.drbg(msg, priv, data)
+    const drbg = this.getDRBG(msg, priv, data)
     const len = curve.n.byteLength()
 
-    let k = null
+    let k = new BN(drbg.generate(len))
 
-    for (;;) {
+    while (k.isZero() && k.gte(curve.n)) {
       k = new BN(drbg.generate(len))
-
-      if (k.isZero()) continue
-
-      if (k.gte(curve.n)) continue
-
-      break
     }
 
     return Buffer.from(curve.g.mul(k).encode('array', true))
