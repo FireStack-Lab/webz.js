@@ -31,18 +31,25 @@ class HttpProvider {
   }
 
   send = async (payload) => {
-    await this.axios
-      .post(this.url, JSON.stringify(payload))
-      .then((response) => {
-        const { data, status } = response
-        if (data.result && status === 200) {
-          return data.result
-        }
-      })
-      .catch(err => err)
+    try {
+      const response = await this.axios.post(this.url, JSON.stringify(payload))
+      const { data, status } = response
+      if (data.result && status === 200) {
+        return data.result
+      }
+    } catch (error) {
+      if (error.response) {
+        return error.response
+      } else if (error.request) {
+        return error.request
+      } else {
+        return error.message
+      }
+    }
   }
 
   sendAsync = (payload, callback) => {
+    // const request = this.instance()
     this.axios
       .post(this.url, JSON.stringify(payload))
       .then((response) => {
