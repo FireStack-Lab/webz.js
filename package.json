@@ -2,7 +2,7 @@
   "name": "webz.js",
   "version": "0.0.1",
   "description": "Zilliqa Javascript Libraries",
-  "main": "index.js",
+  "main": "./index.js",
   "directories": {
     "example": "example",
     "lib": "lib"
