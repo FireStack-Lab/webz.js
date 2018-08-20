@@ -30,8 +30,8 @@ class HttpProvider {
     return request
   }
 
-  send = (payload) => {
-    this.axios
+  send = async (payload) => {
+    await this.axios
       .post(this.url, JSON.stringify(payload))
       .then((response) => {
         const { data, status } = response
