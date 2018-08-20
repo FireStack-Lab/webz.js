@@ -5,7 +5,7 @@
 //
 //
 
-import util, { validateArgs } from './util'
+import * as util from './util'
 import Schnorr from './schnorr'
 import HttpProvider from './util/httpProvider'
 import Messanger from './util/messanger'
@@ -13,6 +13,8 @@ import config from '../config.json'
 
 // test function
 import Zil from './zil'
+
+const { validateArgs } = util
 
 class Webz {
   constructor(args) {
