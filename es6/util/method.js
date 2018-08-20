@@ -65,10 +65,11 @@ class Method {
   validateArgs = (args, requiredArgs, optionalArgs) => {
     const reArgs = requiredArgs === undefined ? {} : requiredArgs
     const opArgs = optionalArgs === undefined ? {} : optionalArgs
-    console.log({ reArgs, opArgs })
+    // console.log({ reArgs, opArgs })
     if (args && this.params !== {}) {
-      validateArgs(args, reArgs, opArgs)
+      return validateArgs(args, reArgs, opArgs)
     }
+    return true
   }
 
   extractParams = (args) => {
