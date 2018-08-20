@@ -2,13 +2,14 @@ import randomBytes from 'randombytes'
 import elliptic from 'elliptic'
 import hashjs from 'hash.js'
 
-import * as schnorr from '../schnorr'
+import Schnorr from '../schnorr'
 import { intToByteArray } from './transformer'
 
 const NUM_BYTES = 32
 // const HEX_PREFIX = '0x';
 const secp256k1 = elliptic.ec('secp256k1')
 
+const schnorr = new Schnorr()
 /**
  * generatePrivateKey
  *
