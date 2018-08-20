@@ -53,9 +53,9 @@ class Method {
         const valueArray = Object.values(validatorText)
         const validatorMethod = validatorArray[valueArray[0]]
         if (valueArray[1] === 'required') {
-          requiredArgs[keyItem] = validatorMethod
+          requiredArgs[keyItem[0]] = validatorMethod
         } else {
-          optionalArgs[keyItem] = validatorMethod
+          optionalArgs[keyItem[0]] = validatorMethod
         }
       }
     }
