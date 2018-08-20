@@ -17,17 +17,7 @@ export default [
     call: 'GetNetworkId',
     params: {}
   },
-  /**
-   * getBalance
-   * @params {address:Address}
-   */
-  {
-    name: 'getBalance',
-    call: 'GetBalance',
-    params: {
-      address: ['isAddress', 'required']
-    }
-  },
+
   /**
    * getClientVersion
    * @params {}
@@ -55,6 +45,21 @@ export default [
     call: 'GetTransaction',
     params: {
       txHash: ['isHash', 'required']
+    }
+  },
+  /**
+   * createTransaction
+   * @params {txHash:Hash}
+   */
+  {
+    name: 'createTransaction',
+    call: 'CreateTransaction',
+    params: {
+      to: ['isAddress', 'required'],
+      pubKey: ['isPubkey', 'required'],
+      amount: ['isBN', 'required'],
+      gasPrice: ['isNumber', 'required'],
+      gasLimit: ['isNumber', 'required']
     }
   },
   /**
@@ -96,6 +101,17 @@ export default [
     name: 'getLatestTxBlock',
     call: 'GetLatestTxBlock',
     params: {}
+  },
+  /**
+   * getBalance
+   * @params {address:Address}
+   */
+  {
+    name: 'getBalance',
+    call: 'GetBalance',
+    params: {
+      address: ['isAddress', 'required']
+    }
   },
   /**
    * getGasPrice
@@ -214,5 +230,99 @@ export default [
     params: {
       txHash: ['isHash', 'optional']
     }
+  },
+  /**
+   * getHashrate
+   * @params {}
+   */
+  {
+    name: 'getHashrate',
+    call: 'GetHashrate',
+    params: {}
+  },
+  /**
+   * isNodeMining
+   * @params {}
+   */
+  {
+    name: 'isNodeMining',
+    call: 'isNodeMining',
+    params: {}
+  },
+  /**
+   * checkCode
+   */
+  {
+    name: 'checkCode',
+    call: '',
+    params: { code: ['isString', 'required'] },
+    endpoint: '/v1/checker'
+  },
+  /**
+   * checkCodeTest
+   */
+  {
+    name: 'checkCodeTest',
+    call: '',
+    params: { code: ['isString', 'required'] },
+    endpoint: '/v1/runner'
+  },
+  /**
+   * getBlockchainInfo
+   * @params {}
+   */
+  {
+    name: 'getBlockchainInfo',
+    call: 'GetBlockchainInfo',
+    params: {}
+  },
+  /**
+   * getDSBlockListing
+   * @params {page:Number}
+   */
+  {
+    name: 'getDSBlockListing',
+    call: 'DSBlockListing',
+    params: {
+      page: ['isNumber', 'required']
+    }
+  },
+  /**
+   * getTxBlockListing
+   * @params {page:Number}
+   */
+  {
+    name: 'getTxBlockListing',
+    call: 'TxBlockListing',
+    params: {
+      page: ['isNumber', 'required']
+    }
+  },
+  /**
+   * getNumTxnsTxEpoch
+   * @params {}
+   */
+  {
+    name: 'getNumTxnsTxEpoch',
+    call: 'GetNumTxnsTxEpoch',
+    params: {}
+  },
+  /**
+   * getNumTxnsDSEpoch
+   * @params {}
+   */
+  {
+    name: 'getNumTxnsDSEpoch',
+    call: 'GetNumTxnsDSEpoch',
+    params: {}
+  },
+  /**
+   * getTransactionListing
+   * @params {}
+   */
+  {
+    name: 'getTransactionListing',
+    call: 'GetTransactionListing',
+    params: {}
   }
 ]

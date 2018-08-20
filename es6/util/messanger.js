@@ -47,6 +47,44 @@ class Messanger {
     })
   }
 
+  sendServer = async (endpoint, data) => {
+    if (!this.provider) {
+      console.error(InvalidProvider())
+      return null
+    }
+    // const payload = this.JsonRpc.toPayload(data.method, data.params)
+    const result = await this.provider.sendServer(endpoint, data)
+    return result
+  }
+
+  sendAsyncServer = (endpoint, data, callback) => {
+    if (!this.provider) {
+      console.error(InvalidProvider())
+      return null
+    }
+    // const payload = this.JsonRpc.toPayload(data.method, data.params)
+    this.provider.sendAsyncServer(endpoint, data, (err, result) => {
+      if (err) {
+        return callback(err)
+      }
+      callback(null, result)
+    })
+  }
+
+  sendBatchServer = (data, callback) => {
+    if (!this.provider) {
+      console.error(InvalidProvider())
+      return null
+    }
+    // const payload = this.JsonRpc.toBatchPayload(data)
+    this.provider.sendAsync(data, (err, results) => {
+      if (err) {
+        return callback(err)
+      }
+      callback(err, results)
+    })
+  }
+
   setProvider = (provider) => {
     this.provider = provider
   }

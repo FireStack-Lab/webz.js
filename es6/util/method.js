@@ -33,11 +33,14 @@ const validatorArray = {
 
 class Method {
   constructor(options) {
-    const { name, call, params } = options
+    const {
+      name, call, params, endpoint
+    } = options
     this.name = name
     this.call = call
     this.messanger = null
     this.params = params
+    this.endpoint = endpoint || 'client'
   }
 
   setMessanger = (msg) => {
@@ -90,7 +93,7 @@ class Method {
   }
 
   methodBuilder = () => {
-    if (this.messanger !== null) {
+    if (this.messanger !== null && this.endPoint === 'client') {
       return (args, callback) => {
         const { requiredArgs, optionalArgs } = this.generateValidateObjects()
         this.validateArgs(args, requiredArgs, optionalArgs)
@@ -99,6 +102,17 @@ class Method {
           return this.messanger.sendAsync({ method: this.call, params }, callback)
         }
         return this.messanger.send({ method: this.call, params })
+      }
+    }
+    if (this.messanger !== null && this.endPoint !== 'client') {
+      return (args, callback) => {
+        const { requiredArgs, optionalArgs } = this.generateValidateObjects()
+        this.validateArgs(args, requiredArgs, optionalArgs)
+        const params = this.extractParams(args)
+        if (callback) {
+          return this.messanger.sendAsyncServer(this.endpoint, params, callback)
+        }
+        return this.messanger.sendServer(this.endpoint, params)
       }
     }
   }

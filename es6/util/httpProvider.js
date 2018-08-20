@@ -32,10 +32,30 @@ class HttpProvider {
 
   send = async (payload) => {
     try {
-      // console.log(JSON.stringify(payload))
       const response = await this.axios.post(this.url, JSON.stringify(payload))
       const { data, status } = response
-      // console.log({ data, status })
+      try {
+        if (data.result && status === 200) {
+          return data.result
+        }
+      } catch (error) {
+        return error
+      }
+    } catch (error) {
+      if (error.response) {
+        return error.response
+      } else if (error.request) {
+        return error.request
+      } else {
+        return error.message
+      }
+    }
+  }
+
+  sendServer = async (endpoint, payload) => {
+    try {
+      const response = await this.axios.post(`${this.url}${endpoint}`, JSON.stringify(payload))
+      const { data, status } = response
       try {
         if (data.result && status === 200) {
           return data.result
@@ -59,6 +79,20 @@ class HttpProvider {
     // console.log(JSON.stringify(payload))
     this.axios
       .post(this.url, JSON.stringify(payload))
+      .then((response) => {
+        const { data, status } = response
+        if (data.result && status === 200) {
+          callback(null, data.result)
+        }
+      })
+      .catch(err => callback(err))
+  }
+
+  sendAsyncServer = (endpoint, payload, callback) => {
+    // const request = this.instance()
+    // console.log(JSON.stringify(payload))
+    this.axios
+      .post(`${this.url}${endpoint}`, JSON.stringify(payload))
       .then((response) => {
         const { data, status } = response
         if (data.result && status === 200) {
