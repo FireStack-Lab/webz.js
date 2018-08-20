@@ -1,19 +1,218 @@
 export default [
+  /**
+   * getNetworkId
+   * @params {}
+   */
   {
     name: 'getNetworkId',
     call: 'GetNetworkId',
     params: {}
   },
+  /**
+   * isConnected
+   * @params {}
+   */
   {
     name: 'isConnected',
     call: 'GetNetworkId',
     params: {}
   },
+  /**
+   * getBalance
+   * @params {address:Address}
+   */
   {
     name: 'getBalance',
     call: 'GetBalance',
     params: {
       address: 'isAddress'
+    }
+  },
+  /**
+   * getClientVersion
+   * @params {}
+   */
+  {
+    name: 'getClientVersion',
+    call: 'GetClientVersion',
+    params: {}
+  },
+  /**
+   * getProtocolVersion
+   * @params {}
+   */
+  {
+    name: 'getProtocolVersion',
+    call: 'GetProtocolVersion',
+    params: {}
+  },
+  /**
+   * getTransaction
+   * @params {txHash:Hash}
+   */
+  {
+    name: 'getTransaction',
+    call: 'GetTransaction',
+    params: {
+      txHash: ['isHash', 'required']
+    }
+  },
+  /**
+   * getDsBlock
+   * @params {blockNumber:Number}
+   */
+  {
+    name: 'getDsBlock',
+    call: 'GetDsBlock',
+    params: {
+      blockNumber: ['isNumber', 'required']
+    }
+  },
+  /**
+   * getTxBlock
+   * @params {blockNumber:Number}
+   */
+  {
+    name: 'getTxBlock',
+    call: 'GetTxBlock',
+    params: {
+      blockNumber: ['isNumber', 'required']
+    }
+  },
+  /**
+   * getLatestDsBlock
+   * @params {}
+   */
+  {
+    name: 'getLatestDsBlock',
+    call: 'GetLatestDsBlock',
+    params: {}
+  },
+  /**
+   * getLatestTxBlock
+   * @params {}
+   */
+  {
+    name: 'getLatestTxBlock',
+    call: 'GetLatestTxBlock',
+    params: {}
+  },
+  /**
+   * getGasPrice
+   * @params {}
+   */
+  {
+    name: 'getGasPrice',
+    call: 'GetGasPrice',
+    params: {}
+  },
+  /**
+   * getSmartContractState
+   * @params {address:Address}
+   */
+  {
+    name: 'getSmartContractState',
+    call: 'GetSmartContractState',
+    params: { address: ['isAddress', 'required'] }
+  },
+  /**
+   * getSmartContractCode
+   * @params {address:Address}
+   */
+  {
+    name: 'getSmartContractCode',
+    call: 'GetSmartContractCode',
+    params: { address: ['isAddress', 'required'] }
+  },
+  /**
+   * getSmartContractInit
+   * @params:{address:Address}
+   */
+  {
+    name: 'getSmartContractInit',
+    call: 'GetSmartContractInit',
+    params: { address: ['isAddress', 'required'] }
+  },
+  /**
+   * getSmartContracts
+   * @params {address:Address}
+   */
+  {
+    name: 'getSmartContracts',
+    call: 'GetSmartContracts',
+    params: { address: ['isAddress', 'required'] }
+  },
+  /**
+   * getTransactionHistory
+   * @params {address:Address}
+   */
+  {
+    name: 'getTransactionHistory',
+    call: 'GetTransactionHistory',
+    params: { address: ['isAddress', 'required'] }
+  },
+  /**
+   * getBlockTransactionCount
+   * @params {blockNumber:Number}
+   */
+  {
+    name: 'getBlockTransactionCount',
+    call: 'GetBlockTransactionCount',
+    params: { blockNumber: ['isNumber', 'required'] }
+  },
+  /**
+   * getCode
+   * @params {address:Address}
+   */
+  {
+    name: 'getCode',
+    call: 'GetCode',
+    params: { address: ['isAddress', 'required'] }
+  },
+  /**
+   * createMessage
+   * @params {to:Address,from:Address,gas:Number,gasPrice:Number}
+   */
+  {
+    name: 'createMessage',
+    call: 'CreateMessage',
+    params: {
+      to: ['isAddress', 'reqruied'],
+      from: ['isAddress', 'optional'],
+      gas: ['isNumber', 'optional'],
+      gasPrice: ['isNumber', 'optional']
+    }
+  },
+  /**
+   * getGasEstimate
+   * @params {
+     to: Address,
+     from: Address,
+     gas: Number,
+     gasPrice: Number,
+     gasLimit: Number
+   }
+   */
+  {
+    name: 'getGasEstimate',
+    call: 'GetGasEstimate',
+    params: {
+      to: ['isAddress', 'optional'],
+      from: ['isAddress', 'optional'],
+      gas: ['isNumber', 'optional'],
+      gasPrice: ['isNumber', 'optional'],
+      gasLimit: ['isNumber', 'optional']
+    }
+  },
+  /**
+   * getTransactionReceipt
+   * @params {txHash:Hash}
+   */
+  {
+    name: 'getTransactionReceipt',
+    call: 'GetTransactionReceipt',
+    params: {
+      txHash: ['isHash', 'optional']
     }
   }
 ]

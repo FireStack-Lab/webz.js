@@ -44,17 +44,24 @@ class Method {
 
   validateArgs = (args) => {
     const validatorObject = this.params
-    const newValidatorObject = {}
+    const requiredArgs = {}
+    const optionalArgs = {}
     for (const index in validatorObject) {
       if (index !== undefined) {
         const validatorText = validatorObject[index]
-        const validatorMethod = validatorArray[validatorText]
-        newValidatorObject[index] = validatorMethod
+        console.log(validatorText)
+        const validatorMethod = validatorArray[validatorText[0]]
+        if (validatorText[1] === 'required') {
+          requiredArgs[validatorText] = validatorMethod
+        } else {
+          optionalArgs[validatorText] = validatorMethod
+        }
       }
     }
     if (args && this.params !== {}) {
-      validateArgs(args, newValidatorObject)
+      validateArgs(args, requiredArgs, optionalArgs)
     }
+
     // validateArgs(args)
   }
 
