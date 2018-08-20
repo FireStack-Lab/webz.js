@@ -177,7 +177,7 @@ export default [
     name: 'createMessage',
     call: 'CreateMessage',
     params: {
-      to: ['isAddress', 'reqruied'],
+      to: ['isAddress', 'required'],
       from: ['isAddress', 'optional'],
       gas: ['isNumber', 'optional'],
       gasPrice: ['isNumber', 'optional']

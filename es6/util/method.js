@@ -42,40 +42,32 @@ class Method {
     this.messanger = msg
   }
 
-  validateArgs = (args) => {
+  generateValidateObjects = () => {
     const validatorObject = this.params
+
     const requiredArgs = {}
     const optionalArgs = {}
-    const keyArray = Object.keys(validatorObject)
-    const valueArray = Object.values(validatorObject)
-    const validatorMethod = validatorArray[valueArray[0][0]]
-    if (valueArray[0][1] === 'required') {
-      requiredArgs[keyArray[0]] = validatorMethod
-    } else {
-      optionalArgs[keyArray[0]] = validatorMethod
+    for (const index in validatorObject) {
+      if (index !== undefined) {
+        const newObjectKey = index
+        const newObjectValid = validatorObject[index][0]
+        const isRequired = validatorObject[index][1]
+        if (isRequired === 'required') {
+          requiredArgs[newObjectKey] = validatorArray[newObjectValid]
+        } else {
+          optionalArgs[newObjectKey] = validatorArray[newObjectValid]
+        }
+      }
     }
+    return { requiredArgs, optionalArgs }
+  }
 
-    // for (const index in validatorObject) {
-    //   if (index !== undefined) {
-    //     console.log(validatorObject)
-    //     const validatorText = validatorObject[index]
-    //     const keyItem = Object.keys(validatorText)
-    //     const valueArray = Object.values(validatorText)
-    //     console.log({ keyItem, valueArray })
-    //     const validatorMethod = validatorArray[valueArray[0]]
-    //     if (valueArray[1] === 'required') {
-    //       requiredArgs[keyItem[0]] = validatorMethod
-    //     } else {
-    //       optionalArgs[keyItem[0]] = validatorMethod
-    //     }
-    //   }
-    // }
-    console.log({ requiredArgs, optionalArgs })
+  validateArgs = (args, requiredArgs, optionalArgs) => {
+    const reArgs = requiredArgs === undefined ? {} : requiredArgs
+    const opArgs = optionalArgs === undefined ? {} : optionalArgs
     if (args && this.params !== {}) {
-      validateArgs(args, requiredArgs, optionalArgs)
+      validateArgs(args, reArgs, opArgs)
     }
-
-    // validateArgs(args)
   }
 
   extractParams = (args) => {
@@ -96,7 +88,8 @@ class Method {
   methodBuilder = () => {
     if (this.messanger !== null) {
       return (args, callback) => {
-        this.validateArgs(args)
+        const { requiredArgs, optionalArgs } = this.generateValidateObjects()
+        this.validateArgs(args, requiredArgs, optionalArgs)
         const params = this.extractParams(args)
         if (callback) {
           return this.messanger.sendAsync({ method: this.call, params }, callback)
