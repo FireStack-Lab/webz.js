@@ -65,7 +65,7 @@ export default [
     name: 'getDsBlock',
     call: 'GetDsBlock',
     params: {
-      blockNumber: ['isNumber', 'required']
+      blockNumber: ['isString', 'required']
     }
   },
   /**
@@ -76,7 +76,7 @@ export default [
     name: 'getTxBlock',
     call: 'GetTxBlock',
     params: {
-      blockNumber: ['isNumber', 'required']
+      blockNumber: ['isString', 'required']
     }
   },
   /**
