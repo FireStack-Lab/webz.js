@@ -13,6 +13,7 @@ import {
   isPubkey,
   isPrivateKey,
   isAddress,
+  isBN,
   validateArgs
 } from './validator'
 
@@ -195,5 +196,6 @@ export default {
   isPubkey,
   isPrivateKey,
   isAddress,
+  isBN,
   validateArgs
 }

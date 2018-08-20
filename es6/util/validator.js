@@ -1,5 +1,5 @@
 import { isWebUri } from 'valid-url'
-
+import { isBN } from 'bn.js'
 /**
  * [isNumber verify param is a Number]
  * @param  {[type]}  obj [value]
@@ -155,5 +155,6 @@ export {
   isPubkey,
   isPrivateKey,
   isAddress,
+  isBN,
   validateArgs
 }

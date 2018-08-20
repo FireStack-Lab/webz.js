@@ -11,6 +11,7 @@ import {
   isPubkey,
   isPrivateKey,
   isAddress,
+  isBN,
   validateArgs
 } from './validator'
 
@@ -26,6 +27,7 @@ const validatorArray = {
   isUrl: [isUrl],
   isPubkey: [isPubkey],
   isPrivateKey: [isPrivateKey],
+  isBN: [isBN],
   isAddress: [isAddress]
 }
 
