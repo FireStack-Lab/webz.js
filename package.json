@@ -9,7 +9,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "babel": "rm -rf lib/src && babel es6 --presets env --plugins transform-class-properties -d lib",
+    "babel": "rm -rf lib && babel es6 --presets env --plugins transform-class-properties -d lib",
     "commit": "yarn babel && git add .&&git commit",
     "build": "gulp"
   },
