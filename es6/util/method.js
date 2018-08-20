@@ -60,6 +60,7 @@ class Method {
         }
       }
     }
+    console.log({ requiredArgs, optionalArgs })
     if (args && this.params !== {}) {
       validateArgs(args, requiredArgs, optionalArgs)
     }
