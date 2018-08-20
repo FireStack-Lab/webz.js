@@ -41,7 +41,13 @@ const fromUtf8 = () => {
 const fromAscii = () => {
   // to be implemented
 }
+const toBN = () => {
+  // to be implemented
+}
+const toNumber = () => {
+  // to be implemented
+}
 
 export {
-  intToByteArray, toHex, toUtf8, toAscii, fromUtf8, fromAscii
+  intToByteArray, toHex, toUtf8, toAscii, fromUtf8, fromAscii, toBN, toNumber
 }
