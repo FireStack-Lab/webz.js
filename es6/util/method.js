@@ -46,20 +46,30 @@ class Method {
     const validatorObject = this.params
     const requiredArgs = {}
     const optionalArgs = {}
-    for (const index in validatorObject) {
-      if (index !== undefined) {
-        const validatorText = validatorObject[index]
-        const keyItem = Object.keys(validatorText)
-        const valueArray = Object.values(validatorText)
-        console.log({ validatorText, keyItem, valueArray })
-        const validatorMethod = validatorArray[valueArray[0]]
-        if (valueArray[1] === 'required') {
-          requiredArgs[keyItem[0]] = validatorMethod
-        } else {
-          optionalArgs[keyItem[0]] = validatorMethod
-        }
-      }
+    const keyArray = Object.keys(validatorObject)
+    const valueArray = Object.values(validatorObject)
+    const validatorMethod = validatorArray[valueArray[0]]
+    if (valueArray[1] === 'required') {
+      requiredArgs[keyArray[0]] = validatorMethod
+    } else {
+      optionalArgs[keyArray[0]] = validatorMethod
     }
+
+    // for (const index in validatorObject) {
+    //   if (index !== undefined) {
+    //     console.log(validatorObject)
+    //     const validatorText = validatorObject[index]
+    //     const keyItem = Object.keys(validatorText)
+    //     const valueArray = Object.values(validatorText)
+    //     console.log({ keyItem, valueArray })
+    //     const validatorMethod = validatorArray[valueArray[0]]
+    //     if (valueArray[1] === 'required') {
+    //       requiredArgs[keyItem[0]] = validatorMethod
+    //     } else {
+    //       optionalArgs[keyItem[0]] = validatorMethod
+    //     }
+    //   }
+    // }
     console.log({ requiredArgs, optionalArgs })
     if (args && this.params !== {}) {
       validateArgs(args, requiredArgs, optionalArgs)
