@@ -6,7 +6,6 @@
 //
 
 import util from './util'
-
 import Schnorr from './schnorr'
 import HttpProvider from './util/httpProvider'
 import Messanger from './util/messanger'
