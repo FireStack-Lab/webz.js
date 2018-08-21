@@ -43,11 +43,13 @@ console.log(newProvider.url)
 #### In Html `<Script/>` Tag
 
 ```html
-// load the browser version js in Html
+<!-- load the browser version js in Html -->
 <script src="../pathToLibrary/Webz.browser.js"></script>
+<!--
 ...
 // then you can access Webz Object
 // but remember it's a constructor, new Webz() first
+-->
 <script>
 
 // {nodeUrl:URL} has to be initialized
@@ -116,9 +118,9 @@ Most Webz.js features inherite from it
 
 #### JSON_RPC Tool:[kaya](https://github.com/Zilliqa/kaya)
 
-A JSON_RPC Dev tool emulated the behaviour of Zilliqa blockchain
+A JSON*RPC Dev tool emulated the behaviour of Zilliqa blockchain
 Also great work from Zilliqa Core Team
-_Strongly Recommended_ when you start building DApps with Webz.js
+\_Strongly Recommended* when you start building DApps with Webz.js
 
 #### Awesome Resource:[Awesome-Zilliqa](https://github.com/FireStack-Lab/Awesome-Zilliqa)
 
