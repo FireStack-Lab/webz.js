@@ -15,6 +15,7 @@
       {
         "spec": true
       }
-    ]
+    ],
+    "add-module-exports"
   ]
 }
