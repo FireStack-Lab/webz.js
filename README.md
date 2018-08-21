@@ -1,5 +1,7 @@
 # webz.js
 
+![travis](https://travis-ci.com/FireStack-Lab/webz.js.svg?branch=master)
+
 Inspired by Web3.js
 
 #### This is a #BuildOnZil grant program
