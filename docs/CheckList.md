@@ -1,8 +1,8 @@
 # CheckList
 
-## Main Objects
+## Main Object
 
-| Web3            | WebZ            |                          Description |    Decision |
+| Web3            | Webz            |                          Description |    Decision |
 | :-------------- | :-------------- | -----------------------------------: | ----------: |
 | requestManager  | messanger       |        deal with request to provider |         yes |
 | currentProvider | currentProvider |                         get provider |         yes |
@@ -19,9 +19,9 @@
 | reset           | NA              | reset connection for request manager |         TBD |
 | isConnected     | isConnected     |       check if provider is connected |         yes |
 
-## Utils
+## Utils exposed to Main Object
 
-| Web3              | WebZ              |                              Description |    Decision |
+| Web3              | Webz              |                              Description |    Decision |
 | :---------------- | :---------------- | ---------------------------------------: | ----------: |
 | BigNumber         | NA                | BigNumber Function Expose to Main Object |         TBD |
 | toHex             | toHex             |                    transform data to Hex | Considering |
@@ -40,9 +40,11 @@
 | padLeft           | padLeft           |                       Array manipulation | Considering |
 | padRight          | padRight          |                       Array manipulation | Considering |
 
-## Zil(updating)
+## eth/zil
 
-| Web3        | WebZ       |         Description | Decision |
-| :---------- | :--------- | ------------------: | -------: |
-| NAAAAAAAAAA | NAAAAAAAAA | NAAAAAAAAAAAAAAAAAA |       NA |
-| NAAAAAAAAAA | NAAAAAAAAA | NAAAAAAAAAAAAAAAAAA |       NA |
+| Web3         | Webz       |                    Description | Decision |
+| :----------- | :--------- | -----------------------------: | -------: |
+| getBalance   | getBalance |       getBalance from provider |      Yes |
+| getStorageAt | NA         |            NAAAAAAAAAAAAAAAAAA |      TBD |
+| getCode      | getCode    | get contract code from Address |      Yes |
+| getBlock     | NA         |            NAAAAAAAAAAAAAAAAAA |      TBD |
