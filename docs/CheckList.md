@@ -21,7 +21,7 @@
 
 ## Utils
 
-| Web3              | WebZ              |                              Description |  Implemeted |
+| Web3              | WebZ              |                              Description |    Decision |
 | :---------------- | :---------------- | ---------------------------------------: | ----------: |
 | BigNumber         | NA                | BigNumber Function Expose to Main Object |         TBD |
 | toHex             | toHex             |                    transform data to Hex | Considering |
@@ -42,7 +42,7 @@
 
 ## Zil(updating)
 
-| Web3        | WebZ       |         Description | Implemeted |
-| :---------- | :--------- | ------------------: | ---------: |
-| NAAAAAAAAAA | NAAAAAAAAA | NAAAAAAAAAAAAAAAAAA |         NA |
-| NAAAAAAAAAA | NAAAAAAAAA | NAAAAAAAAAAAAAAAAAA |         NA |
+| Web3        | WebZ       |         Description | Decision |
+| :---------- | :--------- | ------------------: | -------: |
+| NAAAAAAAAAA | NAAAAAAAAA | NAAAAAAAAAAAAAAAAAA |       NA |
+| NAAAAAAAAAA | NAAAAAAAAA | NAAAAAAAAAAAAAAAAAA |       NA |
