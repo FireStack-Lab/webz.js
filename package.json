@@ -1,10 +1,10 @@
 {
   "name": "webz.js",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Zilliqa Javascript Libraries",
   "main": "lib/index.js",
-  "browser": "dist/webz.browser.js",
-  "server": "dist/webz.server.js",
+  "browser": "dist/Webz.browser.js",
+  "server": "dist/Webz.server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "babel": "rm -rf lib && babel es6 --presets env --plugins transform-class-properties -d lib",
