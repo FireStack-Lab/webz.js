@@ -2,7 +2,7 @@
   "name": "webz.js",
   "version": "0.0.4",
   "description": "Zilliqa Javascript Libraries",
-  "main": "dist/webz.server.js",
+  "main": "lib/index.js",
   "browser": "dist/webz.client.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
