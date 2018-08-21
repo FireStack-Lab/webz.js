@@ -5,9 +5,9 @@
 
 Inspired by Web3.js
 
-### This is a #BuildOnZil grant program
+This is a #BuildOnZil grant program
 
-### See [Zilliqa's Official Post](https://blog.zilliqa.com/announcing-the-first-zilliqa-ecosystem-grant-awardees-4ccb39ef83c9)
+See [Zilliqa's Official Post](https://blog.zilliqa.com/announcing-the-first-zilliqa-ecosystem-grant-awardees-4ccb39ef83c9)
 
 ## Readme First
 
