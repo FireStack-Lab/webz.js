@@ -5,13 +5,23 @@
 
 Inspired by Web3.js
 
-#### This is a #BuildOnZil grant program
+### This is a #BuildOnZil grant program
 
-#### See [Zilliqa's Official Post](https://blog.zilliqa.com/announcing-the-first-zilliqa-ecosystem-grant-awardees-4ccb39ef83c9)
+### See [Zilliqa's Official Post](https://blog.zilliqa.com/announcing-the-first-zilliqa-ecosystem-grant-awardees-4ccb39ef83c9)
+
+## Readme First
+
+This API is inspired by Web3.js, somehow features and functions are different from it
+
+To clear the path for Zilliqa and this library.
+We decide to make a check list to see which ones should be implemented.
+You should check the list below:
+
+### [Features CheckList Compared to Web3.js](./docs/CheckList.md)
 
 ## Installation
 
-#### Install from npm/yarn
+### Install from npm/yarn
 
 ```
 npm i -S webz.js
@@ -21,7 +31,7 @@ yarn add webz.js
 
 ## Usage
 
-#### import/Require
+### import/Require
 
 ```Javascript
 import Webz from 'webz.js'
@@ -43,7 +53,7 @@ console.log(newProvider.url)
 // 'https://api-scilla.zilliqa.com'
 ```
 
-#### In Html `<Script/>` Tag
+### In Html `<Script/>` Tag
 
 ```html
 <!-- load the browser version js in Html -->
@@ -78,7 +88,7 @@ console.log(newProvider.url)
 2.  npm install
 3.  npm run dist
 
-#### there are 6 files located in /dist folder
+### there are 6 files located in /dist folder
 
 - webz.js
 - webz.js.map
@@ -87,13 +97,7 @@ console.log(newProvider.url)
 - webz.server.js
 - webz.server.js.map
 
-#### you can use them in different environments
-
-## Feature CheckList and compared to Web3.js
-
-#### [CheckList](./docs/CheckList.md)
-
-#### Coming soon!
+### you can use them in different environments
 
 ## API Docs
 
@@ -101,32 +105,32 @@ to be done
 
 ## Examples
 
-#### Simple HTML
+### Simple HTML
 
-##### See /example folder
+See /example folder
 
-#### Complex Example
+### Complex Example
 
-##### See [webz-examples](https://github.com/FireStack-Lab/webz-examples)
+#### [webz-examples](https://github.com/FireStack-Lab/webz-examples)
 
 It's a React WebApp using umijs and dvajs
 A small explorer and wallet App
 
 ## Other Must Have Libraries
 
-#### Official JS-Lib:[zilliqa-js](https://github.com/Zilliqa/Zilliqa-JavaScript-Library)
+### Official JS-Lib:[zilliqa-js](https://github.com/Zilliqa/Zilliqa-JavaScript-Library)
 
 Official javascript library created by Zilliqa Core Team
 Most Webz.js features inherite from it
 
-#### JSON_RPC Tool:[kaya](https://github.com/Zilliqa/kaya)
+### JSON_RPC Tool:[kaya](https://github.com/Zilliqa/kaya)
 
 A JSON\*RPC Dev tool emulated the behaviour of Zilliqa blockchain
 Also great work from Zilliqa Core Team
 !! Strongly Recommended !!
 when you start building DApps with Webz.js
 
-#### Awesome Resource:[Awesome-Zilliqa](https://github.com/FireStack-Lab/Awesome-Zilliqa)
+### Awesome Resource:[Awesome-Zilliqa](https://github.com/FireStack-Lab/Awesome-Zilliqa)
 
 A repo that collect most libraries and docs from dev community
 Edited and updated by FireStack Team, A star is truly welcomed.
