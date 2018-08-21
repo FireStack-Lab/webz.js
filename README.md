@@ -118,9 +118,10 @@ Most Webz.js features inherite from it
 
 #### JSON_RPC Tool:[kaya](https://github.com/Zilliqa/kaya)
 
-A JSON*RPC Dev tool emulated the behaviour of Zilliqa blockchain
+A JSON\*RPC Dev tool emulated the behaviour of Zilliqa blockchain
 Also great work from Zilliqa Core Team
-\_Strongly Recommended* when you start building DApps with Webz.js
+!! Strongly Recommended !!
+when you start building DApps with Webz.js
 
 #### Awesome Resource:[Awesome-Zilliqa](https://github.com/FireStack-Lab/Awesome-Zilliqa)
 
