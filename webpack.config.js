@@ -9,9 +9,9 @@
 // and, to the extent permitted by law, all liability for your use of the code is disclaimed.
 // Base webpack configuration - to be used in ALL environments.
 /* eslint import/no-extraneous-dependencies: ["error", { devDependencies: true }] */
-const path = require('path')
-const webpack = require('webpack')
-const UglifyJs = require('uglifyjs-webpack-plugin')
+const path = require('path');
+const webpack = require('webpack');
+const UglifyJs = require('uglifyjs-webpack-plugin');
 
 const baseConfig = {
   entry: {
@@ -36,7 +36,7 @@ const baseConfig = {
   resolve: {
     extensions: ['.js']
   }
-}
+};
 
 const clientConfig = {
   ...baseConfig,
@@ -64,7 +64,7 @@ const clientConfig = {
     filename: '[name].browser.js',
     path: path.join(__dirname, 'dist')
   }
-}
+};
 
 const serverConfig = {
   ...baseConfig,
@@ -75,6 +75,6 @@ const serverConfig = {
     libraryTarget: 'commonjs2',
     path: path.join(__dirname, 'dist')
   }
-}
+};
 
-module.exports = [baseConfig, clientConfig, serverConfig]
+module.exports = [baseConfig, clientConfig, serverConfig];

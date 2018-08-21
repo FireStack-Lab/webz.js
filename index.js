@@ -1,8 +1,8 @@
-const Webz = require('./lib/index')
+const Webz = require('./lib/index');
 
 // dont override global variable
 if (typeof window !== 'undefined' && typeof window.Webz === 'undefined') {
-  window.Webz = Webz
+  window.Webz = Webz.default;
 }
 
-module.exports = Webz
+module.exports = Webz;
