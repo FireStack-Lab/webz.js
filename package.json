@@ -1,6 +1,6 @@
 {
   "name": "webz.js",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Zilliqa Javascript Libraries",
   "main": "./index.js",
   "directories": {
@@ -11,8 +11,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "babel": "rm -rf lib && babel es6 --presets env --plugins transform-class-properties -d lib",
     "commit": "yarn babel && git add .&&git commit",
-    "build": "gulp",
-    "dist": "rm -rf dist/* && cross-env NODE_ENV=production webpack --config webpack.config.js"
+    "dist": "yarn babel && rm -rf dist/* && cross-env NODE_ENV=production webpack --config webpack.config.js"
   },
   "repository": {
     "type": "git",
