@@ -15,7 +15,7 @@ const UglifyJs = require('uglifyjs-webpack-plugin');
 
 const baseConfig = {
   entry: {
-    Webz: ['./index.js']
+    Webz: ['./lib/index.js']
   },
   mode: 'production',
   module: {
