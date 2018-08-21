@@ -1,8 +1,8 @@
-import Webz from './webz';
+import Webz from './webz'
 
 // dont override global variable
 if (typeof window !== 'undefined' && typeof window.Webz === 'undefined') {
-  window.Webz = Webz;
+  window.Webz = Webz
 }
 
-export default Webz;
+export default Webz
