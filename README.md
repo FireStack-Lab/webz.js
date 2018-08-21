@@ -1,7 +1,7 @@
 # webz.js
 
 ![travis](https://travis-ci.com/FireStack-Lab/webz.js.svg?branch=master)
-![npm](https://www.npmjs.com/package/webz.js)
+[![npm version](https://img.shields.io/npm/v/webz.js.svg?style=flat-square)](https://www.npmjs.org/package/webz.js)
 
 Inspired by Web3.js
 
