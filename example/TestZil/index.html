@@ -12,15 +12,30 @@
 
 </head>
 <body>
-
-<div id="root"></div>
+<div id="root">
+<h1>This is Webz.js simple example</h1>
+<h2>For more complex examples, please visit: <a href="https://github.com/FireStack-Lab/webz-examples">webz-examples</a></h2>
+<h3>Current Provider is:</h3>
+<h4 id="currenProvider">http://localhost:4200 </h4>
+<input id="nodeUrl" value="http://localhost:4200" />
+<button id="setProviderButton">Set Provider</button>
+</div>
 <script src="../../dist/Webz.browser.js"></script>
 <script>
 
+var currenProvider=document.getElementById('nodeUrl').value
+var setButton=document.getElementById('setProviderButton')
+
+
 //For local testing, use URL = 'http://localhost:4201'
 //To connect to the external network, use URL = 'https://api-scilla.zilliqa.com'
-var webz =new Webz({nodeUrl:''})
+var webz =new Webz({nodeUrl:currenProvider})
 var URL = 'https://api-scilla.zilliqa.com'
+
+setButton.onclick=function(e){
+  console.log('lll')
+};
+
 webz.setProvider(URL)
 
 var node = webz.getProvider().url;

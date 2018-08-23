@@ -1,22 +1,41 @@
 import Method from '../util/method'
+import {
+  generatePrivateKey,
+  getAddressFromPrivateKey,
+  getPubKeyFromPrivateKey,
+  isString
+} from '../util'
 import ZilObjects from './Objects'
+
+const mapObjectToMethods = (main) => {
+  ZilObjects.map((data) => {
+    const zilMethod = new Method(data)
+    const zilKey = data.name
+    const zilObject = {}
+    zilMethod.setMessanger(main.messanger)
+    zilObject[zilKey] = zilMethod.methodBuilder()
+    return Object.assign(main, zilObject)
+  })
+}
 
 class Zil {
   constructor(Webz) {
     this.messanger = Webz.messanger
-    this.mapObjectToMethods()
+    mapObjectToMethods(this)
   }
 
-  mapObjectToMethods = () => {
-    ZilObjects.map((data) => {
-      const zilMethod = new Method(data)
-      zilMethod.setMessanger(this.messanger)
-      const zilKey = data.name
-      const zilObject = {}
-      zilObject[zilKey] = zilMethod.methodBuilder()
-      return Object.assign(this, zilObject)
-      // return Object.assign(self, zilObject)
-    })
+  generateWallet = (walletName) => {
+    if (!isString(walletName)) throw Error('walletName has to be String')
+    const walletPrivateKey = generatePrivateKey()
+    const walletPublicKey = getPubKeyFromPrivateKey(walletPrivateKey)
+    const walletAddress = getAddressFromPrivateKey(walletPrivateKey)
+    const Wallet = {
+      walletName,
+      walletPublicKey,
+      walletPrivateKey,
+      walletAddress
+    }
+    return Wallet
   }
 }
 
