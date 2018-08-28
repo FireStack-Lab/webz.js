@@ -26,10 +26,16 @@ const mapPropertyToObjects = (main) => {
     const zilProperty = new Property(data)
     const zilName = data.name
     zilProperty.setMessanger(main.messanger)
+    const asyncGetterName = (getName) => {
+      return `get${getName.charAt(0).toUpperCase()}${getName.slice(1)}`
+    }
     const zilObject = {
       get: zilProperty.propertyBuilder(),
       enumerable: true
     }
+    const newZilObject = {}
+    newZilObject[asyncGetterName(zilName)] = zilProperty.propertyBuilder()
+    Object.assign(main, newZilObject)
     return Object.defineProperty(main, zilName, zilObject)
   })
 }
