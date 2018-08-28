@@ -29,6 +29,7 @@ const mapPropertyToObjects = (main) => {
       get: zilProperty.propertyBuilder(),
       enumerable: true
     }
+    console.log({ zilName, zilObject })
     zilProperty.setMessanger(main.messanger)
     return Object.defineProperty(main, zilName, zilObject)
   })
