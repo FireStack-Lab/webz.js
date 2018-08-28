@@ -1,4 +1,5 @@
 import Method from '../util/method'
+import Property from '../util/property'
 import {
   generatePrivateKey,
   getAddressFromPrivateKey,
@@ -6,10 +7,11 @@ import {
   isString
 } from '../util'
 import config from '../util/config'
-import ZilObjects from './Objects'
+import methodObjects from './methodObjects'
+import propertyObjects from './propertyObjects'
 
 const mapObjectToMethods = (main) => {
-  ZilObjects.map((data) => {
+  methodObjects.map((data) => {
     const zilMethod = new Method(data)
     const zilKey = data.name
     const zilObject = {}
@@ -19,11 +21,25 @@ const mapObjectToMethods = (main) => {
   })
 }
 
+const mapPropertyToObjects = (main) => {
+  propertyObjects.map((data) => {
+    const zilProperty = new Property(data)
+    const zilName = data.name
+    const zilObject = {
+      get: zilProperty.propertyBuilder(),
+      enumerable: true
+    }
+    zilProperty.setMessanger(main.messanger)
+    return Object.defineProperty(main, zilName, zilObject)
+  })
+}
+
 class Zil {
   constructor(Webz) {
     this.messanger = Webz.messanger
     this.config = config
     mapObjectToMethods(this)
+    mapPropertyToObjects(this)
   }
 
   /**
