@@ -6,15 +6,13 @@
 //
 
 import * as util from './util'
-import Schnorr from './schnorr'
 import HttpProvider from './util/httpProvider'
 import Messanger from './util/messanger'
-import config from '../config.json'
 
 // test function
 import Zil from './zil'
 
-const { validateArgs } = util
+const { validateArgs, config } = util
 
 class Webz {
   constructor(args) {
@@ -23,7 +21,6 @@ class Webz {
     //
     this.version = config.version
 
-    this.schnorr = new Schnorr()
     this.util = util
     //
     this.currentProvider = new HttpProvider(this.url)
@@ -60,6 +57,14 @@ class Webz {
   generateWallet = walletName => this.zil.generateWallet(walletName)
 
   getNetworkType = () => {}
+
+  getAccounts = (pubkeyArray) => {
+    if (!util.isArray(pubkeyArray) && pubkeyArray.length === 0) throw Error('Input has to be non-empty Array')
+    const newPubkeyArray = pubkeyArray.map(d => util.isPubkey(d)).filter(t => !!t)
+    if (newPubkeyArray.length !== pubkeyArray.length) throw Error('one or some public key(s) inputted is invalid')
+    const resultArray = newPubkeyArray.map(k => util.getAddressFromPublicKey(k))
+    return resultArray || []
+  }
 }
 
 export default Webz
