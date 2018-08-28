@@ -25,12 +25,11 @@ const mapPropertyToObjects = (main) => {
   propertyObjects.map((data) => {
     const zilProperty = new Property(data)
     const zilName = data.name
+    zilProperty.setMessanger(main.messanger)
     const zilObject = {
       get: zilProperty.propertyBuilder(),
       enumerable: true
     }
-    console.log({ zilName, zilObject })
-    zilProperty.setMessanger(main.messanger)
     return Object.defineProperty(main, zilName, zilObject)
   })
 }
