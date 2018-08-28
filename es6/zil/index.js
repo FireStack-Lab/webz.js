@@ -17,7 +17,8 @@ const mapObjectToMethods = (main) => {
     const zilObject = {}
     zilMethod.setMessanger(main.messanger)
     zilObject[zilKey] = zilMethod.methodBuilder()
-    return Object.assign(main, zilObject)
+    Object.assign(main, zilObject)
+    return false
   })
 }
 
@@ -35,8 +36,9 @@ const mapPropertyToObjects = (main) => {
     }
     const newZilObject = {}
     newZilObject[asyncGetterName(zilName)] = zilProperty.propertyBuilder()
+    Object.defineProperty(main, zilName, zilObject)
     Object.assign(main, newZilObject)
-    return Object.defineProperty(main, zilName, zilObject)
+    return false
   })
 }
 
