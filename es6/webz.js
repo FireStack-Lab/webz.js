@@ -57,14 +57,6 @@ class Webz {
   generateWallet = walletName => this.zil.generateWallet(walletName)
 
   getNetworkType = () => {}
-
-  getAccounts = (pubkeyArray) => {
-    if (!util.isArray(pubkeyArray) && pubkeyArray.length === 0) throw Error('Input has to be non-empty Array')
-    const newPubkeyArray = pubkeyArray.map(d => util.isPubkey(d)).filter(t => !!t)
-    if (newPubkeyArray.length !== pubkeyArray.length) throw Error('one or some public key(s) inputted is invalid')
-    const resultArray = pubkeyArray.map(k => util.getAddressFromPublicKey(k))
-    return resultArray || []
-  }
 }
 
 export default Webz

@@ -5,6 +5,7 @@ import {
   getPubKeyFromPrivateKey,
   isString
 } from '../util'
+import config from '../util/config'
 import ZilObjects from './Objects'
 
 const mapObjectToMethods = (main) => {
@@ -21,6 +22,7 @@ const mapObjectToMethods = (main) => {
 class Zil {
   constructor(Webz) {
     this.messanger = Webz.messanger
+    this.config = config
     mapObjectToMethods(this)
   }
 
@@ -41,6 +43,24 @@ class Zil {
       walletAddress
     }
     return Wallet
+  }
+
+  get defaultBlock() {
+    return this.config.defaultBlock
+  }
+
+  set defaultBlock(block) {
+    this.config.defaultBlock = block
+    return block
+  }
+
+  get defaultAccount() {
+    return this.config.defaultAccount
+  }
+
+  set defaultAccount(account) {
+    this.config.defaultAccount = account
+    return account
   }
 }
 
