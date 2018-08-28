@@ -34,7 +34,7 @@ const mapPropertyToObjects = (main) => {
       enumerable: true
     }
     const newZilObject = {}
-    newZilObject[asyncGetterName(zilName)] = main.propertyBuilder()
+    newZilObject[asyncGetterName(zilName)] = zilProperty.propertyBuilder()
     Object.assign(main, newZilObject)
     return Object.defineProperty(main, zilName, zilObject)
   })
