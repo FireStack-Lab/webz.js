@@ -44,9 +44,13 @@ class Webz {
   getProvider = () => this.currentProvider
 
   setProvider = (provider) => {
-    validateArgs(provider, {
-      nodeUrl: [util.isUrl]
-    })
+    validateArgs(
+      provider,
+      {},
+      {
+        nodeUrl: [util.isUrl]
+      }
+    )
     this.currentProvider = new HttpProvider(provider)
     this.messanger.setProvider(this.currentProvider)
   }
