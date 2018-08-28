@@ -92,6 +92,12 @@ class Method {
     return result
   }
 
+  assignToObject = (object) => {
+    const newObject = {}
+    newObject[this.name] = this.methodBuilder()
+    return Object.assign(object, newObject)
+  }
+
   methodBuilder = () => {
     if (this.messanger !== null && this.endpoint === 'client') {
       return (args, callback) => {
