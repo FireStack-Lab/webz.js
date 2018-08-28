@@ -13,7 +13,7 @@ class Property {
 
   propertyBuilder = () => {
     if (this.messanger !== null) {
-      return function get(callback) {
+      return (callback) => {
         if (callback) {
           return this.messanger.sendAsync({ method: this.getter }, callback)
         }

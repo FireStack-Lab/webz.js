@@ -237,11 +237,11 @@ export default [
    * getHashrate
    * @params {}
    */
-  {
-    name: 'getHashrate',
-    call: 'GetHashrate',
-    params: {}
-  },
+  // {
+  //   name: 'getHashrate',
+  //   call: 'GetHashrate',
+  //   params: {}
+  // },
   /**
    * isNodeMining
    * @params {}
