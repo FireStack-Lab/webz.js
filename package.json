@@ -1,6 +1,6 @@
 {
   "name": "webz.js",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "description": "Zilliqa Javascript Libraries",
   "main": "lib/index.js",
   "browser": "dist/Webz.browser.js",
