@@ -12,6 +12,7 @@ class Messanger {
       console.error(InvalidProvider())
       return null
     }
+    console.log(data)
     const payload = this.JsonRpc.toPayload(data.method, data.params)
     const result = await this.provider.send(payload)
     return result
@@ -22,6 +23,7 @@ class Messanger {
       console.error(InvalidProvider())
       return null
     }
+    console.log(data)
     const payload = this.JsonRpc.toPayload(data.method, data.params)
     this.provider.sendAsync(payload, (err, result) => {
       if (err) {
