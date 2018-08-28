@@ -38,23 +38,28 @@ class Webz {
     HttpProvider
   }
 
-  getLibraryVersion = () => this.version
-
+  // library method
   isConnected = () => this.zil && this.zil.isConnected()
 
+  getLibraryVersion = () => this.version
+
+  // provider method
   getProvider = () => this.currentProvider
 
   setProvider = (provider) => {
-    validateArgs(
-      provider,
-      {},
-      {
-        nodeUrl: [util.isUrl]
-      }
-    )
+    validateArgs(provider, {
+      nodeUrl: [util.isUrl]
+    })
     this.currentProvider = new HttpProvider(provider)
     this.messanger.setProvider(this.currentProvider)
   }
+
+  // zil related method
+  getBalance = address => this.zil.getBalance(address)
+
+  generateWallet = walletName => this.zil.generateWallet(walletName)
+
+  getNetworkType = () => {}
 }
 
 export default Webz
