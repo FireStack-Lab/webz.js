@@ -13,12 +13,8 @@ import propertyObjects from './propertyObjects'
 const mapObjectToMethods = (main) => {
   methodObjects.map((data) => {
     const zilMethod = new Method(data)
-    // const zilKey = data.name
-    // const zilObject = {}
     zilMethod.setMessanger(main.messanger)
     zilMethod.assignToObject(main)
-    // zilObject[zilKey] = zilMethod.methodBuilder()
-    // Object.assign(main, zilObject)
     return false
   })
 }
@@ -26,21 +22,8 @@ const mapObjectToMethods = (main) => {
 const mapPropertyToObjects = (main) => {
   propertyObjects.map((data) => {
     const zilProperty = new Property(data)
-    const zilName = data.name
     zilProperty.setMessanger(main.messanger)
-    //
-    const asyncGetterName = (getName) => {
-      return `get${getName.charAt(0).toUpperCase()}${getName.slice(1)}`
-    }
-    const zilObject = {
-      get: zilProperty.propertyBuilder(),
-      enumerable: true
-    }
-    const newZilObject = {}
-    newZilObject[asyncGetterName(zilName)] = zilProperty.propertyBuilder()
-    Object.defineProperty(main, zilName, zilObject)
-    //
-    Object.assign(main, newZilObject)
+    zilProperty.assignToObject(main)
     return false
   })
 }
