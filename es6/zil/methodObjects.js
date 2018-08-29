@@ -1,14 +1,5 @@
 export default [
   /**
-   * getNetworkId
-   * @params {}
-   */
-  {
-    name: 'getNetworkId',
-    call: 'GetNetworkId',
-    params: {}
-  },
-  /**
    * isConnected
    * @params {}
    */
@@ -18,24 +9,6 @@ export default [
     params: {}
   },
 
-  /**
-   * getClientVersion
-   * @params {}
-   */
-  {
-    name: 'getClientVersion',
-    call: 'GetClientVersion',
-    params: {}
-  },
-  /**
-   * getProtocolVersion
-   * @params {}
-   */
-  {
-    name: 'getProtocolVersion',
-    call: 'GetProtocolVersion',
-    params: {}
-  },
   /**
    * getTransaction
    * @params {txHash:Hash}
@@ -233,24 +206,7 @@ export default [
       txHash: ['isHash', 'optional']
     }
   },
-  /**
-   * getHashrate
-   * @params {}
-   */
-  // {
-  //   name: 'getHashrate',
-  //   call: 'GetHashrate',
-  //   params: {}
-  // },
-  /**
-   * isNodeMining
-   * @params {}
-   */
-  {
-    name: 'isNodeMining',
-    call: 'isNodeMining',
-    params: {}
-  },
+
   /**
    * checkCode
    */
