@@ -84,7 +84,8 @@ const isAddress = (address) => {
     // If it's all small caps or all all caps, return true
     return true
   }
-
+  // web3.js use checksumAddress
+  // else {
   //     // Otherwise check each case
   //     return isChecksumAddress(address)
   // }
@@ -96,7 +97,14 @@ const isAddress = (address) => {
  * @return {Boolean}            [description]
  */
 const isPrivateKey = (privateKey) => {
-  return !!privateKey.match(/^[0-9a-fA-F]{64}$/)
+  if (!/^(0x)?[0-9a-f]{64}$/i.test(privatekey)) {
+    // check if it has the basic requirements of an privatekey
+    return false
+  } else if (/^(0x)?[0-9a-f]{64}$/.test(privatekey) || /^(0x)?[0-9A-F]{64}$/.test(address)) {
+    // If it's all small caps or all all caps, return true
+    return true
+  }
+  // return !!privateKey.match(/^[0-9a-fA-F]{64}$/)
 }
 
 /**
@@ -105,7 +113,14 @@ const isPrivateKey = (privateKey) => {
  * @return {Boolean}        [description]
  */
 const isPubkey = (pubkey) => {
-  return !!pubkey.match(/^[0-9a-fA-F]{66}$/)
+  if (!/^(0x)?[0-9a-f]{66}$/i.test(pubkey)) {
+    // check if it has the basic requirements of an pubkey
+    return false
+  } else if (/^(0x)?[0-9a-f]{66}$/.test(pubkey) || /^(0x)?[0-9A-F]{66}$/.test(pubkey)) {
+    // If it's all small caps or all all caps, return true
+    return true
+  }
+  // return !!pubkey.match(/^[0-9a-fA-F]{66}$/)
 }
 
 /**
@@ -123,7 +138,14 @@ const isUrl = (url) => {
  * @return {Boolean}        [description]
  */
 const isHash = (txHash) => {
-  return !!txHash.match(/^[0-9a-fA-F]{64}$/)
+  if (!/^(0x)?[0-9a-f]{64}$/i.test(txHash)) {
+    // check if it has the basic requirements of an txHash
+    return false
+  } else if (/^(0x)?[0-9a-f]{64}$/.test(txHash) || /^(0x)?[0-9A-F]{64}$/.test(txHash)) {
+    // If it's all small caps or all all caps, return true
+    return true
+  }
+  // return !!txHash.match(/^[0-9a-fA-F]{64}$/)
 }
 
 /**
