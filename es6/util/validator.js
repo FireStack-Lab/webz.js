@@ -97,10 +97,10 @@ const isAddress = (address) => {
  * @return {Boolean}            [description]
  */
 const isPrivateKey = (privateKey) => {
-  if (!/^(0x)?[0-9a-f]{64}$/i.test(privatekey)) {
+  if (!/^(0x)?[0-9a-f]{64}$/i.test(privateKey)) {
     // check if it has the basic requirements of an privatekey
     return false
-  } else if (/^(0x)?[0-9a-f]{64}$/.test(privatekey) || /^(0x)?[0-9A-F]{64}$/.test(address)) {
+  } else if (/^(0x)?[0-9a-f]{64}$/.test(privateKey) || /^(0x)?[0-9A-F]{64}$/.test(privateKey)) {
     // If it's all small caps or all all caps, return true
     return true
   }
