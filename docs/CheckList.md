@@ -4,185 +4,185 @@
 
 | Web3            | Webz            |                          Description |    Decision |
 | :-------------- | :-------------- | -----------------------------------: | ----------: |
-| requestManager  | messanger       |        deal with request to provider |         yes |
-| currentProvider | currentProvider |                         get provider |         yes |
-| eth             | zil             |            access the blockchain api |         yes |
-| db              | NA              |              access the database api |         TBD |
-| shh             | NA              |                   access the shh api |         TBD |
-| net             | NA              |             access the peer2peer net |         TBD |
-| personal        | NA              |               access personal wallet | Considering |
-| bzz             | NA              |            interact swarm file store |         TBD |
+| eth             | zil             |                            SubObject |         yes |
+| db              | NA              |                            SubObject |         TBD |
+| shh             | NA              |                            SubObject |         TBD |
+| net             | NA              |                            SubObject |         TBD |
+| personal        | NA              |                            SubObject | Considering |
+| bzz             | NA              |                            SubObject |         TBD |
 | settings        | NA              |                      setting for API | Considering |
 | version         | version         |                  API library version |         yes |
-| providers       | providers       |     expose providers to Main Objects |         yes |
-| setProvider     | setProvider     |                 set provider for API |         yes |
-| reset           | NA              | reset connection for request manager |         TBD |
-| isConnected     | isConnected     |       check if provider is connected |         yes |
+| providers       | providers       |     Expose providers to Main Objects |         yes |
+| setProvider     | setProvider     |                 Set provider for API |         yes |
+| requestManager  | messanger       |        Deal with request to provider |         yes |
+| currentProvider | currentProvider |                 Get provider for API |         yes |
+| reset           | NA              | Reset connection for request manager |         TBD |
+| isConnected     | isConnected     |                   Connection Checker |         yes |
 
 ## .utils
 
-| Web3              | Webz              |                              Description |    Decision |
-| :---------------- | :---------------- | ---------------------------------------: | ----------: |
-| randomHex         | NA                |                                       NA |         TBD |
-| \_                | NA                |                                       NA |         TBD |
-| BN                | NA                | BigNumber Function Expose to Main Object |         TBD |
-| BigNumber         | NA                | BigNumber Function Expose to Main Object |         TBD |
-| isBN              | NA                |                                       NA |         TBD |
-| isBigNumber       | NA                |                                       NA |         TBD |
-| sha3              | NA                |                                       NA |         TBD |
-| soliditySha3      | NA                |                                       NA |         TBD |
-| isHex             | NA                |                                       NA |         TBD |
-| isHexStrict       | NA                |                                       NA |         TBD |
-| isAddress         | isAddress         |                 check if data is Address |         Yes |
-| isChecksumAddress | isChecksumAddress |        check if data is Checksum Address | Considering |
-| toChecksumAddress | toChecksumAddress |        transform data to ChecksumAddress | Considering |
-| hexToNumberString | NA                |                                       NA |         TBD |
-| hexToNumber       | NA                |                                       NA |         TBD |
-| numberToHex       | NA                |                                       NA |         TBD |
-| hexToUtf8         | NA                |                                       NA |         TBD |
-| hexToAscii        | NA                |                                       NA |         TBD |
-| utf8ToHex         | NA                |                                       NA |         TBD |
-| asciiToHex        | NA                |                                       NA |         TBD |
-| hexToBytes        | NA                |                                       NA |         TBD |
-| bytesToHex        | NA                |                                       NA |         TBD |
-| toWei             | NA                |                    transform data to Wei |         TBD |
-| fromWei           | NA                |                  transform data from Wei |         TBD |
-| unitMap           | NA                |                       Array manipulation | Considering |
-| isIBAN            | NA                |                    check if data is IBAN |         TBD |
-| padLeft           | padLeft           |                       Array manipulation | Considering |
-| padRight          | padRight          |                       Array manipulation | Considering |
-| toTwosComplement  | NA                |                       Array manipulation | Considering |
-| Internal          | ----              |                                      --- |         --- |
-| toHex             | toHex             |                    transform data to Hex | Considering |
-| toBN              | NA                |                       Array manipulation | Considering |
-| toAscii           | toAscii           |                  transform data to Ascii | Considering |
-| toUtf8            | toUtf8            |                   transform data to Utf8 | Considering |
-| fromAscii         | fromAscii         |                transform data from Ascii | Considering |
-| fromUtf8          | fromUtf8          |                 transform data from Utf8 | Considering |
-| toDecimal         | toDecimal         |                transform data to Decimal | Considering |
-| fromDecimal       | fromDecimal       |              transform data from Decimal | Considering |
+| Web3              | Webz              |                        Description |    Decision |
+| :---------------- | :---------------- | ---------------------------------: | ----------: |
+| randomHex         | NA                | Generate pseudo-random HEX strings |         TBD |
+| \_                | NA                |                 Underscore Library |         TBD |
+| BN                | NA                |                         BN library |         TBD |
+| BigNumber         | NA                |  BN library exposed to Main Object |         TBD |
+| isBN              | NA                |                   DataType checker |         TBD |
+| isBigNumber       | NA                |                   DataType checker |         TBD |
+| sha3              | NA                |                    SHA3 calculator |         TBD |
+| soliditySha3      | NA                |       SHA3 calculator for solidity |         TBD |
+| isHex             | NA                |                   DataType checker |         TBD |
+| isHexStrict       | NA                |                   DataType checker |         TBD |
+| isAddress         | isAddress         |                   DataType checker |         Yes |
+| isChecksumAddress | isChecksumAddress |                   DataType checker | Considering |
+| toChecksumAddress | toChecksumAddress |                   Data transformer | Considering |
+| hexToNumberString | NA                |                   Data transformer |         TBD |
+| hexToNumber       | NA                |                   Data transformer |         TBD |
+| numberToHex       | NA                |                   Data transformer |         TBD |
+| hexToUtf8         | NA                |                   Data transformer |         TBD |
+| hexToAscii        | NA                |                   Data transformer |         TBD |
+| utf8ToHex         | NA                |                   Data transformer |         TBD |
+| asciiToHex        | NA                |                   Data transformer |         TBD |
+| hexToBytes        | NA                |                   Data transformer |         TBD |
+| bytesToHex        | NA                |                   Data transformer |         TBD |
+| toWei             | NA                |                   Data transformer |         TBD |
+| fromWei           | NA                |                   Data transformer |         TBD |
+| unitMap           | NA                |                   Data Unit Mapper | Considering |
+| isIBAN            | NA                |                   DataType checker |         TBD |
+| padLeft           | padLeft           |                 Array manipulation | Considering |
+| padRight          | padRight          |                 Array manipulation | Considering |
+| toTwosComplement  | NA                |                 Array manipulation | Considering |
+| Internal          | ----              |                                --- |         --- |
+| toHex             | toHex             |                   Data transformer | Considering |
+| toBN              | NA                |                   Data transformer | Considering |
+| toAscii           | toAscii           |                   Data transformer | Considering |
+| toUtf8            | toUtf8            |                   Data transformer | Considering |
+| fromAscii         | fromAscii         |                   Data transformer | Considering |
+| fromUtf8          | fromUtf8          |                   Data transformer | Considering |
+| toDecimal         | toDecimal         |                   Data transformer | Considering |
+| fromDecimal       | fromDecimal       |                   Data transformer | Considering |
 
 ## .eth/.zil
 
-| Web3                     | Webz | Description | Decision |
-| :----------------------- | :--- | ----------: | -------: |
-| subscribe                | NA   |   SubObject |      TBD |
-| Contract                 | NA   |   SubObject |      TBD |
-| Iban                     | NA   |   SubObject |      TBD |
-| personal                 | NA   |   SubObject |      TBD |
-| accounts                 | NA   |   SubObject |      TBD |
-| abi                      | NA   |   SubObject |      TBD |
-| net                      | NA   |   SubObject |      TBD |
-| setProvider              | NA   |          NA |      TBD |
-| providers                | NA   |          NA |      TBD |
-| givenProvider            | NA   |          NA |      TBD |
-| currentProvider          | NA   |          NA |      TBD |
-| BatchRequest             | NA   |          NA |      TBD |
-| extend                   | NA   |          NA |      TBD |
-| defaultAccount           | NA   |          NA |      TBD |
-| defaultBlock             | NA   |          NA |      TBD |
-| getProtocolVersion       | NA   |          NA |      TBD |
-| isSyncing                | NA   |          NA |      TBD |
-| getCoinbase              | NA   |          NA |      TBD |
-| isMining                 | NA   |          NA |      TBD |
-| getHashrate              | NA   |          NA |      TBD |
-| getGasPrice              | NA   |          NA |      TBD |
-| getAccounts              | NA   |          NA |      TBD |
-| getBlockNumber           | NA   |          NA |      TBD |
-| getBalance               | NA   |          NA |      TBD |
-| getStorageAt             | NA   |          NA |      TBD |
-| getCode                  | NA   |          NA |      TBD |
-| getBlock                 | NA   |          NA |      TBD |
-| getBlockTransactionCount | NA   |          NA |      TBD |
-| getUncle                 | NA   |          NA |      TBD |
-| getTransaction           | NA   |          NA |      TBD |
-| getTransactionFromBlock  | NA   |          NA |      TBD |
-| getTransactionReceipt    | NA   |          NA |      TBD |
-| getTransactionCount      | NA   |          NA |      TBD |
-| sendTransaction          | NA   |          NA |      TBD |
-| sendSignedTransaction    | NA   |          NA |      TBD |
-| sign                     | NA   |          NA |      TBD |
-| signTransaction          | NA   |          NA |      TBD |
-| call                     | NA   |          NA |      TBD |
-| estimateGas              | NA   |          NA |      TBD |
-| getPastLogs              | NA   |          NA |      TBD |
-| getWork                  | NA   |          NA |      TBD |
-| submitWork               | NA   |          NA |      TBD |
+| Web3                     | Webz |                                                                   Description | Decision |
+| :----------------------- | :--- | ----------------------------------------------------------------------------: | -------: |
+| subscribe                | NA   |                                                                     SubObject |      TBD |
+| Contract                 | NA   |                                                                     SubObject |      TBD |
+| Iban                     | NA   |                                                                     SubObject |      TBD |
+| personal                 | NA   |                                                                     SubObject |      TBD |
+| accounts                 | NA   |                                                                     SubObject |      TBD |
+| abi                      | NA   |                                                                     SubObject |      TBD |
+| net                      | NA   |                                                                     SubObject |      TBD |
+| setProvider              | NA   |                                                          Set Provider for API |      TBD |
+| providers                | NA   |                                                      Providers setted for API |      TBD |
+| givenProvider            | NA   |                                    Set Provider for API based on browser type |      TBD |
+| currentProvider          | NA   |                                   Current Provider setted for current browser |      TBD |
+| BatchRequest             | NA   |                                             Create and execute batch requests |      TBD |
+| extend                   | NA   |                                             Allows extending the web3 modules |      TBD |
+| defaultAccount           | NA   |                                   This default address is used as the default |      TBD |
+| defaultBlock             | NA   |                                     This default block is used as the default |      TBD |
+| getProtocolVersion       | NA   |                                     Get protocol version of the provider node |      TBD |
+| isSyncing                | NA   |                                          Check provider node if it is syncing |      TBD |
+| getCoinbase              | NA   |                               Returns the coinbase address that award will go |      TBD |
+| isMining                 | NA   |                                           Check provider node if it is mining |      TBD |
+| getHashrate              | NA   |                                          Get hashes per second of mining node |      TBD |
+| getGasPrice              | NA   |                                                 Returns the current gas price |      TBD |
+| getAccounts              | NA   |                                  Returns a list of accounts the node controls |      TBD |
+| getBlockNumber           | NA   |                                              Returns the current block number |      TBD |
+| getBalance               | NA   |                                Get the balance of an address at a given block |      TBD |
+| getStorageAt             | NA   |                                                 Get the storage of an address |      TBD |
+| getCode                  | NA   |                                            Get the code at a specific address |      TBD |
+| getBlock                 | NA   |                              Returns a block matching the block number / hash |      TBD |
+| getBlockTransactionCount | NA   |                            Returns the number of transaction in a given block |      TBD |
+| getUncle                 | NA   |                        Returns a blocks uncle by a given uncle index position |      TBD |
+| getTransaction           | NA   |                     Returns a transaction matching the given transaction hash |      TBD |
+| getTransactionFromBlock  | NA   |         Returns a transaction based on a block hash/number and index position |      TBD |
+| getTransactionReceipt    | NA   |                      Returns the receipt of a transaction by transaction hash |      TBD |
+| getTransactionCount      | NA   |                        Get the numbers of transactions sent from this address |      TBD |
+| sendTransaction          | NA   |                                            Sends a transaction to the network |      TBD |
+| sendSignedTransaction    | NA   |                                           Sends an already signed transaction |      TBD |
+| sign                     | NA   |                                           Signs data using a specific account |      TBD |
+| signTransaction          | NA   |                                                           Signs a transaction |      TBD |
+| call                     | NA   |                                   Executes a message call transaction,unmined |      TBD |
+| estimateGas              | NA   | Executes a message call or transaction and returns the amount of the gas used |      TBD |
+| getPastLogs              | NA   |                                    Gets past logs, matching the given options |      TBD |
+| getWork                  | NA   |                                               Gets work for miners to mine on |      TBD |
+| submitWork               | NA   |                                  Used for submitting a proof-of-work solution |      TBD |
 
 ## .eth.subscribe/
 
-| Web3                             | Webz | Description | Decision |
-| :------------------------------- | :--- | ----------: | -------: |
-| subscribe                        | NA   |   SubObject |      TBD |
-| clearSubscriptions               | NA   |          NA |      TBD |
-| subscribe(“pendingTransactions”) | NA   |          NA |      TBD |
-| subscribe(“newBlockHeaders”)     | NA   |          NA |      TBD |
-| subscribe(“syncing”)             | NA   |          NA |      TBD |
-| subscribe(“logs”)                | NA   |          NA |      TBD |
+| Web3                             | Webz |                                    Description | Decision |
+| :------------------------------- | :--- | ---------------------------------------------: | -------: |
+| subscribe                        | NA   | Subscribe to specific events in the blockchain |      TBD |
+| clearSubscriptions               | NA   |                           Resets subscriptions |      TBD |
+| subscribe(“pendingTransactions”) | NA   |    Subscribes to incoming pending transactions |      TBD |
+| subscribe(“newBlockHeaders”)     | NA   |           Subscribes to incoming block headers |      TBD |
+| subscribe(“syncing”)             | NA   |                    Subscribe to syncing events |      TBD |
+| subscribe(“logs”)                | NA   |                    Subscribes to incoming logs |      TBD |
 
 ## .eth.Contract/
 
-| Web3                         | Webz | Description | Decision |
-| :--------------------------- | :--- | ----------: | -------: |
-| new contract                 | NA   |          NA |      TBD |
-| = Properties =               | NA   |          NA |      TBD |
-| options                      | NA   |          NA |      TBD |
-| options.address              | NA   |          NA |      TBD |
-| options.jsonInterface        | NA   |          NA |      TBD |
-| = Methods =                  | NA   |          NA |      TBD |
-| clone                        | NA   |          NA |      TBD |
-| deploy                       | NA   |          NA |      TBD |
-| methods                      | NA   |          NA |      TBD |
-| methods.myMethod.call        | NA   |          NA |      TBD |
-| methods.myMethod.send        | NA   |          NA |      TBD |
-| methods.myMethod.estimateGas | NA   |          NA |      TBD |
-| methods.myMethod.encodeABI   | NA   |          NA |      TBD |
-| = Events =                   | NA   |          NA |      TBD |
-| once                         | NA   |          NA |      TBD |
-| events                       | NA   |          NA |      TBD |
-| events.allEvents             | NA   |          NA |      TBD |
-| getPastEvents                | NA   |          NA |      TBD |
+| Web3                         | Webz |                                                     Description | Decision |
+| :--------------------------- | :--- | --------------------------------------------------------------: | -------: |
+| new contract                 | NA   |                                 Creates a new contract instance |      TBD |
+| = Properties =               | NA   |                                                              NA |      TBD |
+| options                      | NA   |                    The options object for the contract instance |      TBD |
+| options.address              | NA   |                     The address used for this contract instance |      TBD |
+| options.jsonInterface        | NA   | The json interface object derived from the ABI of this contract |      TBD |
+| = Methods =                  | NA   |                                                              NA |      TBD |
+| clone                        | NA   |                            Clones the current contract instance |      TBD |
+| deploy                       | NA   |                           Deploy the contract to the blockchain |      TBD |
+| methods                      | NA   |                    Creates a transaction object for that method |      TBD |
+| methods.myMethod.call        | NA   |  Call a “constant” method and execute its smart contract method |      TBD |
+| methods.myMethod.send        | NA   | Send a transaction to the smart contract and execute its method |      TBD |
+| methods.myMethod.estimateGas | NA   |                             Estimate the gas a method execution |      TBD |
+| methods.myMethod.encodeABI   | NA   |                                 Encodes the ABI for this method |      TBD |
+| = Events =                   | NA   |                                                              NA |      TBD |
+| once                         | NA   |       Subscribes to a single event and unsubscribes immediately |      TBD |
+| events                       | NA   |                                           Subscribe to an event |      TBD |
+| events.allEvents             | NA   |     Subscribes but receives all events from this smart contract |      TBD |
+| getPastEvents                | NA   |                              Gets past events for this contract |      TBD |
 
 ## .eth.accounts/
 
-| Web3                | Webz | Description | Decision |
-| :------------------ | :--- | ----------: | -------: |
-| create              | NA   |          NA |      TBD |
-| privateKeyToAccount | NA   |          NA |      TBD |
-| signTransaction     | NA   |          NA |      TBD |
-| recoverTransaction  | NA   |          NA |      TBD |
-| hashMessage         | NA   |          NA |      TBD |
-| sign                | NA   |          NA |      TBD |
-| recover             | NA   |          NA |      TBD |
-| encrypt             | NA   |          NA |      TBD |
-| decrypt             | NA   |          NA |      TBD |
-| wallet              | NA   |          NA |      TBD |
-| wallet.create       | NA   |          NA |      TBD |
-| wallet.add          | NA   |          NA |      TBD |
-| wallet.remove       | NA   |          NA |      TBD |
-| wallet.clear        | NA   |          NA |      TBD |
-| wallet.encrypt      | NA   |          NA |      TBD |
-| wallet.decrypt      | NA   |          NA |      TBD |
-| wallet.save         | NA   |          NA |      TBD |
-| wallet.load         | NA   |          NA |      TBD |
+| Web3                | Webz |                                                                 Description | Decision |
+| :------------------ | :--- | --------------------------------------------------------------------------: | -------: |
+| create              | NA   |                 Generates an account object with private key and public key |      TBD |
+| privateKeyToAccount | NA   |                                Creates an account object from a private key |      TBD |
+| signTransaction     | NA   |                      Signs an Ethereum transaction with a given private key |      TBD |
+| recoverTransaction  | NA   |                                         Get address form signed transaction |      TBD |
+| hashMessage         | NA   |                          Hashes the given message to be passed to recover() |      TBD |
+| sign                | NA   |                                                        Signs arbitrary data |      TBD |
+| recover             | NA   |                                       Recovers the address from signed data |      TBD |
+| encrypt             | NA   |                     Encrypts a private key to the web3 keystore v3 standard |      TBD |
+| decrypt             | NA   |                        Decrypts a keystore v3 JSON, and creates the account |      TBD |
+| wallet              | NA   |                         Contains an in memory wallet with multiple accounts |      TBD |
+| wallet.create       | NA   |                                Generates one or more accounts in the wallet |      TBD |
+| wallet.add          | NA   |         Adds an account using a private key or account object to the wallet |      TBD |
+| wallet.remove       | NA   |                                          Removes an account from the wallet |      TBD |
+| wallet.clear        | NA   |                    Securely empties the wallet and removes all its accounts |      TBD |
+| wallet.encrypt      | NA   | Encrypts all wallet accounts to and array of encrypted keystore v3 objects. |      TBD |
+| wallet.decrypt      | NA   |                                                Decrypts keystore v3 objects |      TBD |
+| wallet.save         | NA   |        Stores the wallet encrypted and as string in browser's local storage |      TBD |
+| wallet.load         | NA   |                           Loads a wallet from local storage and decrypts it |      TBD |
 
 ## .eth.personal/
 
-| Web3            | Webz | Description | Decision |
-| :-------------- | :--- | ----------: | -------: |
-| setProvider     | NA   |          NA |      TBD |
-| providers       | NA   |          NA |      TBD |
-| givenProvider   | NA   |          NA |      TBD |
-| currentProvider | NA   |          NA |      TBD |
-| BatchRequest    | NA   |          NA |      TBD |
-| extend          | NA   |          NA |      TBD |
-| newAccount      | NA   |          NA |      TBD |
-| sign            | NA   |          NA |      TBD |
-| ecRecover       | NA   |          NA |      TBD |
-| signTransaction | NA   |          NA |      TBD |
-| unlockAccount   | NA   |          NA |      TBD |
+| Web3            | Webz |                                Description | Decision |
+| :-------------- | :--- | -----------------------------------------: | -------: |
+| setProvider     | NA   |                Set Provider for its module |      TBD |
+| providers       | NA   |           Expose providers to Main Objects |      TBD |
+| givenProvider   | NA   | Set Provider for API based on browser type |      TBD |
+| currentProvider | NA   |                       Get provider for API |      TBD |
+| BatchRequest    | NA   |          Create and execute batch requests |      TBD |
+| extend          | NA   |          Allows extending the web3 modules |      TBD |
+| newAccount      | NA   |                      Creates a new account |      TBD |
+| sign            | NA   |        Signs data using a specific account |      TBD |
+| ecRecover       | NA   |  Recovers the account that signed the data |      TBD |
+| signTransaction | NA   |                        Signs a transaction |      TBD |
+| unlockAccount   | NA   |        Signs data using a specific account |      TBD |
 
-## .eth.Iban/
+## .eth.Iban/( to be done )
 
 | Web3                  | Webz | Description | Decision |
 | :-------------------- | :--- | ----------: | -------: |
@@ -203,7 +203,7 @@
 | prototype.toAddress   | NA   |          NA |      TBD |
 | prototype.toString    | NA   |          NA |      TBD |
 
-## .eth.abi/
+## .eth.abi/ ( to be done )
 
 | Web3                    | Webz | Description | Decision |
 | :---------------------- | :--- | ----------: | -------: |
@@ -216,7 +216,7 @@
 | decodeParameters        | NA   |          NA |      TBD |
 | decodeLog               | NA   |          NA |      TBD |
 
-## \*.net/
+## \*.net/ ( to be done )
 
 | Web3         | Webz | Description | Decision |
 | :----------- | :--- | ----------: | -------: |
@@ -224,7 +224,7 @@
 | isListening  | NA   |          NA |      TBD |
 | getPeerCount | NA   |          NA |      TBD |
 
-## .bzz/
+## .bzz/ ( to be done )
 
 | Web3            | Webz | Description | Decision |
 | :-------------- | :--- | ----------: | -------: |
@@ -235,7 +235,7 @@
 | download        | NA   |          NA |      TBD |
 | pick            | NA   |          NA |      TBD |
 
-## .shh/
+## .shh/ ( to be done )
 
 | Web3                       | Webz | Description | Decision |
 | :------------------------- | :--- | ----------: | -------: |
