@@ -21,93 +21,122 @@
 
 ## .utils
 
-| Web3              | Webz              |                        Description |    Decision |
-| :---------------- | :---------------- | ---------------------------------: | ----------: |
-| randomHex         | NA                | Generate pseudo-random HEX strings |         TBD |
-| \_                | NA                |                 Underscore Library |         TBD |
-| BN                | NA                |                         BN library |         TBD |
-| BigNumber         | NA                |  BN library exposed to Main Object |         TBD |
-| isBN              | NA                |                   DataType checker |         TBD |
-| isBigNumber       | NA                |                   DataType checker |         TBD |
-| sha3              | NA                |                    SHA3 calculator |         TBD |
-| soliditySha3      | NA                |       SHA3 calculator for solidity |         TBD |
-| isHex             | NA                |                   DataType checker |         TBD |
-| isHexStrict       | NA                |                   DataType checker |         TBD |
-| isAddress         | isAddress         |                   DataType checker |         Yes |
-| isChecksumAddress | isChecksumAddress |                   DataType checker | Considering |
-| toChecksumAddress | toChecksumAddress |                   Data transformer | Considering |
-| hexToNumberString | NA                |                   Data transformer |         TBD |
-| hexToNumber       | NA                |                   Data transformer |         TBD |
-| numberToHex       | NA                |                   Data transformer |         TBD |
-| hexToUtf8         | NA                |                   Data transformer |         TBD |
-| hexToAscii        | NA                |                   Data transformer |         TBD |
-| utf8ToHex         | NA                |                   Data transformer |         TBD |
-| asciiToHex        | NA                |                   Data transformer |         TBD |
-| hexToBytes        | NA                |                   Data transformer |         TBD |
-| bytesToHex        | NA                |                   Data transformer |         TBD |
-| toWei             | NA                |                   Data transformer |         TBD |
-| fromWei           | NA                |                   Data transformer |         TBD |
-| unitMap           | NA                |                   Data Unit Mapper | Considering |
-| isIBAN            | NA                |                   DataType checker |         TBD |
-| padLeft           | padLeft           |                 Array manipulation | Considering |
-| padRight          | padRight          |                 Array manipulation | Considering |
-| toTwosComplement  | NA                |                 Array manipulation | Considering |
-| Internal          | ----              |                                --- |         --- |
-| toHex             | toHex             |                   Data transformer | Considering |
-| toBN              | NA                |                   Data transformer | Considering |
-| toAscii           | toAscii           |                   Data transformer | Considering |
-| toUtf8            | toUtf8            |                   Data transformer | Considering |
-| fromAscii         | fromAscii         |                   Data transformer | Considering |
-| fromUtf8          | fromUtf8          |                   Data transformer | Considering |
-| toDecimal         | toDecimal         |                   Data transformer | Considering |
-| fromDecimal       | fromDecimal       |                   Data transformer | Considering |
+| Web3                       | Webz         |                        Description |    Decision |
+| :------------------------- | :----------- | ---------------------------------: | ----------: |
+| == Validator ==            | ----         |                                --- |         --- |
+| NA                         | isString     |                   DataType checker |         Yes |
+| NA                         | isNumber     |                   DataType checker |         Yes |
+| NA                         | isBoolean    |                   DataType checker |         Yes |
+| NA                         | isArray      |                   DataType checker |         Yes |
+| NA                         | isJson       |                   DataType checker |         Yes |
+| NA                         | isObject     |                   DataType checker |         Yes |
+| NA                         | isFunction   |                   DataType checker |         Yes |
+| NA                         | isHash       |                   DataType checker |         Yes |
+| NA                         | isUrl        |                   DataType checker |         Yes |
+| NA                         | isPubkey     |                   DataType checker |         Yes |
+| NA                         | isPrivateKey |                   DataType checker |         Yes |
+| NA                         | isAddress    |                   DataType checker |         Yes |
+| NA                         | validateArgs |                   DataType checker |         Yes |
+| isBN                       | isBN         |                   DataType checker |         Yes |
+| isBigNumber                | NA           |                   DataType checker |         TBD |
+| isIBAN                     | NA           |                   DataType checker |         TBD |
+| isHex                      | NA           |                   DataType checker |         TBD |
+| isHexStrict                | NA           |                   DataType checker |         TBD |
+| isChecksumAddress          | NA           |                   DataType checker |         TBD |
+| == Transformer ==          |              |                                    |             |
+| toChecksumAddress          | NA           |                   Data transformer |         TBD |
+| hexToNumberString          | NA           |                   Data transformer |         TBD |
+| hexToNumber                | NA           |                   Data transformer |         TBD |
+| numberToHex                | NA           |                   Data transformer |         TBD |
+| hexToUtf8                  | NA           |                   Data transformer |         TBD |
+| hexToAscii                 | NA           |                   Data transformer |         TBD |
+| utf8ToHex                  | NA           |                   Data transformer |         TBD |
+| asciiToHex                 | NA           |                   Data transformer |         TBD |
+| hexToBytes                 | NA           |                   Data transformer |         TBD |
+| bytesToHex                 | NA           |                   Data transformer |         TBD |
+| toWei                      | NA           |                   Data transformer |         TBD |
+| fromWei                    | NA           |                   Data transformer |         TBD |
+| == Internal Transformer == | ----         |                                --- |         --- |
+| toHex                      | toHex        |                   Data transformer | Considering |
+| toBN                       | NA           |                   Data transformer | Considering |
+| toAscii                    | toAscii      |                   Data transformer | Considering |
+| toUtf8                     | toUtf8       |                   Data transformer | Considering |
+| fromAscii                  | fromAscii    |                   Data transformer | Considering |
+| fromUtf8                   | fromUtf8     |                   Data transformer | Considering |
+| toDecimal                  | toDecimal    |                   Data transformer | Considering |
+| fromDecimal                | fromDecimal  |                   Data transformer | Considering |
+| == Methods Libraries ==    | ----         |                                --- |         --- |
+| randomHex                  | NA           | Generate pseudo-random HEX strings |         TBD |
+| \_                         | NA           |                 Underscore Library |         TBD |
+| BN                         | NA           |                         BN library |         TBD |
+| BigNumber                  | NA           |  BN library exposed to Main Object |         TBD |
+| sha3                       | NA           |                    SHA3 calculator |         TBD |
+| soliditySha3               | NA           |       SHA3 calculator for solidity |         TBD |
+| unitMap                    | NA           |                   Data Unit Mapper | Considering |
+| padLeft                    | padLeft      |                 Array manipulation | Considering |
+| padRight                   | padRight     |                 Array manipulation | Considering |
+| toTwosComplement           | NA           |                 Array manipulation | Considering |
 
 ## .eth/.zil
 
-| Web3                     | Webz |                                                                   Description | Decision |
-| :----------------------- | :--- | ----------------------------------------------------------------------------: | -------: |
-| subscribe                | NA   |                                                                     SubObject |      TBD |
-| Contract                 | NA   |                                                                     SubObject |      TBD |
-| Iban                     | NA   |                                                                     SubObject |      TBD |
-| personal                 | NA   |                                                                     SubObject |      TBD |
-| accounts                 | NA   |                                                                     SubObject |      TBD |
-| abi                      | NA   |                                                                     SubObject |      TBD |
-| net                      | NA   |                                                                     SubObject |      TBD |
-| setProvider              | NA   |                                                          Set Provider for API |      TBD |
-| providers                | NA   |                                                      Providers setted for API |      TBD |
-| givenProvider            | NA   |                                    Set Provider for API based on browser type |      TBD |
-| currentProvider          | NA   |                                   Current Provider setted for current browser |      TBD |
-| BatchRequest             | NA   |                                             Create and execute batch requests |      TBD |
-| extend                   | NA   |                                             Allows extending the web3 modules |      TBD |
-| defaultAccount           | NA   |                                   This default address is used as the default |      TBD |
-| defaultBlock             | NA   |                                     This default block is used as the default |      TBD |
-| getProtocolVersion       | NA   |                                     Get protocol version of the provider node |      TBD |
-| isSyncing                | NA   |                                          Check provider node if it is syncing |      TBD |
-| getCoinbase              | NA   |                               Returns the coinbase address that award will go |      TBD |
-| isMining                 | NA   |                                           Check provider node if it is mining |      TBD |
-| getHashrate              | NA   |                                          Get hashes per second of mining node |      TBD |
-| getGasPrice              | NA   |                                                 Returns the current gas price |      TBD |
-| getAccounts              | NA   |                                  Returns a list of accounts the node controls |      TBD |
-| getBlockNumber           | NA   |                                              Returns the current block number |      TBD |
-| getBalance               | NA   |                                Get the balance of an address at a given block |      TBD |
-| getStorageAt             | NA   |                                                 Get the storage of an address |      TBD |
-| getCode                  | NA   |                                            Get the code at a specific address |      TBD |
-| getBlock                 | NA   |                              Returns a block matching the block number / hash |      TBD |
-| getBlockTransactionCount | NA   |                            Returns the number of transaction in a given block |      TBD |
-| getUncle                 | NA   |                        Returns a blocks uncle by a given uncle index position |      TBD |
-| getTransaction           | NA   |                     Returns a transaction matching the given transaction hash |      TBD |
-| getTransactionFromBlock  | NA   |         Returns a transaction based on a block hash/number and index position |      TBD |
-| getTransactionReceipt    | NA   |                      Returns the receipt of a transaction by transaction hash |      TBD |
-| getTransactionCount      | NA   |                        Get the numbers of transactions sent from this address |      TBD |
-| sendTransaction          | NA   |                                            Sends a transaction to the network |      TBD |
-| sendSignedTransaction    | NA   |                                           Sends an already signed transaction |      TBD |
-| sign                     | NA   |                                           Signs data using a specific account |      TBD |
-| signTransaction          | NA   |                                                           Signs a transaction |      TBD |
-| call                     | NA   |                                   Executes a message call transaction,unmined |      TBD |
-| estimateGas              | NA   | Executes a message call or transaction and returns the amount of the gas used |      TBD |
-| getPastLogs              | NA   |                                    Gets past logs, matching the given options |      TBD |
-| getWork                  | NA   |                                               Gets work for miners to mine on |      TBD |
-| submitWork               | NA   |                                  Used for submitting a proof-of-work solution |      TBD |
+| Web3                     | Webz                     |                                                                   Description | Decision |
+| :----------------------- | :----------------------- | ----------------------------------------------------------------------------: | -------: |
+| == Properties ==         | ----                     |                                                                           --- |      --- |
+| providers                | providers                |                                                      Providers setted for API |      Yes |
+| currentProvider          | currentProvider          |                                   Current Provider setted for current browser |      Yes |
+| givenProvider            | NA                       |                                    Set Provider for API based on browser type |      TBD |
+| == Setter ==             | ----                     |                                                                           --- |      --- |
+| setProvider              | setProvider              |                                                          Set Provider for API |      Yes |
+| defaultAccount           | defaultAccount           |                                   This default address is used as the default |      Yes |
+| defaultBlock             | defaultBlock             |                                     This default block is used as the default |      Yes |
+| == Getter ==             | ----                     |                                                                           --- |      --- |
+| getProtocolVersion       | getProtocolVersion       |                                     Get protocol version of the provider node |      Yes |
+| getHashrate              | getHashrate              |                                          Get hashes per second of mining node |      Yes |
+| getGasPrice              | getGasPrice              |                                                 Returns the current gas price |      Yes |
+| getBlockNumber           | getBlockNumber           |                                              Returns the current block number |      Yes |
+| getBalance               | getBlockNumber           |                                Get the balance of an address at a given block |      Yes |
+| getCode                  | getCode                  |                                            Get the code at a specific address |      Yes |
+| getTransaction           | getTransaction           |                     Returns a transaction matching the given transaction hash |      Yes |
+| getTransactionReceipt    | getTransactionReceipt    |                      Returns the receipt of a transaction by transaction hash |      Yes |
+| getBlock                 | getDsBlock               |                              Returns a block matching the block number / hash |      Yes |
+| NA                       | getTxBlock               |                                 Returns a block matching the transaction hash |      Yes |
+| NA                       | getLatestTxBlock         |                                              Returns Latest transaction block |      Yes |
+| NA                       | getLatestDsBlock         |                                                       Returns Latest Ds block |      Yes |
+| NA                       | getTransactionHistory    |                                     Returns Transaction History of an address |      Yes |
+| getTransactionFromBlock  | getBlockTransactionCount |         Returns a transaction based on a block hash/number and index position |      Yes |
+| NA                       | getTxBlockListing        |                                                                No description |      Yes |
+| NA                       | getDSBlockListing        |                                                                No description |      Yes |
+| NA                       | getNumTxnsTxEpoch        |                                                                No description |      Yes |
+| NA                       | getNumTxnsDSEpoch        |                                                                No description |      Yes |
+| NA                       | getTransactionListing    |                                                                No description |      Yes |
+| getCoinbase              | NA                       |                               Returns the coinbase address that award will go |      TBD |
+| getAccounts              | NA                       |                                  Returns a list of accounts the node controls |      TBD |
+| getStorageAt             | NA                       |                                                 Get the storage of an address |      TBD |
+| getBlockTransactionCount | NA                       |                            Returns the number of transaction in a given block |      TBD |
+| getUncle                 | NA                       |                        Returns a blocks uncle by a given uncle index position |      TBD |
+| getTransactionCount      | NA                       |                        Get the numbers of transactions sent from this address |      TBD |
+| getPastLogs              | NA                       |                                    Gets past logs, matching the given options |      TBD |
+| getWork                  | NA                       |                                               Gets work for miners to mine on |      TBD |
+| isMining                 | NA                       |                                           Check provider node if it is mining |      TBD |
+| isSyncing                | NA                       |                                          Check provider node if it is syncing |      TBD |
+| == Methods ==            | ----                     |                                                                           --- |      --- |
+| BatchRequest             | NA                       |                                             Create and execute batch requests |      TBD |
+| extend                   | NA                       |                                             Allows extending the web3 modules |      TBD |
+| sendTransaction          | createTransaction        |                                            Sends a transaction to the network |      TBD |
+| sendSignedTransaction    | NA                       |                                           Sends an already signed transaction |      TBD |
+| sign                     | NA                       |                                           Signs data using a specific account |      TBD |
+| signTransaction          | NA                       |                                                           Signs a transaction |      TBD |
+| call                     | NA                       |                                   Executes a message call transaction,unmined |      TBD |
+| estimateGas              | NA                       | Executes a message call or transaction and returns the amount of the gas used |      TBD |
+| submitWork               | NA                       |                                  Used for submitting a proof-of-work solution |      TBD |
+| == Sub Modules ==        | ----                     |                                                                           --- |      --- |
+| subscribe                | NA                       |                                                                   Sub Modules |      TBD |
+| Contract                 | NA                       |                                                                   Sub Modules |      TBD |
+| Iban                     | NA                       |                                                                   Sub Modules |      TBD |
+| personal                 | NA                       |                                                                   Sub Modules |      TBD |
+| accounts                 | NA                       |                                                                   Sub Modules |      TBD |
+| abi                      | NA                       |                                                                   Sub Modules |      TBD |
+| net                      | NA                       |                                                                   Sub Modules |      TBD |
 
 ## .eth.subscribe/
 
