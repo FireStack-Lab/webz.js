@@ -1,3 +1,4 @@
+import R from 'ramda'
 import {
   isNumber,
   isString,
@@ -15,6 +16,8 @@ import {
   validateArgs
 } from './validator'
 
+import { toBN } from './transformer'
+
 const validatorArray = {
   isNumber: [isNumber],
   isString: [isString],
@@ -31,16 +34,24 @@ const validatorArray = {
   isAddress: [isAddress]
 }
 
+const transformerArray = {
+  toBn: toBN,
+  toNumber: string => Number(string),
+  toString: string => String(string)
+}
+
 class Method {
   constructor(options) {
     const {
-      name, call, params, endpoint
+      name, call, params, endpoint, transformer, isSendJson
     } = options
     this.name = name
     this.call = call
     this.messanger = null
     this.params = params
+    this.transformer = transformer || {}
     this.endpoint = endpoint || 'client'
+    this.isSendJson = isSendJson || false
   }
 
   setMessanger = (msg) => {
@@ -70,7 +81,6 @@ class Method {
   validateArgs = (args, requiredArgs, optionalArgs) => {
     const reArgs = requiredArgs === undefined ? {} : requiredArgs
     const opArgs = optionalArgs === undefined ? {} : optionalArgs
-    // console.log({ reArgs, opArgs })
     if (args && this.params !== {}) {
       return validateArgs(args, reArgs, opArgs)
     }
@@ -83,13 +93,21 @@ class Method {
     const keyArrayLength = Object.keys(paramsObject).length
 
     if (keyArrayLength === 0) result = []
-    else if (keyArrayLength === 1) {
+    if (keyArrayLength > 0 && !this.isSendJson) {
       const resultKey = Object.keys(paramsObject)[0]
-      result = [paramsObject[resultKey]]
-    } else if (keyArrayLength > 1) {
-      result = [paramsObject]
+      result = [this.transformedBeforeSend(paramsObject[resultKey], resultKey)]
+    } else if (keyArrayLength > 0 && this.isSendJson) {
+      const newObject = R.mapObjIndexed(this.transformedBeforeSend, paramsObject)
+      result = [newObject]
     }
     return result
+  }
+
+  transformedBeforeSend = (value, key) => {
+    const transformMethod = this.transformer[key]
+    if (transformMethod !== undefined) {
+      return transformerArray[transformMethod](value)
+    } else return value
   }
 
   assignToObject = (object) => {

@@ -1,6 +1,6 @@
 {
   "name": "webz.js",
-  "version": "0.0.33",
+  "version": "0.0.34",
   "description": "Zilliqa Javascript Libraries",
   "main": "lib/index.js",
   "browser": "dist/Webz.browser.js",
@@ -39,6 +39,7 @@
     "hash.js": "^1.1.5",
     "hmac-drbg": "^1.0.1",
     "number-to-bn": "^1.7.0",
+    "ramda": "^0.25.0",
     "randombytes": "^2.0.6",
     "valid-url": "^1.0.9"
   },
