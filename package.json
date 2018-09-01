@@ -38,6 +38,7 @@
     "elliptic": "^6.4.0",
     "hash.js": "^1.1.5",
     "hmac-drbg": "^1.0.1",
+    "number-to-bn": "^1.7.0",
     "randombytes": "^2.0.6",
     "valid-url": "^1.0.9"
   },
