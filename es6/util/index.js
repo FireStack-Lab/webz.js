@@ -19,7 +19,7 @@ export {
 } from './validator'
 
 export {
-  intToByteArray, toHex, toUtf8, toAscii, fromUtf8, fromAscii
+  intToByteArray, toHex, toUtf8, toAscii, fromUtf8, fromAscii, toBN
 } from './transformer'
 
 export {

@@ -6,7 +6,8 @@ export default [
   {
     name: 'isConnected',
     call: 'GetNetworkId',
-    params: {}
+    params: {},
+    isSendJson: false
   },
 
   /**
@@ -18,7 +19,8 @@ export default [
     call: 'GetTransaction',
     params: {
       txHash: ['isHash', 'required']
-    }
+    },
+    isSendJson: false
   },
   /**
    * createTransaction
@@ -35,7 +37,11 @@ export default [
       amount: ['isNumber', 'required'],
       gasPrice: ['isNumber', 'required'],
       gasLimit: ['isNumber', 'required']
-    }
+    },
+    transformer: {
+      amount: 'toNumber'
+    },
+    isSendJson: true
   },
   /**
    * getDsBlock
@@ -46,7 +52,8 @@ export default [
     call: 'GetDsBlock',
     params: {
       blockNumber: ['isString', 'required']
-    }
+    },
+    isSendJson: false
   },
   /**
    * getTxBlock
@@ -57,7 +64,8 @@ export default [
     call: 'GetTxBlock',
     params: {
       blockNumber: ['isString', 'required']
-    }
+    },
+    isSendJson: false
   },
   /**
    * getLatestDsBlock
@@ -66,7 +74,8 @@ export default [
   {
     name: 'getLatestDsBlock',
     call: 'GetLatestDsBlock',
-    params: {}
+    params: {},
+    isSendJson: false
   },
   /**
    * getLatestTxBlock
@@ -75,7 +84,8 @@ export default [
   {
     name: 'getLatestTxBlock',
     call: 'GetLatestTxBlock',
-    params: {}
+    params: {},
+    isSendJson: false
   },
   /**
    * getBalance
@@ -86,7 +96,8 @@ export default [
     call: 'GetBalance',
     params: {
       address: ['isAddress', 'required']
-    }
+    },
+    isSendJson: false
   },
   /**
    * getGasPrice
@@ -95,7 +106,8 @@ export default [
   {
     name: 'getGasPrice',
     call: 'GetGasPrice',
-    params: {}
+    params: {},
+    isSendJson: false
   },
   /**
    * getSmartContractState
@@ -104,7 +116,8 @@ export default [
   {
     name: 'getSmartContractState',
     call: 'GetSmartContractState',
-    params: { address: ['isAddress', 'required'] }
+    params: { address: ['isAddress', 'required'] },
+    isSendJson: false
   },
   /**
    * getSmartContractCode
@@ -113,7 +126,8 @@ export default [
   {
     name: 'getSmartContractCode',
     call: 'GetSmartContractCode',
-    params: { address: ['isAddress', 'required'] }
+    params: { address: ['isAddress', 'required'] },
+    isSendJson: false
   },
   /**
    * getSmartContractInit
@@ -122,7 +136,8 @@ export default [
   {
     name: 'getSmartContractInit',
     call: 'GetSmartContractInit',
-    params: { address: ['isAddress', 'required'] }
+    params: { address: ['isAddress', 'required'] },
+    isSendJson: false
   },
   /**
    * getSmartContracts
@@ -131,7 +146,8 @@ export default [
   {
     name: 'getSmartContracts',
     call: 'GetSmartContracts',
-    params: { address: ['isAddress', 'required'] }
+    params: { address: ['isAddress', 'required'] },
+    isSendJson: false
   },
   /**
    * getTransactionHistory
@@ -140,7 +156,8 @@ export default [
   {
     name: 'getTransactionHistory',
     call: 'GetTransactionHistory',
-    params: { address: ['isAddress', 'required'] }
+    params: { address: ['isAddress', 'required'] },
+    isSendJson: false
   },
   /**
    * getBlockTransactionCount
@@ -149,7 +166,8 @@ export default [
   {
     name: 'getBlockTransactionCount',
     call: 'GetBlockTransactionCount',
-    params: { blockNumber: ['isNumber', 'required'] }
+    params: { blockNumber: ['isNumber', 'required'] },
+    isSendJson: false
   },
   /**
    * getCode
@@ -158,7 +176,8 @@ export default [
   {
     name: 'getCode',
     call: 'GetCode',
-    params: { address: ['isAddress', 'required'] }
+    params: { address: ['isAddress', 'required'] },
+    isSendJson: false
   },
   /**
    * createMessage
@@ -172,7 +191,8 @@ export default [
       from: ['isAddress', 'optional'],
       gas: ['isNumber', 'optional'],
       gasPrice: ['isNumber', 'optional']
-    }
+    },
+    isSendJson: true
   },
   /**
    * getGasEstimate
@@ -193,7 +213,8 @@ export default [
       gas: ['isNumber', 'optional'],
       gasPrice: ['isNumber', 'optional'],
       gasLimit: ['isNumber', 'optional']
-    }
+    },
+    isSendJson: true
   },
   /**
    * getTransactionReceipt
@@ -204,7 +225,8 @@ export default [
     call: 'GetTransactionReceipt',
     params: {
       txHash: ['isHash', 'optional']
-    }
+    },
+    isSendJson: false
   },
 
   /**
@@ -214,6 +236,7 @@ export default [
     name: 'checkCode',
     call: '',
     params: { code: ['isString', 'required'] },
+    isSendJson: true,
     endpoint: '/v1/checker'
   },
   /**
@@ -223,6 +246,7 @@ export default [
     name: 'checkCodeTest',
     call: '',
     params: { code: ['isString', 'required'] },
+    isSendJson: true,
     endpoint: '/v1/runner'
   },
   /**
@@ -232,7 +256,8 @@ export default [
   {
     name: 'getBlockchainInfo',
     call: 'GetBlockchainInfo',
-    params: {}
+    params: {},
+    isSendJson: false
   },
   /**
    * getDSBlockListing
@@ -243,7 +268,8 @@ export default [
     call: 'DSBlockListing',
     params: {
       page: ['isNumber', 'required']
-    }
+    },
+    isSendJson: false
   },
   /**
    * getTxBlockListing
@@ -254,7 +280,8 @@ export default [
     call: 'TxBlockListing',
     params: {
       page: ['isNumber', 'required']
-    }
+    },
+    isSendJson: false
   },
   /**
    * getNumTxnsTxEpoch
@@ -263,7 +290,8 @@ export default [
   {
     name: 'getNumTxnsTxEpoch',
     call: 'GetNumTxnsTxEpoch',
-    params: {}
+    params: {},
+    isSendJson: false
   },
   /**
    * getNumTxnsDSEpoch
@@ -272,7 +300,8 @@ export default [
   {
     name: 'getNumTxnsDSEpoch',
     call: 'GetNumTxnsDSEpoch',
-    params: {}
+    params: {},
+    isSendJson: false
   },
   /**
    * getTransactionListing
@@ -281,6 +310,7 @@ export default [
   {
     name: 'getTransactionListing',
     call: 'GetTransactionListing',
-    params: {}
+    params: {},
+    isSendJson: false
   }
 ]

@@ -1,3 +1,5 @@
+// import BN from 'bn.js'
+import numToBN from 'number-to-bn'
 /**
  * convert number to array representing the padded hex form
  * @param  {[string]} val        [description]
@@ -41,7 +43,13 @@ const fromUtf8 = () => {
 const fromAscii = () => {
   // to be implemented
 }
-const toBN = () => {
+
+const toBN = (data) => {
+  try {
+    return numToBN(data)
+  } catch (e) {
+    throw new Error(`${e} of "${data}"`)
+  }
   // to be implemented
 }
 const toNumber = () => {
