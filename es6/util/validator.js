@@ -8,6 +8,8 @@ import { isBN } from 'bn.js'
 const isNumber = (obj) => {
   return obj === +obj
 }
+// assign validator string
+Object.assign(isNumber, { validator: 'Number' })
 
 /**
  * [isString verify param is a String]
@@ -17,6 +19,8 @@ const isNumber = (obj) => {
 const isString = (obj) => {
   return obj === `${obj}`
 }
+// assign validator string
+Object.assign(isString, { validator: 'String' })
 
 /**
  * [isBoolean verify param is a Boolean]
@@ -26,6 +30,8 @@ const isString = (obj) => {
 const isBoolean = (obj) => {
   return obj === !!obj
 }
+// assign validator string
+Object.assign(isBoolean, { validator: 'Boolean' })
 
 /**
  * [isArray verify param input is an Array]
@@ -35,6 +41,8 @@ const isBoolean = (obj) => {
 const isArray = (obj) => {
   return Array.isArray(obj)
 }
+// assign validator string
+Object.assign(isArray, { validator: 'Array' })
 
 /**
  * [isJson verify param input is a Json]
@@ -48,6 +56,8 @@ const isJson = (obj) => {
     return false
   }
 }
+// assign validator string
+Object.assign(isJson, { validator: 'Json' })
 
 /**
  * [isObject verify param is an Object]
@@ -57,6 +67,9 @@ const isJson = (obj) => {
 const isObject = (obj) => {
   return obj !== null && !Array.isArray(obj) && typeof obj === 'object'
 }
+// assign validator string
+Object.assign(isObject, { validator: 'Object' })
+
 /**
  * [isFunction verify param is a Function]
  * @param  {[type]}  obj [value]
@@ -66,9 +79,12 @@ const isObject = (obj) => {
 const isFunction = (obj) => {
   return typeof obj === 'function'
 }
+// assign validator string
+Object.assign(isFunction, { validator: 'Function' })
 
 /**
  * verify if param is correct
+ * TODO: 0x is not needed after core team updated
  * @param  {[hex|string]}  address [description]
  * @return {Boolean}         [description]
  */
@@ -84,15 +100,13 @@ const isAddress = (address) => {
     // If it's all small caps or all all caps, return true
     return true
   }
-  // web3.js use checksumAddress
-  // else {
-  //     // Otherwise check each case
-  //     return isChecksumAddress(address)
-  // }
 }
+// assign validator string
+Object.assign(isAddress, { validator: 'Address' })
 
 /**
  * verify if privateKey is correct
+ * TODO: 0x is not needed after core team updated
  * @param  {[hex|string]}  privateKey [description]
  * @return {Boolean}            [description]
  */
@@ -104,11 +118,13 @@ const isPrivateKey = (privateKey) => {
     // If it's all small caps or all all caps, return true
     return true
   }
-  // return !!privateKey.match(/^[0-9a-fA-F]{64}$/)
 }
+// assign validator string
+Object.assign(isPrivateKey, { validator: 'PrivateKey' })
 
 /**
  * verify if public key is correct
+ *  TODO: 0x is not needed after core team updated
  * @param  {[hex|string]}  pubkey [description]
  * @return {Boolean}        [description]
  */
@@ -122,6 +138,8 @@ const isPubkey = (pubkey) => {
   }
   // return !!pubkey.match(/^[0-9a-fA-F]{66}$/)
 }
+// assign validator string
+Object.assign(isPubkey, { validator: 'PublicKey' })
 
 /**
  * verify if url is correct
@@ -131,9 +149,12 @@ const isPubkey = (pubkey) => {
 const isUrl = (url) => {
   return isWebUri(url)
 }
+// assign validator string
+Object.assign(isUrl, { validator: 'Url' })
 
 /**
  * verify if hash is correct
+ * TODO: 0x is not needed after core team updated
  * @param  {[string]}  txHash [description]
  * @return {Boolean}        [description]
  */
@@ -147,6 +168,12 @@ const isHash = (txHash) => {
   }
   // return !!txHash.match(/^[0-9a-fA-F]{64}$/)
 }
+// assign validator string
+Object.assign(isHash, { validator: 'Hash' })
+
+// isBN
+// imported
+Object.assign(isBN, { validator: 'BN' })
 
 /**
  * make sure each of the keys in requiredArgs is present in args
@@ -155,13 +182,17 @@ const isHash = (txHash) => {
  * @param  {[type]} optionalArgs [description]
  * @return {[type]}              [description]
  */
-const validateArgs = (args, requiredArgs, optionalArgs) => {
+function validateArgs(args, requiredArgs, optionalArgs) {
   for (const key in requiredArgs) {
     if (args[key] !== undefined) {
       for (let i = 0; i < requiredArgs[key].length; i += 1) {
         if (typeof requiredArgs[key][i] !== 'function') throw new Error('Validator is not a function')
 
-        if (!requiredArgs[key][i](args[key])) throw new Error(`Validation failed for ${key}`)
+        if (!requiredArgs[key][i](args[key])) {
+          throw new Error(
+            `Validation failed for ${key},should be ${requiredArgs[key][i].validator}`
+          )
+        }
       }
     } else throw new Error(`Key not found: ${key}`)
   }
@@ -171,8 +202,26 @@ const validateArgs = (args, requiredArgs, optionalArgs) => {
       for (let i = 0; i < optionalArgs[key].length; i += 1) {
         if (typeof optionalArgs[key][i] !== 'function') throw new Error('Validator is not a function')
 
-        if (!optionalArgs[key][i](args[key])) throw new Error(`Validation failed for ${key}`)
+        if (!optionalArgs[key][i](args[key])) {
+          throw new Error(
+            `Validation failed for ${key},should be ${optionalArgs[key][i].validator}`
+          )
+        }
       }
+    }
+  }
+  return true
+}
+
+function validateFunctionArgs(ArgsArray, validatorArray) {
+  const argLength = ArgsArray.length
+  const valLength = validatorArray.length
+  if (argLength < valLength) throw new Error('Some args are required by function but missing')
+  for (let i = 0; i < valLength; i += 1) {
+    if (!validatorArray[i](ArgsArray[i])) {
+      throw new Error(
+        `Validation failed for arguments[${i}], should be ${validatorArray[i].validator}`
+      )
     }
   }
   return true
@@ -192,5 +241,6 @@ export {
   isPrivateKey,
   isAddress,
   isBN,
-  validateArgs
+  validateArgs,
+  validateFunctionArgs
 }
