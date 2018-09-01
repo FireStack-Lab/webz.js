@@ -40,6 +40,22 @@ webz.setProvider(URL)
 
 var node = webz.getProvider().url;
 var hr= webz.zil.getBalance({address:'9bfec715a6bd658fcb62b0f8cc9bfa2ade71434a'},(err,data)=>console.log(data))
+
+const txnDetails = {
+    version: 0,
+    nonce: 1,
+    to: 'E8A67C0B1F19DF61A28E8E8FB5D830377045BCC7',
+    amount: 19,
+    gasPrice: 1,
+    gasLimit: 1
+};
+
+// sign the transaction using util methods
+// let txn = webz.util.createTransactionJson('e19d05c5452598e24caad4a0d85a49146f7be089515c905ae6a19e8a578a6930', txnDetails);
+
+// send the transaction to the node
+// webz.zil.createTransaction(txn, (err,data)=>{console.log(data)});
+
 // hr.then(console.log)
 
 console.log(webz)
