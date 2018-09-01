@@ -48,6 +48,41 @@ const toNumber = () => {
   // to be implemented
 }
 
+/**
+ * Should be called to pad string to expected length
+ *
+ * @method padLeft
+ * @param {String} string to be padded
+ * @param {Number} characters that result string should have
+ * @param {String} sign, by default 0
+ * @returns {String} right aligned string
+ */
+const padLeft = (string, chars, sign) => {
+  return new Array(chars - string.length + 1).join(sign || '0') + string
+}
+
+/**
+ * Should be called to pad string to expected length
+ *
+ * @method padRight
+ * @param {String} string to be padded
+ * @param {Number} characters that result string should have
+ * @param {String} sign, by default 0
+ * @returns {String} right aligned string
+ */
+const padRight = (string, chars, sign) => {
+  return string + new Array(chars - string.length + 1).join(sign || '0')
+}
+
 export {
-  intToByteArray, toHex, toUtf8, toAscii, fromUtf8, fromAscii, toBN, toNumber
+  intToByteArray,
+  toHex,
+  toUtf8,
+  toAscii,
+  fromUtf8,
+  fromAscii,
+  toBN,
+  toNumber,
+  padLeft,
+  padRight
 }
