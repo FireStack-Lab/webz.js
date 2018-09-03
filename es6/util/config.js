@@ -1,7 +1,7 @@
 export default {
   version: '0.0.1',
   mode: 'sync',
-  defaultNodeUrl: 'http://localhost:4201',
+  defaultProviderUrl: 'http://localhost:4200',
   defaultBlock: 'latest',
   defaultAccount: undefined
 }
