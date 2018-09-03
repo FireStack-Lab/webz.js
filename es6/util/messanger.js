@@ -1,10 +1,12 @@
 import JsonRpc from './jsonRpc'
 import { InvalidProvider } from './errors'
 
+const jsonRpc = new JsonRpc()
+
 class Messanger {
   constructor(provider) {
     this.provider = provider
-    this.JsonRpc = new JsonRpc()
+    // JsonRpc = new JsonRpc()
   }
 
   send = async (data) => {
@@ -12,7 +14,7 @@ class Messanger {
       console.error(InvalidProvider())
       return null
     }
-    const payload = this.JsonRpc.toPayload(data.method, data.params)
+    const payload = jsonRpc.toPayload(data.method, data.params)
     const result = await this.provider.send(payload)
     return result
   }
@@ -23,7 +25,7 @@ class Messanger {
       return null
     }
 
-    const payload = this.JsonRpc.toPayload(data.method, data.params)
+    const payload = jsonRpc.toPayload(data.method, data.params)
     this.provider.sendAsync(payload, (err, result) => {
       if (err) {
         return callback(err)
@@ -38,7 +40,7 @@ class Messanger {
       return null
     }
 
-    const payload = this.JsonRpc.toBatchPayload(data)
+    const payload = jsonRpc.toBatchPayload(data)
 
     this.provider.sendAsync(payload, (err, results) => {
       if (err) {
@@ -53,7 +55,7 @@ class Messanger {
       console.error(InvalidProvider())
       return null
     }
-    // const payload = this.JsonRpc.toPayload(data.method, data.params)
+    // const payload = JsonRpc.toPayload(data.method, data.params)
     const result = await this.provider.sendServer(endpoint, data)
     return result
   }
@@ -63,7 +65,7 @@ class Messanger {
       console.error(InvalidProvider())
       return null
     }
-    // const payload = this.JsonRpc.toPayload(data.method, data.params)
+    // const payload = JsonRpc.toPayload(data.method, data.params)
     this.provider.sendAsyncServer(endpoint, data, (err, result) => {
       if (err) {
         return callback(err)
@@ -77,7 +79,7 @@ class Messanger {
       console.error(InvalidProvider())
       return null
     }
-    // const payload = this.JsonRpc.toBatchPayload(data)
+    // const payload = JsonRpc.toBatchPayload(data)
     this.provider.sendAsync(data, (err, results) => {
       if (err) {
         return callback(err)

@@ -12,55 +12,50 @@ import Messanger from './util/messanger'
 // test function
 import Zil from './zil'
 
-const { validateArgs, config } = util
-
 class Webz {
   constructor(args) {
-    validateArgs(args, {}, { nodeUrl: [util.isUrl] })
-    this.url = args || config.defaultNodeUrl
+    // validateArgs(args, {}, { nodeUrl: [util.isUrl] })
+    const url = args || util.config.defaultNodeUrl
     //
-    this.version = config.version
-
     this.util = util
     //
-    this.currentProvider = new HttpProvider(this.url)
+    this.currentProvider = new HttpProvider(url)
     this.messanger = new Messanger(this.currentProvider)
-
     //
     this.zil = new Zil(this)
-    this.data = {}
   }
 
   providers = {
     HttpProvider
   }
 
-  // library method
-  isConnected = () => this.zil && this.zil.isConnected()
+  config = util.config
 
-  getLibraryVersion = () => this.version
+  // library method
+  isConnected = async () => {
+    const result = await this.zil.isConnected()
+    try {
+      return !(result instanceof Error)
+    } catch (e) {
+      return false
+    }
+  }
+
+  getLibraryVersion = () => this.config.version
+
+  getDefaultProviderUrl = () => this.config.defaultProviderUrl
+
+  getDefaultAccount = () => this.config.defaultAccount
+
+  getDefaultBlock = () => this.config.defaultBlock
 
   // provider method
   getProvider = () => this.currentProvider
 
   setProvider = (provider) => {
-    validateArgs(
-      provider,
-      {},
-      {
-        nodeUrl: [util.isUrl]
-      }
-    )
     this.currentProvider = new HttpProvider(provider)
     this.messanger.setProvider(this.currentProvider)
   }
-
-  // zil related method
-  getBalance = address => this.zil.getBalance(address)
-
-  generateWallet = walletName => this.zil.generateWallet(walletName)
-
-  getNetworkType = () => {}
 }
 
 export default Webz

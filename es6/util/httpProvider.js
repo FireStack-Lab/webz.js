@@ -1,14 +1,20 @@
 import axios from 'axios'
+import { isUrl, isString } from './validator'
+import config from './config'
+// import { InvalidProvider } from './errors'
 // import errors from 'errors'
 
 class HttpProvider {
   constructor(url, timeout, user, password, headers) {
-    this.url = url || 'http://localhost:4200'
+    if ((!isString(url) || !isUrl(url)) && url !== undefined) {
+      throw Error('Provider has to be valid URL')
+    }
+    this.url = url || config.defaultProviderUrl
     this.timeout = timeout || 0
     this.user = user
     this.password = password
     this.headers = headers
-    this.axios = this.instance()
+    this.instance()
   }
 
   instance = () => {
@@ -31,7 +37,7 @@ class HttpProvider {
   }
 
   send = async (payload) => {
-    const result = await this.axios
+    const result = await this.instance()
       .post(this.url, JSON.stringify(payload))
       .then((response) => {
         const { data, status } = response
@@ -44,7 +50,7 @@ class HttpProvider {
   }
 
   sendServer = async (endpoint, payload) => {
-    const result = await this.axios
+    const result = await this.instance()
       .post(`${this.url}${endpoint}`, JSON.stringify(payload))
       .then((response) => {
         const { data, status } = response
@@ -59,7 +65,7 @@ class HttpProvider {
   sendAsync = (payload, callback) => {
     // const request = this.instance()
     // console.log(JSON.stringify(payload))
-    this.axios
+    this.instance()
       .post(this.url, JSON.stringify(payload))
       .then((response) => {
         const { data, status } = response
@@ -73,7 +79,7 @@ class HttpProvider {
   sendAsyncServer = (endpoint, payload, callback) => {
     // const request = this.instance()
     // console.log(JSON.stringify(payload))
-    this.axios
+    this.instance()
       .post(`${this.url}${endpoint}`, JSON.stringify(payload))
       .then((response) => {
         const { data, status } = response

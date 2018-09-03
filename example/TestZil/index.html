@@ -25,33 +25,22 @@
 
 var currenProvider=document.getElementById('nodeUrl').value
 var setButton=document.getElementById('setProviderButton')
-
-
-//For local testing, use URL = 'http://localhost:4201'
+//For local testing, use URL = 'http://localhost:4200'
 //To connect to the external network, use URL = 'https://api-scilla.zilliqa.com'
-var webz =new Webz({nodeUrl:currenProvider})
+var webz =new Webz(currenProvider)
 
-var URL = 'http://localhost:4200'
-//var URL = 'https://api-scilla.zilliqa.com'
+// var URL = undefined
+
 
 setButton.onclick=function(e){
   console.log('lll')
 };
 
+var URL ='https://api-scilla.zilliqa.com'
 webz.setProvider(URL)
+// webz.isConnected().then(console.log)
+webz.zil.getNetworkId((err,data)=>(console.log({err,data})))
 
-
-
-
-// sign the transaction using util methods
-// let txn = webz.util.createTransactionJson('e19d05c5452598e24caad4a0d85a49146f7be089515c905ae6a19e8a578a6930', txnDetails);
-
-// send the transaction to the node
-// webz.zil.createTransaction(txn, (err,data)=>{console.log(data)});
-
-// hr.then(console.log)
-
-console.log(webz)
 
 </script>
 </body>
